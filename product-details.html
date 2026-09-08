@@ -413,7 +413,280 @@
             loadProductDetails
         );
 
-    </script>
+    <script>
+
+let selectedQuantity = 1;
+
+
+/* =========================================
+   GET PRODUCT ID
+========================================= */
+
+function getProductId() {
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    return Number(params.get("id"));
+}
+
+
+/* =========================================
+   LOAD PRODUCT DETAILS
+========================================= */
+
+function loadProductDetails() {
+
+    const productId = getProductId();
+
+    const product =
+        products.find(item => item.id === productId);
+
+    const container =
+        document.getElementById("productDetails");
+
+
+    if (!container) return;
+
+
+    if (!product) {
+
+        container.innerHTML = `
+            <div
+                style="
+                    text-align:center;
+                    grid-column:1/-1;
+                    padding:40px;
+                "
+            >
+
+                <div style="font-size:60px;">
+                    😕
+                </div>
+
+                <h2>
+                    Product Not Found
+                </h2>
+
+                <p>
+                    Please select a valid product.
+                </p>
+
+                <br>
+
+                <a
+                    href="products.html"
+                    class="back-products"
+                >
+                    ← Back to Products
+                </a>
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    /* Reset quantity */
+
+    selectedQuantity = 1;
+
+
+    /* Product HTML */
+
+    container.innerHTML = `
+
+        <div class="details-image">
+            ${product.icon}
+        </div>
+
+
+        <div class="details-info">
+
+            <div class="details-category">
+                ${product.category}
+            </div>
+
+
+            <h1>
+                ${product.name}
+            </h1>
+
+
+            <p class="details-description">
+                ${product.description}
+            </p>
+
+
+            <div class="details-price">
+                ₹${product.price}
+            </div>
+
+
+            <div class="quantity-box">
+
+                <span
+                    style="
+                        font-weight:600;
+                        margin-right:5px;
+                    "
+                >
+                    Quantity:
+                </span>
+
+
+                <button
+                    type="button"
+                    onclick="decreaseQuantity()"
+                >
+                    −
+                </button>
+
+
+                <span id="quantity">
+                    1
+                </span>
+
+
+                <button
+                    type="button"
+                    onclick="increaseQuantity()"
+                >
+                    +
+                </button>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="details-add-btn"
+                onclick="addProductToCart()"
+            >
+                🛒 Add to Cart
+            </button>
+
+        </div>
+    `;
+}
+
+
+/* =========================================
+   INCREASE QUANTITY
+========================================= */
+
+function increaseQuantity() {
+
+    selectedQuantity++;
+
+    updateQuantityDisplay();
+}
+
+
+/* =========================================
+   DECREASE QUANTITY
+========================================= */
+
+function decreaseQuantity() {
+
+    if (selectedQuantity <= 1) {
+        return;
+    }
+
+    selectedQuantity--;
+
+    updateQuantityDisplay();
+}
+
+
+/* =========================================
+   UPDATE QUANTITY DISPLAY
+========================================= */
+
+function updateQuantityDisplay() {
+
+    const quantity =
+        document.getElementById("quantity");
+
+    if (quantity) {
+
+        quantity.textContent =
+            selectedQuantity;
+
+    }
+}
+
+
+/* =========================================
+   ADD PRODUCT TO CART
+========================================= */
+
+function addProductToCart() {
+
+    const productId =
+        getProductId();
+
+
+    const product =
+        products.find(
+            item => item.id === productId
+        );
+
+
+    if (!product) {
+
+        showToast(
+            "Product not found"
+        );
+
+        return;
+    }
+
+
+    /*
+       Important:
+       Direct quantity add.
+       Multiple toast problem nahi hoga.
+    */
+
+    addToCart(
+        product.name,
+        product.price,
+        selectedQuantity
+    );
+
+
+    showToast(
+        selectedQuantity +
+        " × " +
+        product.name +
+        " added to cart"
+    );
+
+
+    /* Reset quantity */
+
+    selectedQuantity = 1;
+
+    updateQuantityDisplay();
+}
+
+
+/* =========================================
+   LOAD PAGE
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadProductDetails();
+
+    }
+);
+
+</script>
 
 </body>
 </html>
