@@ -1,979 +1,310 @@
+let cart = JSON.parse(localStorage.getItem("snKisanCart")) || [];
 
-/* =========================================
-   SN KISAN MART - MAIN JAVASCRIPT
-========================================= */
+// ===============================
+// CART SAVE
+// ===============================
+function saveCart() {
+    localStorage.setItem("snKisanCart", JSON.stringify(cart));
+}
 
-document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================================
-       ELEMENTS
-    ========================================= */
+// ===============================
+// ADD TO CART
+// ===============================
+function addToCart(name, price, quantity = 1) {
 
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileMenu = document.getElementById("mobileMenu");
+    price = Number(price);
+    quantity = Number(quantity);
 
-    const cartBtn = document.getElementById("cartBtn");
-    const cartSidebar = document.getElementById("cartSidebar");
-    const closeCart = document.getElementById("closeCart");
-    const overlay = document.getElementById("overlay");
+    const existingProduct = cart.find(item => item.name === name);
+
+    if (existingProduct) {
+        existingProduct.quantity += quantity;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            quantity: quantity
+        });
+    }
+
+    saveCart();
+    updateCart();
+
+    showToast(name + " added to cart");
+}
+
+
+// ===============================
+// UPDATE CART
+// ===============================
+function updateCart() {
 
     const cartItems = document.getElementById("cartItems");
-    const cartCount = document.getElementById("cartCount");
     const cartTotal = document.getElementById("cartTotal");
+    const cartCount = document.getElementById("cartCount");
 
-    const wishlistBtn = document.getElementById("wishlistBtn");
-    const wishlistButtons = document.querySelectorAll(".wishlist");
+    // Total quantity
+    const totalQuantity = cart.reduce(
+        (sum, item) => sum + Number(item.quantity),
+        0
+    );
 
-    const loginBtn = document.querySelector(".login-btn");
-    const loginModal = document.getElementById("loginModal");
-    const closeLogin = document.getElementById("closeLogin");
-    const loginForm = document.getElementById("loginForm");
-
-    const searchInput = document.getElementById("searchInput");
-    const searchBtn = document.getElementById("searchBtn");
-
-    const newsletterForm =
-        document.getElementById("newsletterForm");
-
-    const toast = document.getElementById("toast");
-
-    const currentYear =
-        document.getElementById("currentYear");
-
-
-    /* =========================================
-       CURRENT YEAR
-    ========================================= */
-
-    if (currentYear) {
-        currentYear.textContent = new Date().getFullYear();
+    if (cartCount) {
+        cartCount.textContent = totalQuantity;
     }
 
+    // Empty cart
+    if (cart.length === 0) {
 
-    /* =========================================
-       MOBILE MENU
-    ========================================= */
-
-    if (menuBtn && mobileMenu) {
-
-        menuBtn.addEventListener("click", () => {
-
-            mobileMenu.classList.toggle("active");
-
-            menuBtn.textContent =
-                mobileMenu.classList.contains("active")
-                    ? "✕"
-                    : "☰";
-        });
-
-        const mobileLinks =
-            mobileMenu.querySelectorAll("a");
-
-        mobileLinks.forEach(link => {
-
-            link.addEventListener("click", () => {
-
-                mobileMenu.classList.remove("active");
-
-                menuBtn.textContent = "☰";
-            });
-
-        });
-
-    }
-
-
-    /* =========================================
-       CART DATA
-    ========================================= */
-
-    let cart = JSON.parse(
-        localStorage.getItem("snKisanCart")
-    ) || [];
-
-
-    /* =========================================
-       SAVE CART
-    ========================================= */
-
-    function saveCart() {
-
-        localStorage.setItem(
-            "snKisanCart",
-            JSON.stringify(cart)
-        );
-
-    }
-
-
-    /* =========================================
-       SHOW TOAST
-    ========================================= */
-
-    function showToast(message) {
-
-        if (!toast) return;
-
-        toast.textContent = message;
-
-        toast.classList.add("show");
-
-        setTimeout(() => {
-
-            toast.classList.remove("show");
-
-        }, 2500);
-
-    }
-
-
-    /* =========================================
-       UPDATE CART
-    ========================================= */
-
-    function updateCart() {
-
-        if (!cartItems) return;
-
-        cartItems.innerHTML = "";
-
-        if (cart.length === 0) {
-
+        if (cartItems) {
             cartItems.innerHTML = `
-                <div class="empty-cart">
-                    <div>🛒</div>
+                <div style="text-align:center;padding:30px;">
+                    <div style="font-size:45px;">🛒</div>
                     <h3>Your cart is empty</h3>
                     <p>Add products to your cart.</p>
                 </div>
             `;
-
-            if (cartCount) {
-                cartCount.textContent = "0";
-            }
-
-            if (cartTotal) {
-                cartTotal.textContent = "₹0";
-            }
-
-            saveCart();
-
-            return;
         }
 
+        if (cartTotal) {
+            cartTotal.textContent = "₹0";
+        }
 
-        let total = 0;
-        let quantity = 0;
-
-
-        cart.forEach((item, index) => {
-
-            total += item.price * item.quantity;
-
-            quantity += item.quantity;
+        return;
+    }
 
 
-            const cartItem =
-                document.createElement("div");
+    // Cart products
+    if (cartItems) {
 
-            cartItem.className = "cart-product";
+        cartItems.innerHTML = cart.map((item, index) => {
 
-            cartItem.style.cssText = `
-                display:flex;
-                gap:12px;
-                padding:12px 0;
-                border-bottom:1px solid #edf0eb;
-                align-items:center;
-            `;
+            const itemTotal =
+                Number(item.price) * Number(item.quantity);
 
+            return `
+                <div class="cart-item">
 
-            cartItem.innerHTML = `
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <p>₹${item.price} × ${item.quantity}</p>
+                    </div>
 
-                <div style="
-                    width:55px;
-                    height:55px;
-                    border-radius:10px;
-                    background:#edf6ea;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    font-size:25px;
-                ">
-                    🌱
-                </div>
+                    <div class="cart-item-controls">
 
-                <div style="flex:1">
-
-                    <strong style="
-                        display:block;
-                        font-size:12px;
-                        color:#24382a;
-                    ">
-                        ${item.name}
-                    </strong>
-
-                    <span style="
-                        display:block;
-                        color:#176b35;
-                        font-size:12px;
-                        margin-top:3px;
-                    ">
-                        ₹${item.price}
-                    </span>
-
-                    <div style="
-                        display:flex;
-                        align-items:center;
-                        gap:7px;
-                        margin-top:7px;
-                    ">
-
-                        <button
-                            class="quantity-btn"
-                            data-index="${index}"
-                            data-action="decrease"
-                            style="
-                                width:24px;
-                                height:24px;
-                                border:1px solid #dce5da;
-                                background:white;
-                                border-radius:5px;
-                            "
-                        >
+                        <button onclick="decreaseCartItem(${index})">
                             −
                         </button>
 
-                        <span style="
-                            font-size:12px;
-                            font-weight:bold;
-                        ">
+                        <span>
                             ${item.quantity}
                         </span>
 
-                        <button
-                            class="quantity-btn"
-                            data-index="${index}"
-                            data-action="increase"
-                            style="
-                                width:24px;
-                                height:24px;
-                                border:1px solid #dce5da;
-                                background:white;
-                                border-radius:5px;
-                            "
-                        >
+                        <button onclick="increaseCartItem(${index})">
                             +
                         </button>
 
                     </div>
 
-                </div>
+                    <div class="cart-item-total">
+                        ₹${itemTotal}
+                    </div>
 
-                <button
-                    class="remove-cart"
-                    data-index="${index}"
-                    style="
-                        border:none;
-                        background:none;
-                        color:#d94b3b;
-                        font-size:16px;
-                    "
-                >
-                    ✕
-                </button>
+                    <button
+                        class="remove-cart-btn"
+                        onclick="removeCartItem(${index})"
+                    >
+                        ✕
+                    </button>
+
+                </div>
             `;
 
-
-            cartItems.appendChild(cartItem);
-
-        });
-
-
-        if (cartCount) {
-            cartCount.textContent = quantity;
-        }
-
-        if (cartTotal) {
-            cartTotal.textContent =
-                "₹" + total.toLocaleString("en-IN");
-        }
-
-
-        saveCart();
-
+        }).join("");
     }
 
 
-    /* =========================================
-       ADD TO CART
-    ========================================= */
+    // GRAND TOTAL
+    const total = cart.reduce(
+        (sum, item) =>
+            sum + (Number(item.price) * Number(item.quantity)),
+        0
+    );
 
-    const addCartButtons =
-        document.querySelectorAll(".add-cart");
-
-
-    addCartButtons.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const productName =
-                button.dataset.product ||
-                "Agriculture Product";
+    if (cartTotal) {
+        cartTotal.textContent = "₹" + total;
+    }
+}
 
 
-            const productCard =
-                button.closest(".product-card");
+// ===============================
+// PLUS
+// ===============================
+function increaseCartItem(index) {
+
+    if (!cart[index]) return;
+
+    cart[index].quantity += 1;
+
+    saveCart();
+    updateCart();
+}
 
 
-            let price = 0;
+// ===============================
+// MINUS
+// ===============================
+function decreaseCartItem(index) {
 
-            if (productCard) {
+    if (!cart[index]) return;
 
-                const priceElement =
-                    productCard.querySelector(
-                        ".price-row strong"
-                    );
+    if (cart[index].quantity > 1) {
 
-                if (priceElement) {
+        cart[index].quantity -= 1;
 
-                    price =
-                        parseInt(
-                            priceElement.textContent
-                                .replace(/[₹,]/g, "")
-                        ) || 0;
+    } else {
 
-                }
-
-            }
-
-
-            const existingProduct =
-                cart.find(
-                    item => item.name === productName
-                );
-
-
-            if (existingProduct) {
-
-                existingProduct.quantity += 1;
-
-            } else {
-
-                cart.push({
-                    name: productName,
-                    price: price,
-                    quantity: 1
-                });
-
-            }
-
-
-            updateCart();
-
-            showToast(
-                `${productName} added to cart!`
-            );
-
-        });
-
-    });
-
-
-    /* =========================================
-       CART ITEM ACTIONS
-    ========================================= */
-
-    if (cartItems) {
-
-        cartItems.addEventListener(
-            "click",
-            event => {
-
-                const button =
-                    event.target.closest("button");
-
-                if (!button) return;
-
-
-                const index =
-                    parseInt(button.dataset.index);
-
-
-                if (button.classList.contains(
-                    "remove-cart"
-                )) {
-
-                    cart.splice(index, 1);
-
-                    updateCart();
-
-                    showToast(
-                        "Product removed from cart."
-                    );
-
-                }
-
-
-                if (button.classList.contains(
-                    "quantity-btn"
-                )) {
-
-                    const action =
-                        button.dataset.action;
-
-
-                    if (action === "increase") {
-
-                        cart[index].quantity++;
-
-                    }
-
-
-                    if (action === "decrease") {
-
-                        cart[index].quantity--;
-
-                        if (cart[index].quantity <= 0) {
-
-                            cart.splice(index, 1);
-
-                        }
-
-                    }
-
-
-                    updateCart();
-
-                }
-
-            }
-        );
+        cart.splice(index, 1);
 
     }
 
+    saveCart();
+    updateCart();
+}
 
-    /* =========================================
-       OPEN CART
-    ========================================= */
 
-    function openCart() {
+// ===============================
+// REMOVE
+// ===============================
+function removeCartItem(index) {
 
-        if (cartSidebar) {
-            cartSidebar.classList.add("open");
-        }
+    if (!cart[index]) return;
 
-        if (overlay) {
-            overlay.classList.add("active");
-        }
+    cart.splice(index, 1);
 
-        document.body.style.overflow = "hidden";
+    saveCart();
+    updateCart();
+}
 
+
+// ===============================
+// OPEN CART
+// ===============================
+function openCart() {
+
+    const sidebar =
+        document.getElementById("cartSidebar");
+
+    const overlay =
+        document.getElementById("cartOverlay");
+
+    if (sidebar) {
+        sidebar.classList.add("active");
     }
-
-
-    /* =========================================
-       CLOSE CART
-    ========================================= */
-
-    function closeCartSidebar() {
-
-        if (cartSidebar) {
-            cartSidebar.classList.remove("open");
-        }
-
-        if (overlay) {
-            overlay.classList.remove("active");
-        }
-
-        document.body.style.overflow = "";
-
-    }
-
-
-    if (cartBtn) {
-
-        cartBtn.addEventListener(
-            "click",
-            openCart
-        );
-
-    }
-
-
-    if (closeCart) {
-
-        closeCart.addEventListener(
-            "click",
-            closeCartSidebar
-        );
-
-    }
-
 
     if (overlay) {
-
-        overlay.addEventListener(
-            "click",
-            closeCartSidebar
-        );
-
+        overlay.classList.add("active");
     }
 
-
-    /* =========================================
-       WISHLIST
-    ========================================= */
-
-    let wishlist =
-        JSON.parse(
-            localStorage.getItem("snKisanWishlist")
-        ) || [];
+    updateCart();
+}
 
 
-    function updateWishlistCount() {
+// ===============================
+// CLOSE CART
+// ===============================
+function closeCart() {
 
-        if (wishlistBtn) {
+    const sidebar =
+        document.getElementById("cartSidebar");
 
-            const badge =
-                wishlistBtn.querySelector(".badge");
+    const overlay =
+        document.getElementById("cartOverlay");
 
-            if (badge) {
-                badge.textContent =
-                    wishlist.length;
-            }
-
-        }
-
+    if (sidebar) {
+        sidebar.classList.remove("active");
     }
 
-
-    wishlistButtons.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const productCard =
-                button.closest(".product-card");
-
-            if (!productCard) return;
+    if (overlay) {
+        overlay.classList.remove("active");
+    }
+}
 
 
-            const name =
-                productCard.querySelector(
-                    "h3"
-                )?.textContent.trim();
+// ===============================
+// LOGIN
+// ===============================
+function openLoginModal() {
+
+    const modal =
+        document.getElementById("loginModal");
+
+    if (modal) {
+        modal.classList.add("active");
+    }
+}
 
 
-            if (!name) return;
+function closeLoginModal() {
+
+    const modal =
+        document.getElementById("loginModal");
+
+    if (modal) {
+        modal.classList.remove("active");
+    }
+}
 
 
-            const index =
-                wishlist.indexOf(name);
+// ===============================
+// TOAST
+// ===============================
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    if (!toast) return;
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2500);
+}
 
 
-            if (index === -1) {
+// ===============================
+// CHECKOUT
+// ===============================
+function checkout() {
 
-                wishlist.push(name);
+    if (cart.length === 0) {
 
-                button.textContent = "♥";
+        showToast("Your cart is empty");
 
-                showToast(
-                    "Added to wishlist ❤️"
-                );
-
-            } else {
-
-                wishlist.splice(index, 1);
-
-                button.textContent = "♡";
-
-                showToast(
-                    "Removed from wishlist."
-                );
-
-            }
-
-
-            localStorage.setItem(
-                "snKisanWishlist",
-                JSON.stringify(wishlist)
-            );
-
-
-            updateWishlistCount();
-
-        });
-
-    });
-
-
-    /* Restore wishlist */
-
-    wishlistButtons.forEach(button => {
-
-        const productCard =
-            button.closest(".product-card");
-
-        const name =
-            productCard?.querySelector(
-                "h3"
-            )?.textContent.trim();
-
-
-        if (name && wishlist.includes(name)) {
-
-            button.textContent = "♥";
-
-        }
-
-    });
-
-
-    if (wishlistBtn) {
-
-        wishlistBtn.addEventListener(
-            "click",
-            () => {
-
-                if (wishlist.length === 0) {
-
-                    showToast(
-                        "Your wishlist is empty."
-                    );
-
-                } else {
-
-                    showToast(
-                        `${wishlist.length} item(s) in wishlist ❤️`
-                    );
-
-                }
-
-            }
-        );
-
+        return;
     }
 
+    showToast("Checkout coming soon");
+}
 
-    /* =========================================
-       LOGIN MODAL
-    ========================================= */
 
-    function openLogin() {
-
-        if (loginModal) {
-
-            loginModal.classList.add("active");
-
-            document.body.style.overflow =
-                "hidden";
-
-        }
-
-    }
-
-
-    function closeLoginModal() {
-
-        if (loginModal) {
-
-            loginModal.classList.remove("active");
-
-            document.body.style.overflow = "";
-
-        }
-
-    }
-
-
-    if (loginBtn) {
-
-        loginBtn.addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
-
-                openLogin();
-
-            }
-        );
-
-    }
-
-
-    if (closeLogin) {
-
-        closeLogin.addEventListener(
-            "click",
-            closeLoginModal
-        );
-
-    }
-
-
-    if (loginModal) {
-
-        loginModal.addEventListener(
-            "click",
-            event => {
-
-                if (event.target === loginModal) {
-
-                    closeLoginModal();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       LOGIN FORM
-    ========================================= */
-
-    if (loginForm) {
-
-        loginForm.addEventListener(
-            "submit",
-            event => {
-
-                event.preventDefault();
-
-                const email =
-                    document.getElementById(
-                        "loginEmail"
-                    )?.value.trim();
-
-                const password =
-                    document.getElementById(
-                        "loginPassword"
-                    )?.value.trim();
-
-
-                if (!email || !password) {
-
-                    showToast(
-                        "Please enter email and password."
-                    );
-
-                    return;
-
-                }
-
-
-                /*
-                 * FRONTEND DEMO ONLY
-                 *
-                 * Real authentication will be
-                 * connected to Node.js + MongoDB later.
-                 */
-
-                showToast(
-                    "Login system will be connected soon."
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       SEARCH
-    ========================================= */
-
-    function searchProducts() {
-
-        if (!searchInput) return;
-
-
-        const searchTerm =
-            searchInput.value
-                .trim()
-                .toLowerCase();
-
-
-        const products =
-            document.querySelectorAll(
-                ".product-card"
-            );
-
-
-        if (!searchTerm) {
-
-            products.forEach(product => {
-
-                product.style.display = "";
-
-            });
-
-            return;
-
-        }
-
-
-        let found = 0;
-
-
-        products.forEach(product => {
-
-            const text =
-                product.textContent.toLowerCase();
-
-
-            if (text.includes(searchTerm)) {
-
-                product.style.display = "";
-
-                found++;
-
-            } else {
-
-                product.style.display = "none";
-
-            }
-
-        });
-
-
-        document
-            .getElementById("products")
-            ?.scrollIntoView({
-                behavior: "smooth"
-            });
-
-
-        if (found === 0) {
-
-            showToast(
-                "No matching products found."
-            );
-
-        } else {
-
-            showToast(
-                `${found} product(s) found.`
-            );
-
-        }
-
-    }
-
-
-    if (searchBtn) {
-
-        searchBtn.addEventListener(
-            "click",
-            searchProducts
-        );
-
-    }
-
-
-    if (searchInput) {
-
-        searchInput.addEventListener(
-            "keydown",
-            event => {
-
-                if (event.key === "Enter") {
-
-                    searchProducts();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       NEWSLETTER
-    ========================================= */
-
-    if (newsletterForm) {
-
-        newsletterForm.addEventListener(
-            "submit",
-            event => {
-
-                event.preventDefault();
-
-                const email =
-                    document.getElementById(
-                        "emailInput"
-                    )?.value.trim();
-
-
-                if (!email) {
-
-                    showToast(
-                        "Please enter your email."
-                    );
-
-                    return;
-
-                }
-
-
-                showToast(
-                    "Thanks for subscribing! 🌱"
-                );
-
-
-                newsletterForm.reset();
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       CHECKOUT BUTTON
-    ========================================= */
-
-    const checkoutBtn =
-        document.querySelector(
-            ".checkout-btn"
-        );
-
-
-    if (checkoutBtn) {
-
-        checkoutBtn.addEventListener(
-            "click",
-            () => {
-
-                if (cart.length === 0) {
-
-                    showToast(
-                        "Your cart is empty."
-                    );
-
-                    return;
-
-                }
-
-
-                showToast(
-                    "Checkout will be connected soon."
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       INITIALIZE
-    ========================================= */
+// ===============================
+// PAGE LOAD
+// ===============================
+document.addEventListener("DOMContentLoaded", function () {
 
     updateCart();
 
-    updateWishlistCount();
+    const overlay =
+        document.getElementById("cartOverlay");
+
+    if (overlay) {
+        overlay.addEventListener("click", closeCart);
+    }
 
 });
