@@ -1,690 +1,748 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Product Details | SN Kisan Mart</title>
 
-    <title>Product Details | SN Kisan Mart</title>
+<link rel="stylesheet" href="css/style.css">
 
-    <link rel="stylesheet" href="css/style.css">
+<style>
+    .product-details-page {
+        padding: 60px 5%;
+        background: #f7faf7;
+        min-height: 70vh;
+    }
 
-    <style>
+    .product-details-container {
+        max-width: 1100px;
+        margin: auto;
+        background: white;
+        border-radius: 18px;
+        padding: 35px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 45px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+    }
+
+    .details-image {
+        min-height: 400px;
+        background: #eef7ef;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 130px;
+    }
+
+    .details-category {
+        color: #198754;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .details-info h1 {
+        font-size: 38px;
+        color: #173d25;
+        margin-bottom: 15px;
+    }
+
+    .details-description {
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 25px;
+    }
+
+    .details-price {
+        font-size: 32px;
+        font-weight: 800;
+        color: #198754;
+        margin-bottom: 25px;
+    }
+
+    .quantity-box {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .quantity-box button {
+        width: 38px;
+        height: 38px;
+        border: 1px solid #ddd;
+        background: white;
+        border-radius: 6px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .quantity-box button:hover {
+        background: #eef7ef;
+    }
+
+    .quantity-box span {
+        font-size: 20px;
+        font-weight: 700;
+        min-width: 25px;
+        text-align: center;
+    }
+
+    .details-add-btn {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        background: #198754;
+        color: white;
+        font-size: 17px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .details-add-btn:hover {
+        background: #146c43;
+    }
+
+    .back-products {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #198754;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .details-not-found {
+        text-align: center;
+        grid-column: 1 / -1;
+        padding: 40px;
+    }
+
+    .details-not-found-icon {
+        font-size: 60px;
+        margin-bottom: 10px;
+    }
+
+    .details-not-found h2 {
+        margin-bottom: 10px;
+        color: #173d25;
+    }
+
+    .details-not-found p {
+        color: #666;
+    }
+
+    .btn.btn-primary {
+        width: 100%;
+        border: none;
+        padding: 13px 18px;
+        border-radius: 8px;
+        background: #198754;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .btn.btn-primary:hover {
+        background: #146c43;
+    }
+
+    @media (max-width: 700px) {
+
         .product-details-page {
-            padding: 60px 5%;
-            background: #f7faf7;
-            min-height: 70vh;
+            padding: 30px 4%;
         }
 
         .product-details-container {
-            max-width: 1100px;
-            margin: auto;
-            background: white;
-            border-radius: 18px;
-            padding: 35px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 45px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+            grid-template-columns: 1fr;
+            padding: 20px;
+            gap: 25px;
         }
 
         .details-image {
-            min-height: 400px;
-            background: #eef7ef;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 130px;
-        }
-
-        .details-category {
-            color: #198754;
-            font-weight: 700;
-            margin-bottom: 10px;
+            min-height: 280px;
+            font-size: 90px;
         }
 
         .details-info h1 {
-            font-size: 38px;
-            color: #173d25;
-            margin-bottom: 15px;
-        }
-
-        .details-description {
-            color: #666;
-            line-height: 1.7;
-            margin-bottom: 25px;
+            font-size: 28px;
         }
 
         .details-price {
-            font-size: 32px;
-            font-weight: 800;
-            color: #198754;
-            margin-bottom: 25px;
+            font-size: 27px;
         }
 
         .quantity-box {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .quantity-box button {
-            width: 38px;
-            height: 38px;
-            border: 1px solid #ddd;
-            background: white;
-            border-radius: 6px;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .quantity-box span {
-            font-size: 20px;
-            font-weight: 700;
-            min-width: 25px;
-            text-align: center;
-        }
-
-        .details-add-btn {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            background: #198754;
-            color: white;
-            font-size: 17px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .details-add-btn:hover {
-            background: #146c43;
-        }
-
-        .back-products {
-            display: inline-block;
             margin-bottom: 20px;
-            color: #198754;
-            font-weight: 600;
-            text-decoration: none;
         }
+    }
+</style>
 
-        @media (max-width: 700px) {
-            .product-details-page {
-                padding: 30px 4%;
-            }
+</head><body><!-- =========================
+     HEADER
+========================== -->
 
-            .product-details-container {
-                grid-template-columns: 1fr;
-                padding: 20px;
-                gap: 25px;
-            }
+<header class="header">
 
-            .details-image {
-                min-height: 280px;
-                font-size: 90px;
-            }
+    <div class="container header-inner">
 
-            .details-info h1 {
-                font-size: 28px;
-            }
+        <a href="index.html" class="logo">
+            <span>🌱</span>
+            SN Kisan Mart
+        </a>
 
-            .details-price {
-                font-size: 27px;
-            }
-        }
-    </style>
-</head>
+        <div class="search-box">
 
-<body>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="container header-inner">
-
-            <a href="index.html" class="logo">
-                <span>🌱</span>
-                SN Kisan Mart
-            </a>
-
-            <div class="search-box">
-                <input
-                    type="text"
-                    id="productSearch"
-                    placeholder="Search products..."
-                >
-                <button onclick="searchProducts()">🔍</button>
-            </div>
-
-            <nav class="nav">
-                <a href="index.html">Home</a>
-                <a href="products.html">Products</a>
-                <a href="index.html#categories">Categories</a>
-                <a href="index.html#about">About</a>
-            </nav>
-
-            <div class="header-actions">
-                <button onclick="openCart()">
-                    🛒 <span id="cartCount">0</span>
-                </button>
-
-                <button onclick="openLoginModal()">👤</button>
-            </div>
-
-        </div>
-    </header>
-
-
-    <!-- Product Details -->
-    <main class="product-details-page">
-
-        <div class="container">
-
-            <a href="products.html" class="back-products">
-                ← Back to Products
-            </a>
-
-            <div
-                class="product-details-container"
-                id="productDetails">
-
-                <!-- Product will load here -->
-
-            </div>
-
-        </div>
-
-    </main>
-
-
-    <!-- Cart -->
-    <div id="cartOverlay" class="cart-overlay"></div>
-
-    <aside id="cartSidebar" class="cart-sidebar">
-
-        <div class="cart-header">
-            <h2>Your Cart</h2>
-            <button onclick="closeCart()">✕</button>
-        </div>
-
-        <div id="cartItems"></div>
-
-        <div class="cart-footer">
-
-            <div class="cart-total">
-                <strong>Total:</strong>
-                <strong id="cartTotal">₹0</strong>
-            </div>
-
-            <button onclick="checkout()" class="btn btn-primary">
-                Checkout
-            </button>
-
-        </div>
-
-    </aside>
-
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-
-        <div class="modal-content">
+            <input
+                type="text"
+                id="productSearch"
+                placeholder="Search products..."
+            >
 
             <button
-                class="modal-close"
-                onclick="closeLoginModal()">
-                ✕
+                type="button"
+                onclick="goToProductsSearch()"
+            >
+                🔍
             </button>
 
-            <h2>Login</h2>
+        </div>
 
-            <form id="loginForm">
+        <nav class="nav">
 
-                <input
-                    type="email"
-                    id="loginEmail"
-                    placeholder="Email address"
-                    required
-                >
+            <a href="index.html">
+                Home
+            </a>
 
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="Password"
-                    required
-                >
+            <a href="products.html">
+                Products
+            </a>
 
-                <button
-                    type="submit"
-                    class="btn btn-primary">
-                    Login
-                </button>
+            <a href="index.html#categories">
+                Categories
+            </a>
 
-            </form>
+            <a href="index.html#about">
+                About
+            </a>
+
+        </nav>
+
+        <div class="header-actions">
+
+            <button
+                type="button"
+                onclick="openCart()"
+            >
+                🛒 <span id="cartCount">0</span>
+            </button>
+
+            <button
+                type="button"
+                onclick="openLoginModal()"
+            >
+                👤
+            </button>
 
         </div>
 
     </div>
 
-
-    <!-- Toast -->
-    <div id="toast" class="toast"></div>
+</header>
 
 
-    <script src="js/script.js"></script>
-    <script src="js/products.js"></script>
+<!-- =========================
+     PRODUCT DETAILS
+========================== -->
+
+<main class="product-details-page">
+
+    <div class="container">
+
+        <a
+            href="products.html"
+            class="back-products"
+        >
+            ← Back to Products
+        </a>
+
+        <div
+            class="product-details-container"
+            id="productDetails"
+        >
+
+            <!-- Product loads here -->
+
+        </div>
+
+    </div>
+
+</main>
 
 
-    <script>
+<!-- =========================
+     CART
+========================== -->
 
-        let selectedQuantity = 1;
+<div
+    id="cartOverlay"
+    class="cart-overlay"
+></div>
 
-        function getProductId() {
+<aside
+    id="cartSidebar"
+    class="cart-sidebar"
+>
 
-            const params =
-                new URLSearchParams(window.location.search);
+    <div class="cart-header">
 
-            return Number(params.get("id"));
+        <h2>
+            Your Cart
+        </h2>
+
+        <button
+            type="button"
+            onclick="closeCart()"
+        >
+            ✕
+        </button>
+
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-footer">
+
+        <div class="cart-total">
+
+            <strong>
+                Total:
+            </strong>
+
+            <strong id="cartTotal">
+                ₹0
+            </strong>
+
+        </div>
+
+        <button
+            type="button"
+            onclick="checkout()"
+            class="btn btn-primary"
+        >
+            Checkout
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================
+     LOGIN MODAL
+========================== -->
+
+<div
+    id="loginModal"
+    class="modal"
+>
+
+    <div class="modal-content">
+
+        <button
+            type="button"
+            class="modal-close"
+            onclick="closeLoginModal()"
+        >
+            ✕
+        </button>
+
+        <h2>
+            Login
+        </h2>
+
+        <form id="loginForm">
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Email address"
+                required
+            >
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+                required
+            >
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TOAST
+========================== -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script src="js/script.js"></script>
+<script src="js/products.js"></script>
+
+<script>
+
+    let selectedQuantity = 1;
+
+
+    /* =========================
+       GET PRODUCT ID
+    ========================== */
+
+    function getProductId() {
+
+        const params =
+            new URLSearchParams(window.location.search);
+
+        return Number(params.get("id"));
+    }
+
+
+    /* =========================
+       LOAD PRODUCT DETAILS
+    ========================== */
+
+    function loadProductDetails() {
+
+        const productId =
+            getProductId();
+
+        const product =
+            products.find(
+                item => item.id === productId
+            );
+
+        const container =
+            document.getElementById(
+                "productDetails"
+            );
+
+
+        if (!container) {
+            return;
         }
 
 
-        function loadProductDetails() {
-
-            const productId = getProductId();
-
-            const product =
-                products.find(item => item.id === productId);
-
-            const container =
-                document.getElementById("productDetails");
-
-            if (!product) {
-
-                container.innerHTML = `
-                    <div style="text-align:center; grid-column:1/-1;">
-                        <h2>Product Not Found</h2>
-                        <p>Please select a valid product.</p>
-                        <br>
-                        <a href="products.html">
-                            Back to Products
-                        </a>
-                    </div>
-                `;
-
-                return;
-            }
-
+        if (!product) {
 
             container.innerHTML = `
 
-                <div class="details-image">
-                    ${product.icon}
-                </div>
+                <div class="details-not-found">
 
-                <div class="details-info">
-
-                    <div class="details-category">
-                        ${product.category}
+                    <div class="details-not-found-icon">
+                        😕
                     </div>
 
-                    <h1>
-                        ${product.name}
-                    </h1>
+                    <h2>
+                        Product Not Found
+                    </h2>
 
-                    <p class="details-description">
-                        ${product.description}
+                    <p>
+                        Please select a valid product.
                     </p>
 
-                    <div class="details-price">
-                        ₹${product.price}
-                    </div>
+                    <br>
 
-                    <div class="quantity-box">
+                    <a
+                        href="products.html"
+                        class="back-products"
+                    >
+                        ← Back to Products
+                    </a>
 
-                        <button onclick="decreaseQuantity()">
-                            −
-                        </button>
+                </div>
 
-                        <span id="quantity">
-                            1
-                        </span>
+            `;
 
-                        <button onclick="increaseQuantity()">
-                            +
-                        </button>
+            return;
+        }
 
-                    </div>
+
+        /* Reset quantity */
+
+        selectedQuantity = 1;
+
+
+        /* Product Details HTML */
+
+        container.innerHTML = `
+
+            <div class="details-image">
+                ${product.icon}
+            </div>
+
+
+            <div class="details-info">
+
+                <div class="details-category">
+                    ${product.category}
+                </div>
+
+
+                <h1>
+                    ${product.name}
+                </h1>
+
+
+                <p class="details-description">
+                    ${product.description}
+                </p>
+
+
+                <div class="details-price">
+                    ₹${product.price}
+                </div>
+
+
+                <div class="quantity-box">
+
+                    <span
+                        style="
+                            font-weight:600;
+                            margin-right:5px;
+                        "
+                    >
+                        Quantity:
+                    </span>
+
 
                     <button
-                        class="details-add-btn"
-                        onclick="addProductToCart()">
-                        Add to Cart
+                        type="button"
+                        onclick="decreaseQuantity()"
+                    >
+                        −
+                    </button>
+
+
+                    <span id="quantity">
+                        1
+                    </span>
+
+
+                    <button
+                        type="button"
+                        onclick="increaseQuantity()"
+                    >
+                        +
                     </button>
 
                 </div>
-            `;
+
+
+                <button
+                    type="button"
+                    class="details-add-btn"
+                    onclick="addProductToCart()"
+                >
+                    🛒 Add to Cart
+                </button>
+
+            </div>
+
+        `;
+    }
+
+
+    /* =========================
+       INCREASE QUANTITY
+    ========================== */
+
+    function increaseQuantity() {
+
+        selectedQuantity++;
+
+        updateQuantityDisplay();
+    }
+
+
+    /* =========================
+       DECREASE QUANTITY
+    ========================== */
+
+    function decreaseQuantity() {
+
+        if (selectedQuantity <= 1) {
+            return;
         }
 
+        selectedQuantity--;
 
-        function increaseQuantity() {
+        updateQuantityDisplay();
+    }
 
-            selectedQuantity++;
 
-            document.getElementById("quantity").textContent =
+    /* =========================
+       UPDATE QUANTITY DISPLAY
+    ========================== */
+
+    function updateQuantityDisplay() {
+
+        const quantity =
+            document.getElementById(
+                "quantity"
+            );
+
+        if (quantity) {
+
+            quantity.textContent =
                 selectedQuantity;
+
         }
+    }
 
 
-        function decreaseQuantity() {
+    /* =========================
+       ADD PRODUCT TO CART
+    ========================== */
 
-            if (selectedQuantity > 1) {
-                selectedQuantity--;
-            }
+    function addProductToCart() {
 
-            document.getElementById("quantity").textContent =
-                selectedQuantity;
-        }
+        const productId =
+            getProductId();
 
-
-        function addProductToCart() {
-
-            const productId = getProductId();
-
-            const product =
-                products.find(item => item.id === productId);
-
-            if (!product) return;
+        const product =
+            products.find(
+                item => item.id === productId
+            );
 
 
-            for (let i = 0; i < selectedQuantity; i++) {
-                addToCart(product.name, product.price);
-            }
+        if (!product) {
 
             showToast(
-                `${selectedQuantity} × ${product.name} added to cart`
+                "Product not found"
             );
+
+            return;
         }
 
 
-        document.addEventListener(
-            "DOMContentLoaded",
-            loadProductDetails
-        );
-
-    <script>
-
-let selectedQuantity = 1;
-
-
-/* =========================================
-   GET PRODUCT ID
-========================================= */
-
-function getProductId() {
-
-    const params =
-        new URLSearchParams(window.location.search);
-
-    return Number(params.get("id"));
-}
-
-
-/* =========================================
-   LOAD PRODUCT DETAILS
-========================================= */
-
-function loadProductDetails() {
-
-    const productId = getProductId();
-
-    const product =
-        products.find(item => item.id === productId);
-
-    const container =
-        document.getElementById("productDetails");
-
-
-    if (!container) return;
-
-
-    if (!product) {
-
-        container.innerHTML = `
-            <div
-                style="
-                    text-align:center;
-                    grid-column:1/-1;
-                    padding:40px;
-                "
-            >
-
-                <div style="font-size:60px;">
-                    😕
-                </div>
-
-                <h2>
-                    Product Not Found
-                </h2>
-
-                <p>
-                    Please select a valid product.
-                </p>
-
-                <br>
-
-                <a
-                    href="products.html"
-                    class="back-products"
-                >
-                    ← Back to Products
-                </a>
-
-            </div>
-        `;
-
-        return;
-    }
-
-
-    /* Reset quantity */
-
-    selectedQuantity = 1;
-
-
-    /* Product HTML */
-
-    container.innerHTML = `
-
-        <div class="details-image">
-            ${product.icon}
-        </div>
-
-
-        <div class="details-info">
-
-            <div class="details-category">
-                ${product.category}
-            </div>
-
-
-            <h1>
-                ${product.name}
-            </h1>
-
-
-            <p class="details-description">
-                ${product.description}
-            </p>
-
-
-            <div class="details-price">
-                ₹${product.price}
-            </div>
-
-
-            <div class="quantity-box">
-
-                <span
-                    style="
-                        font-weight:600;
-                        margin-right:5px;
-                    "
-                >
-                    Quantity:
-                </span>
-
-
-                <button
-                    type="button"
-                    onclick="decreaseQuantity()"
-                >
-                    −
-                </button>
-
-
-                <span id="quantity">
-                    1
-                </span>
-
-
-                <button
-                    type="button"
-                    onclick="increaseQuantity()"
-                >
-                    +
-                </button>
-
-            </div>
-
-
-            <button
-                type="button"
-                class="details-add-btn"
-                onclick="addProductToCart()"
-            >
-                🛒 Add to Cart
-            </button>
-
-        </div>
-    `;
-}
-
-
-/* =========================================
-   INCREASE QUANTITY
-========================================= */
-
-function increaseQuantity() {
-
-    selectedQuantity++;
-
-    updateQuantityDisplay();
-}
-
-
-/* =========================================
-   DECREASE QUANTITY
-========================================= */
-
-function decreaseQuantity() {
-
-    if (selectedQuantity <= 1) {
-        return;
-    }
-
-    selectedQuantity--;
-
-    updateQuantityDisplay();
-}
-
-
-/* =========================================
-   UPDATE QUANTITY DISPLAY
-========================================= */
-
-function updateQuantityDisplay() {
-
-    const quantity =
-        document.getElementById("quantity");
-
-    if (quantity) {
-
-        quantity.textContent =
-            selectedQuantity;
-
-    }
-}
-
-
-/* =========================================
-   ADD PRODUCT TO CART
-========================================= */
-
-function addProductToCart() {
-
-    const productId =
-        getProductId();
-
-
-    const product =
-        products.find(
-            item => item.id === productId
+        /*
+            Add complete quantity
+            in one cart operation.
+        */
+
+        addToCart(
+            product.name,
+            product.price,
+            selectedQuantity
         );
 
 
-    if (!product) {
+        /*
+            addToCart() already shows
+            success toast.
+        */
 
-        showToast(
-            "Product not found"
-        );
 
-        return;
+        selectedQuantity = 1;
+
+        updateQuantityDisplay();
     }
 
 
-    /*
-       Important:
-       Direct quantity add.
-       Multiple toast problem nahi hoga.
-    */
+    /* =========================
+       SEARCH → PRODUCTS PAGE
+    ========================== */
 
-    addToCart(
-        product.name,
-        product.price,
-        selectedQuantity
+    function goToProductsSearch() {
+
+        const input =
+            document.getElementById(
+                "productSearch"
+            );
+
+        if (!input) {
+            window.location.href =
+                "products.html";
+
+            return;
+        }
+
+
+        const searchValue =
+            input.value.trim();
+
+
+        if (searchValue === "") {
+
+            window.location.href =
+                "products.html";
+
+            return;
+        }
+
+
+        window.location.href =
+            "products.html?search=" +
+            encodeURIComponent(searchValue);
+    }
+
+
+    /* =========================
+       SEARCH ENTER KEY
+    ========================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            loadProductDetails();
+
+
+            const searchInput =
+                document.getElementById(
+                    "productSearch"
+                );
+
+
+            if (searchInput) {
+
+                searchInput.addEventListener(
+                    "keydown",
+                    function (event) {
+
+                        if (
+                            event.key === "Enter"
+                        ) {
+
+                            goToProductsSearch();
+
+                        }
+
+                    }
+                );
+
+            }
+
+        }
     );
-
-
-    showToast(
-        selectedQuantity +
-        " × " +
-        product.name +
-        " added to cart"
-    );
-
-
-    /* Reset quantity */
-
-    selectedQuantity = 1;
-
-    updateQuantityDisplay();
-}
-
-
-/* =========================================
-   LOAD PAGE
-========================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        loadProductDetails();
-
-    }
-);
 
 </script>
 
