@@ -810,22 +810,13 @@ function setupNewsletter() {
 ========================================= */
 
 function checkout() {
-
-    if (cart.length === 0) {
-
-        showToast(
-            "Your cart is empty"
-        );
-
+    if (!cart || cart.length === 0) {
+        showToast("Your cart is empty");
         return;
     }
 
-
-    showToast(
-        "Checkout coming soon"
-    );
+    window.location.href = "checkout.html";
 }
-
 
 /* =========================================
    YEAR
