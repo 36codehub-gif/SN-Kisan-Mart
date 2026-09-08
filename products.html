@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Products | SN Kisan Mart</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .products-page {
+            padding: 60px 5%;
+            background: #f7faf7;
+            min-height: 70vh;
+        }
+
+        .products-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .products-header h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+            color: #173d25;
+        }
+
+        .products-header p {
+            color: #666;
+        }
+
+        .product-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .category-filter button {
+            border: 1px solid #d7e4d9;
+            background: white;
+            padding: 10px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .category-filter button:hover,
+        .category-filter button.active {
+            background: #198754;
+            color: white;
+            border-color: #198754;
+        }
+
+        .sort-select {
+            padding: 11px 15px;
+            border: 1px solid #d7e4d9;
+            border-radius: 8px;
+            background: white;
+            outline: none;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+        }
+
+        .product-image {
+            height: 190px;
+            background: #eef7ef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            font-size: 13px;
+            color: #198754;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .product-description {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #173d25;
+        }
+
+        .add-cart-btn {
+            border: none;
+            background: #198754;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .add-cart-btn:hover {
+            background: #146c43;
+        }
+
+        @media (max-width: 1000px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .products-page {
+                padding: 40px 4%;
+            }
+
+            .products-header h1 {
+                font-size: 30px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .product-image {
+                height: 150px;
+                font-size: 50px;
+            }
+
+            .product-info {
+                padding: 15px;
+            }
+
+            .product-bottom {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .add-cart-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-inner">
+
+            <a href="index.html" class="logo">
+                <span>🌱</span>
+                SN Kisan Mart
+            </a>
+
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="productSearch"
+                    placeholder="Search products..."
+                >
+                <button onclick="searchProducts()">🔍</button>
+            </div>
+
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="products.html" class="active">Products</a>
+                <a href="index.html#categories">Categories</a>
+                <a href="index.html#about">About</a>
+            </nav>
+
+            <div class="header-actions">
+                <button onclick="openCart()">🛒 <span id="cartCount">0</span></button>
+                <button onclick="openLoginModal()">👤</button>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- Products Section -->
+    <main class="products-page">
+
+        <div class="products-header">
+            <h1>Our Products</h1>
+            <p>Quality farming products for better crops and better farming.</p>
+        </div>
+
+
+        <div class="product-controls">
+
+            <div class="category-filter">
+                <button class="active" onclick="filterProducts('all', this)">
+                    All
+                </button>
+
+                <button onclick="filterProducts('Seeds', this)">
+                    Seeds
+                </button>
+
+                <button onclick="filterProducts('Fertilizers', this)">
+                    Fertilizers
+                </button>
+
+                <button onclick="filterProducts('Crop Protection', this)">
+                    Crop Protection
+                </button>
+
+                <button onclick="filterProducts('Farm Tools', this)">
+                    Farm Tools
+                </button>
+            </div>
+
+            <select class="sort-select" id="sortProducts" onchange="sortProducts()">
+                <option value="default">Sort By</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+                <option value="name">Name: A-Z</option>
+            </select>
+
+        </div>
+
+
+        <div class="products-grid" id="productsGrid">
+
+            <!-- Product 1 -->
+            <div class="product-card"
+                 data-category="Seeds"
+                 data-price="299"
+                 data-name="Premium Vegetable Seeds">
+
+                <div class="product-image">🌱</div>
+
+                <div class="product-info">
+                    <div class="product-category">Seeds</div>
+
+                    <h3>Premium Vegetable Seeds</h3>
+
+                    <p class="product-description">
+                        High-quality vegetable seeds for healthy and productive crops.
+                    </p>
+
+                    <div class="product-bottom">
+                        <span class="product-price">₹299</span>
+
+                        <button class="add-cart-btn"
+                            onclick="addToCart('Premium Vegetable Seeds', 299)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Product 2 -->
+            <div class="product-card"
+                 data-category="Fertilizers"
+                 data-price="499"
+                 data-name="Organic Growth Fertilizer">
+
+                <div class="product-image">🌿</div>
+
+                <div class="product-info">
+                    <div class="product-category">Fertilizers</div>
+
+                    <h3>Organic Growth Fertilizer</h3>
+
+                    <p class="product-description">
+                        Organic fertilizer designed to improve soil health and plant growth.
+                    </p>
+
+                    <div class="product-bottom">
+                        <span class="product-price">₹499</span>
+
+                        <button class="add-cart-btn"
+                            onclick="addToCart('Organic Growth Fertilizer', 499)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Product 3 -->
+            <div class="product-card"
+                 data-category="Crop Protection"
+                 data-price="699"
+                 data-name="Advanced Crop Protection">
+
+                <div class="product-image">🛡️</div>
+
+                <div class="product-info">
+                    <div class="product-category">Crop Protection</div>
+
+                    <h3>Advanced Crop Protection</h3>
+
+                    <p class="product-description">
+                        Reliable crop protection solution for healthier and stronger crops.
+                    </p>
+
+                    <div class="product-bottom">
+                        <span class="product-price">₹699</span>
+
+                        <button class="add-cart-btn"
+                            onclick="addToCart('Advanced Crop Protection', 699)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Product 4 -->
+            <div class="product-card"
+                 data-category="Farm Tools"
+                 data-price="899"
+                 data-name="Professional Farming Tool Kit">
+
+                <div class="product-image">🛠️</div>
+
+                <div class="product-info">
+                    <div class="product-category">Farm Tools</div>
+
+                    <h3>Professional Farming Tool Kit</h3>
+
+                    <p class="product-description">
+                        Essential farming tools suitable for everyday agricultural work.
+                    </p>
+
+                    <div class="product-bottom">
+                        <span class="product-price">₹899</span>
+
+                        <button class="add-cart-btn"
+                            onclick="addToCart('Professional Farming Tool Kit', 899)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Product 5 -->
+            <div class="product-card"
+                 data-category="Seeds"
+                 data-price="349"
+                 data-name="Hybrid Tomato Seeds">
+
+                <div class="product-image">🍅</div>
+
+                <div class="product-info">
+                    <div class="product-category">Seeds</div>
+
+                    <h3>Hybrid Tomato Seeds</h3>
+
+                    <p class="product-description">
+                        Quality hybrid tomato seeds suitable for productive farming.
+                    </p>
+
+                    <div class="product-bottom">
+                        <span class="product-price">₹349</span>
+
+                        <button class="add-cart-btn"
+                            onclick="addToCart('Hybrid Tomato Seeds', 349)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Product 6 -->
+            <div class="product-card"
+                 data-category="Fertilizers"
+                 data-price="599"
+                 data-name="NPK Plant Fertilizer">
+
+                <div class="product-image">🌾</div>
+
+                <div class="product-info">
+                    <div class="product-category">Fertilizers</div>
+
+                    <h3>NPK Plant Fertilizer</h3>
+
+                    <p class="product-description">
+                        Balanced plant nutrition to support crop development.
+                    </p>
+
+                    <div class="product-bottom">
+                        <span class="product-price">₹599</span>
+
+                        <button class="add-cart-btn"
+                            onclick="addToCart('NPK Plant Fertilizer', 599)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Product 7 -->
+            <div class="product-card"
+                 data-category="Crop Protection"
+                 data-price="449"
+                 data-name="Plant Protection Spray">
+
+                <div class="product-image">🪴</div>
+
+                <div class="product-info">
+                    <div class="product-category">Crop Protection</div>
+
+                    <h3>Plant Protection Spray</h3>
+
+                    <p class="product-description">
+                        Crop-care product for maintaining healthy plants.
+                    </p>
+
+                    <div class="product-bottom">
+                        <span class="product-price">₹449</span>
+
+                        <button class="add-cart-btn"
+                            onclick="addToCart('Plant Protection Spray', 449)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Product 8 -->
+            <div class="product-card"
+                 data-category="Farm Tools"
+                 data-price="249"
+                 data-name="Hand Garden Tool Set">
+
+                <div class="product-image">🔧</div>
+
+                <div class="product-info">
+                    <div class="product-category">Farm Tools</div>
+
+                    <h3>Hand Garden Tool Set</h3>
+
+                    <p class="product-description">
+                        Compact hand tools for gardening and small farming activities.
+                    </p>
+
+                    <div class="product-bottom">
+                        <span class="product-price">₹249</span>
+
+                        <button class="add-cart-btn"
+                            onclick="addToCart('Hand Garden Tool Set', 249)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Cart Sidebar -->
+    <div id="cartOverlay" class="cart-overlay"></div>
+
+    <aside id="cartSidebar" class="cart-sidebar">
+
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button onclick="closeCart()">✕</button>
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total:</strong>
+                <strong id="cartTotal">₹0</strong>
+            </div>
+
+            <button onclick="checkout()" class="btn btn-primary">
+                Checkout
+            </button>
+        </div>
+
+    </aside>
+
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+
+        <div class="modal-content">
+
+            <button class="modal-close" onclick="closeLoginModal()">
+                ✕
+            </button>
+
+            <h2>Login</h2>
+
+            <form id="loginForm">
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Email address"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Password"
+                    required
+                >
+
+                <button type="submit" class="btn btn-primary">
+                    Login
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+
+    <script src="js/script.js"></script>
+
+    <script>
+
+        function filterProducts(category, button) {
+
+            const products =
+                document.querySelectorAll(".product-card");
+
+            document
+                .querySelectorAll(".category-filter button")
+                .forEach(btn => btn.classList.remove("active"));
+
+            button.classList.add("active");
+
+            products.forEach(product => {
+
+                const productCategory =
+                    product.dataset.category;
+
+                if (
+                    category === "all" ||
+                    productCategory === category
+                ) {
+                    product.style.display = "";
+                } else {
+                    product.style.display = "none";
+                }
+
+            });
+        }
+
+
+        function searchProducts() {
+
+            const search =
+                document
+                .getElementById("productSearch")
+                .value
+                .toLowerCase()
+                .trim();
+
+            const products =
+                document.querySelectorAll(".product-card");
+
+            products.forEach(product => {
+
+                const name =
+                    product.dataset.name.toLowerCase();
+
+                const category =
+                    product.dataset.category.toLowerCase();
+
+                if (
+                    name.includes(search) ||
+                    category.includes(search)
+                ) {
+                    product.style.display = "";
+                } else {
+                    product.style.display = "none";
+                }
+
+            });
+        }
+
+
+        document
+            .getElementById("productSearch")
+            .addEventListener("keyup", searchProducts);
+
+
+        function sortProducts() {
+
+            const grid =
+                document.getElementById("productsGrid");
+
+            const products =
+                Array.from(
+                    grid.querySelectorAll(".product-card")
+                );
+
+            const sort =
+                document.getElementById("sortProducts").value;
+
+            if (sort === "low") {
+
+                products.sort(
+                    (a, b) =>
+                    Number(a.dataset.price) -
+                    Number(b.dataset.price)
+                );
+
+            } else if (sort === "high") {
+
+                products.sort(
+                    (a, b) =>
+                    Number(b.dataset.price) -
+                    Number(a.dataset.price)
+                );
+
+            } else if (sort === "name") {
+
+                products.sort(
+                    (a, b) =>
+                    a.dataset.name.localeCompare(
+                        b.dataset.name
+                    )
+                );
+
+            }
+
+            products.forEach(product =>
+                grid.appendChild(product)
+            );
+        }
+
+    </script>
+
+</body>
+</html>
