@@ -75,20 +75,24 @@ function displayProducts(list = products) {
     if (!grid) return;
 
     if (list.length === 0) {
+
         grid.innerHTML = `
             <div style="grid-column: 1 / -1; text-align:center; padding:40px;">
                 <h3>No products found</h3>
                 <p>Try another product or category.</p>
             </div>
         `;
+
         return;
     }
 
     grid.innerHTML = list.map(product => `
+
         <div class="product-card"
              data-category="${product.category}"
              data-price="${product.price}"
-             data-name="${product.name}">
+             data-name="${product.name}"
+             onclick="openProductDetails(${product.id})">
 
             <div class="product-image">
                 ${product.icon}
@@ -114,17 +118,35 @@ function displayProducts(list = products) {
 
                     <button
                         class="add-cart-btn"
-                        onclick="addToCart('${product.name}', ${product.price})">
+                        onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price})">
                         Add to Cart
                     </button>
 
                 </div>
 
             </div>
+
         </div>
+
     `).join("");
 }
 
+
+/* ================================
+   OPEN PRODUCT DETAILS
+================================ */
+
+function openProductDetails(productId) {
+
+    window.location.href =
+        `product-details.html?id=${productId}`;
+
+}
+
+
+/* ================================
+   FILTER PRODUCTS
+================================ */
 
 function filterProducts(category, button) {
 
@@ -138,7 +160,8 @@ function filterProducts(category, button) {
         button.classList.add("active");
     }
 
-    const searchInput = document.getElementById("productSearch");
+    const searchInput =
+        document.getElementById("productSearch");
 
     const search = searchInput
         ? searchInput.value.toLowerCase().trim()
@@ -160,6 +183,10 @@ function filterProducts(category, button) {
     displayProducts(filtered);
 }
 
+
+/* ================================
+   SEARCH PRODUCTS
+================================ */
 
 function searchProducts() {
 
@@ -186,6 +213,10 @@ function searchProducts() {
     displayProducts(filtered);
 }
 
+
+/* ================================
+   SORT PRODUCTS
+================================ */
 
 function sortProducts() {
 
@@ -241,6 +272,10 @@ function sortProducts() {
 }
 
 
+/* ================================
+   INITIALIZE PRODUCTS
+================================ */
+
 document.addEventListener("DOMContentLoaded", () => {
 
     displayProducts(products);
@@ -249,10 +284,12 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("productSearch");
 
     if (searchInput) {
+
         searchInput.addEventListener(
             "keyup",
             searchProducts
         );
+
     }
 
 });
