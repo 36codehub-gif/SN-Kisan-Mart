@@ -1,4 +1,3 @@
-
 const products = [
     {
         id: 1,
@@ -66,4 +65,194 @@ const products = [
     }
 ];
 
-console.log("SN Kisan Mart products loaded:", products.length);
+let currentCategory = "all";
+
+
+function displayProducts(list = products) {
+
+    const grid = document.getElementById("productsGrid");
+
+    if (!grid) return;
+
+    if (list.length === 0) {
+        grid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align:center; padding:40px;">
+                <h3>No products found</h3>
+                <p>Try another product or category.</p>
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = list.map(product => `
+        <div class="product-card"
+             data-category="${product.category}"
+             data-price="${product.price}"
+             data-name="${product.name}">
+
+            <div class="product-image">
+                ${product.icon}
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-category">
+                    ${product.category}
+                </div>
+
+                <h3>${product.name}</h3>
+
+                <p class="product-description">
+                    ${product.description}
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="product-price">
+                        ₹${product.price}
+                    </span>
+
+                    <button
+                        class="add-cart-btn"
+                        onclick="addToCart('${product.name}', ${product.price})">
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+    `).join("");
+}
+
+
+function filterProducts(category, button) {
+
+    currentCategory = category;
+
+    document
+        .querySelectorAll(".category-filter button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    if (button) {
+        button.classList.add("active");
+    }
+
+    const searchInput = document.getElementById("productSearch");
+
+    const search = searchInput
+        ? searchInput.value.toLowerCase().trim()
+        : "";
+
+    let filtered = products.filter(product => {
+
+        const categoryMatch =
+            category === "all" ||
+            product.category === category;
+
+        const searchMatch =
+            product.name.toLowerCase().includes(search) ||
+            product.category.toLowerCase().includes(search);
+
+        return categoryMatch && searchMatch;
+    });
+
+    displayProducts(filtered);
+}
+
+
+function searchProducts() {
+
+    const searchInput =
+        document.getElementById("productSearch");
+
+    const search = searchInput
+        ? searchInput.value.toLowerCase().trim()
+        : "";
+
+    let filtered = products.filter(product => {
+
+        const categoryMatch =
+            currentCategory === "all" ||
+            product.category === currentCategory;
+
+        const searchMatch =
+            product.name.toLowerCase().includes(search) ||
+            product.category.toLowerCase().includes(search);
+
+        return categoryMatch && searchMatch;
+    });
+
+    displayProducts(filtered);
+}
+
+
+function sortProducts() {
+
+    const sortSelect =
+        document.getElementById("sortProducts");
+
+    const sort = sortSelect
+        ? sortSelect.value
+        : "default";
+
+    const searchInput =
+        document.getElementById("productSearch");
+
+    const search = searchInput
+        ? searchInput.value.toLowerCase().trim()
+        : "";
+
+    let filtered = products.filter(product => {
+
+        const categoryMatch =
+            currentCategory === "all" ||
+            product.category === currentCategory;
+
+        const searchMatch =
+            product.name.toLowerCase().includes(search) ||
+            product.category.toLowerCase().includes(search);
+
+        return categoryMatch && searchMatch;
+    });
+
+
+    if (sort === "low") {
+
+        filtered.sort(
+            (a, b) => a.price - b.price
+        );
+
+    } else if (sort === "high") {
+
+        filtered.sort(
+            (a, b) => b.price - a.price
+        );
+
+    } else if (sort === "name") {
+
+        filtered.sort(
+            (a, b) =>
+                a.name.localeCompare(b.name)
+        );
+    }
+
+    displayProducts(filtered);
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    displayProducts(products);
+
+    const searchInput =
+        document.getElementById("productSearch");
+
+    if (searchInput) {
+        searchInput.addEventListener(
+            "keyup",
+            searchProducts
+        );
+    }
+
+});
