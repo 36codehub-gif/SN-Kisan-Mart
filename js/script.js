@@ -334,604 +334,582 @@ function closeCart() {
 
 
 
-/* =========================================
-   LOGIN MODAL
-========================================= */
+
+                                    
+      
+// ================= AUTH SYSTEM =================
+
+function getUsers() {
+    return JSON.parse(localStorage.getItem("snKisanUsers")) || [];
+}
+
+function saveUsers(users) {
+    localStorage.setItem("snKisanUsers", JSON.stringify(users));
+}
+
+
+// ================= OPEN LOGIN MODAL =================
 
 function openLoginModal() {
+    const modal = document.getElementById("loginModal");
 
-    const modal =
-        document.getElementById("loginModal");
-
-    if (!modal) return;
-
-    modal.classList.add("active");
+    if (modal) {
+        modal.classList.add("active");
+    }
 
     showLoginSection();
-
 }
 
+
+// ================= CLOSE LOGIN MODAL =================
 
 function closeLoginModal() {
+    const modal = document.getElementById("loginModal");
 
-    const modal =
-        document.getElementById("loginModal");
-
-    if (!modal) return;
-
-    modal.classList.remove("active");
-
+    if (modal) {
+        modal.classList.remove("active");
+    }
 }
 
 
-/* =========================================
-   LOGIN / REGISTER SWITCH
-========================================= */
+// ================= SHOW LOGIN =================
 
 function showLoginSection() {
-
-    const loginSection =
-        document.getElementById("loginSection");
-
-    const registerSection =
-        document.getElementById("registerSection");
-
+    const loginSection = document.getElementById("loginSection");
+    const registerSection = document.getElementById("registerSection");
 
     if (loginSection) {
-
         loginSection.style.display = "block";
-
     }
-
 
     if (registerSection) {
-
         registerSection.style.display = "none";
-
     }
-
 }
 
+
+// ================= SHOW REGISTER =================
 
 function showRegisterSection() {
-
-    const loginSection =
-        document.getElementById("loginSection");
-
-    const registerSection =
-        document.getElementById("registerSection");
-
+    const loginSection = document.getElementById("loginSection");
+    const registerSection = document.getElementById("registerSection");
 
     if (loginSection) {
-
         loginSection.style.display = "none";
-
     }
-
 
     if (registerSection) {
-
         registerSection.style.display = "block";
-
     }
-
 }
 
 
-/* =========================================
-   PASSWORD SHOW / HIDE
-========================================= */
+// ================= PASSWORD TOGGLE =================
 
 function togglePassword(inputId, button) {
-
-    const input =
-        document.getElementById(inputId);
+    const input = document.getElementById(inputId);
 
     if (!input) return;
 
-
     if (input.type === "password") {
-
         input.type = "text";
-
         button.textContent = "🙈";
-
     } else {
-
         input.type = "password";
-
         button.textContent = "👁️";
-
     }
-
 }
 
 
-/* =========================================
-   LOGIN SETUP
-========================================= */
+// ================= LOGIN / REGISTER SETUP =================
 
 function setupLogin() {
 
-    /* Login buttons */
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
 
-    const loginLinks =
-        document.querySelectorAll(
-            '.login-btn, a[href="#login"]'
-        );
+    const showRegister = document.getElementById("showRegister");
+    const showLogin = document.getElementById("showLogin");
 
-
-    loginLinks.forEach(link => {
-
-        link.addEventListener(
-            "click",
-            function (event) {
-
-                event.preventDefault();
-
-                openLoginModal();
-
-            }
-        );
-
-    });
+    const closeLogin = document.getElementById("closeLogin");
+    const loginModal = document.getElementById("loginModal");
 
 
-    /* Close button */
-
-    const closeLogin =
-        document.getElementById("closeLogin");
-
-
-    if (closeLogin) {
-
-        closeLogin.addEventListener(
-            "click",
-            closeLoginModal
-        );
-
-    }
-
-
-    /* Close by clicking outside */
-
-    const loginModal =
-        document.getElementById("loginModal");
-
-
-    if (loginModal) {
-
-        loginModal.addEventListener(
-            "click",
-            function (event) {
-
-                if (
-                    event.target === loginModal
-                ) {
-
-                    closeLoginModal();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* Switch to Register */
-
-    const showRegister =
-        document.getElementById("showRegister");
-
-
+    // Create Account click
     if (showRegister) {
-
-        showRegister.addEventListener(
-            "click",
-            function (event) {
-
-                event.preventDefault();
-
-                showRegisterSection();
-
-            }
-        );
-
+        showRegister.addEventListener("click", function(event) {
+            event.preventDefault();
+            showRegisterSection();
+        });
     }
 
 
-    /* Switch to Login */
-
-    const showLogin =
-        document.getElementById("showLogin");
-
-
+    // Login click
     if (showLogin) {
-
-        showLogin.addEventListener(
-            "click",
-            function (event) {
-
-                event.preventDefault();
-
-                showLoginSection();
-
-            }
-        );
-
+        showLogin.addEventListener("click", function(event) {
+            event.preventDefault();
+            showLoginSection();
+        });
     }
 
 
-    /* =====================================
-       LOGIN FORM
-    ===================================== */
-
-    const loginForm =
-        document.getElementById("loginForm");
-
-
-    if (loginForm) {
-
-        loginForm.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
+    // Close button
+    if (closeLogin) {
+        closeLogin.addEventListener("click", function() {
+            closeLoginModal();
+        });
+    }
 
 
-                const email =
-                    document.getElementById(
-                        "loginEmail"
-                    ).value
-                    .trim()
-                    .toLowerCase();
+    // Click outside modal
+    if (loginModal) {
+        loginModal.addEventListener("click", function(event) {
 
-
-                const password =
-                    document.getElementById(
-                        "loginPassword"
-                    ).value;
-
-
-                const users = getUsers();
-
-
-                const user =
-                    users.find(
-                        item =>
-                            item.email === email &&
-                            item.password === password
-                    );
-
-
-                if (!user) {
-
-                    showToast(
-                        "Invalid email or password"
-                    );
-
-                    return;
-
-                }
-
-
-                localStorage.setItem(
-                    "snKisanCurrentUser",
-                    JSON.stringify(user)
-                );
-
-
-                loginForm.reset();
-
+            if (event.target === loginModal) {
                 closeLoginModal();
-
-                updateAuthUI();
-
-
-                showToast(
-                    "Welcome back, " +
-                    user.name +
-                    "!"
-                );
-
             }
-        );
 
+        });
     }
 
 
-    /* =====================================
-       REGISTER FORM
-    ===================================== */
-
-    const registerForm =
-        document.getElementById(
-            "registerForm"
-        );
-
+    // ================= REGISTER =================
 
     if (registerForm) {
 
-        registerForm.addEventListener(
-            "submit",
-            function (event) {
+        registerForm.addEventListener("submit", function(event) {
 
-                event.preventDefault();
+            event.preventDefault();
 
-
-                const name =
-                    document.getElementById(
-                        "registerName"
-                    ).value
-                    .trim();
+            const name = document.getElementById("registerName").value.trim();
+            const email = document.getElementById("registerEmail").value.trim().toLowerCase();
+            const password = document.getElementById("registerPassword").value;
+            const confirmPassword = document.getElementById("registerConfirmPassword").value;
 
 
-                const email =
-                    document.getElementById(
-                        "registerEmail"
-                    ).value
-                    .trim()
-                    .toLowerCase();
-
-
-                const password =
-                    document.getElementById(
-                        "registerPassword"
-                    ).value;
-
-
-                const confirmPassword =
-                    document.getElementById(
-                        "registerConfirmPassword"
-                    ).value;
-
-
-                /* Name validation */
-
-                if (name.length < 2) {
-
-                    showToast(
-                        "Please enter your full name"
-                    );
-
-                    return;
-
-                }
-
-
-                /* Password validation */
-
-                if (password.length < 6) {
-
-                    showToast(
-                        "Password must be at least 6 characters"
-                    );
-
-                    return;
-
-                }
-
-
-                /* Confirm password */
-
-                if (
-                    password !==
-                    confirmPassword
-                ) {
-
-                    showToast(
-                        "Passwords do not match"
-                    );
-
-                    return;
-
-                }
-
-
-                const users = getUsers();
-
-
-                /* Existing email */
-
-                const existingUser =
-                    users.find(
-                        item =>
-                            item.email === email
-                    );
-
-
-                if (existingUser) {
-
-                    showToast(
-                        "Email is already registered"
-                    );
-
-                    return;
-
-                }
-
-
-                /* Create user */
-
-                const newUser = {
-
-                    id:
-                        "user_" +
-                        Date.now(),
-
-                    name: name,
-
-                    email: email,
-
-                    password: password
-
-                };
-
-
-                users.push(newUser);
-
-                saveUsers(users);
-
-
-                /* Auto login */
-
-                localStorage.setItem(
-                    "snKisanCurrentUser",
-                    JSON.stringify(newUser)
-                );
-
-
-                registerForm.reset();
-
-                closeLoginModal();
-
-                updateAuthUI();
-
-
-                showToast(
-                    "Account created successfully!"
-                );
-
+            if (!name || !email || !password || !confirmPassword) {
+                showToast("Please fill all fields");
+                return;
             }
-        );
 
+
+            if (password.length < 6) {
+                showToast("Password must be at least 6 characters");
+                return;
+            }
+
+
+            if (password !== confirmPassword) {
+                showToast("Passwords do not match");
+                return;
+            }
+
+
+            const users = getUsers();
+
+
+            const existingUser = users.find(function(user) {
+                return user.email === email;
+            });
+
+
+            if (existingUser) {
+                showToast("Email already registered");
+                return;
+            }
+
+
+            const newUser = {
+                id: "USER" + Date.now(),
+                name: name,
+                email: email,
+                password: password
+            };
+
+
+            users.push(newUser);
+
+            saveUsers(users);
+
+
+            // Automatically login after registration
+            localStorage.setItem(
+                "snKisanCurrentUser",
+                JSON.stringify(newUser)
+            );
+
+
+            updateAuthUI();
+
+
+            showToast("Account created successfully 🎉");
+
+
+            setTimeout(function() {
+                closeLoginModal();
+                window.location.href = "account.html";
+            }, 800);
+
+        });
     }
 
+
+    // ================= LOGIN =================
+
+    if (loginForm) {
+
+        loginForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+            const password = document.getElementById("loginPassword").value;
+
+
+            const users = getUsers();
+
+
+            const user = users.find(function(item) {
+                return item.email === email && item.password === password;
+            });
+
+
+            if (!user) {
+                showToast("Invalid email or password");
+                return;
+            }
+
+
+            localStorage.setItem(
+                "snKisanCurrentUser",
+                JSON.stringify(user)
+            );
+
+
+            updateAuthUI();
+
+
+            showToast("Login successful 🎉");
+
+
+            setTimeout(function() {
+                closeLoginModal();
+                window.location.href = "account.html";
+            }, 800);
+
+        });
+    }
 }
 
 
-/* =========================================
-   UPDATE AUTH UI
-================================
 
-/* UPDATE AUTH UI */
+// ================= AUTH SYSTEM =================
+
+function getUsers() {
+    return JSON.parse(localStorage.getItem("snKisanUsers")) || [];
+}
+
+function saveUsers(users) {
+    localStorage.setItem("snKisanUsers", JSON.stringify(users));
+}
+
+
+// ================= OPEN LOGIN MODAL =================
+
+function openLoginModal() {
+    const modal = document.getElementById("loginModal");
+
+    if (modal) {
+        modal.classList.add("active");
+    }
+
+    showLoginSection();
+}
+
+
+// ================= CLOSE LOGIN MODAL =================
+
+function closeLoginModal() {
+    const modal = document.getElementById("loginModal");
+
+    if (modal) {
+        modal.classList.remove("active");
+    }
+}
+
+
+// ================= SHOW LOGIN =================
+
+function showLoginSection() {
+    const loginSection = document.getElementById("loginSection");
+    const registerSection = document.getElementById("registerSection");
+
+    if (loginSection) {
+        loginSection.style.display = "block";
+    }
+
+    if (registerSection) {
+        registerSection.style.display = "none";
+    }
+}
+
+
+// ================= SHOW REGISTER =================
+
+function showRegisterSection() {
+    const loginSection = document.getElementById("loginSection");
+    const registerSection = document.getElementById("registerSection");
+
+    if (loginSection) {
+        loginSection.style.display = "none";
+    }
+
+    if (registerSection) {
+        registerSection.style.display = "block";
+    }
+}
+
+
+// ================= PASSWORD TOGGLE =================
+
+function togglePassword(inputId, button) {
+    const input = document.getElementById(inputId);
+
+    if (!input) return;
+
+    if (input.type === "password") {
+        input.type = "text";
+        button.textContent = "🙈";
+    } else {
+        input.type = "password";
+        button.textContent = "👁️";
+    }
+}
+
+
+// ================= LOGIN / REGISTER SETUP =================
+
+function setupLogin() {
+
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    const showRegister = document.getElementById("showRegister");
+    const showLogin = document.getElementById("showLogin");
+
+    const closeLogin = document.getElementById("closeLogin");
+    const loginModal = document.getElementById("loginModal");
+
+
+    // Create Account click
+    if (showRegister) {
+        showRegister.addEventListener("click", function(event) {
+            event.preventDefault();
+            showRegisterSection();
+        });
+    }
+
+
+    // Login click
+    if (showLogin) {
+        showLogin.addEventListener("click", function(event) {
+            event.preventDefault();
+            showLoginSection();
+        });
+    }
+
+
+    // Close button
+    if (closeLogin) {
+        closeLogin.addEventListener("click", function() {
+            closeLoginModal();
+        });
+    }
+
+
+    // Click outside modal
+    if (loginModal) {
+        loginModal.addEventListener("click", function(event) {
+
+            if (event.target === loginModal) {
+                closeLoginModal();
+            }
+
+        });
+    }
+
+
+    // ================= REGISTER =================
+
+    if (registerForm) {
+
+        registerForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("registerName").value.trim();
+            const email = document.getElementById("registerEmail").value.trim().toLowerCase();
+            const password = document.getElementById("registerPassword").value;
+            const confirmPassword = document.getElementById("registerConfirmPassword").value;
+
+
+            if (!name || !email || !password || !confirmPassword) {
+                showToast("Please fill all fields");
+                return;
+            }
+
+
+            if (password.length < 6) {
+                showToast("Password must be at least 6 characters");
+                return;
+            }
+
+
+            if (password !== confirmPassword) {
+                showToast("Passwords do not match");
+                return;
+            }
+
+
+            const users = getUsers();
+
+
+            const existingUser = users.find(function(user) {
+                return user.email === email;
+            });
+
+
+            if (existingUser) {
+                showToast("Email already registered");
+                return;
+            }
+
+
+            const newUser = {
+                id: "USER" + Date.now(),
+                name: name,
+                email: email,
+                password: password
+            };
+
+
+            users.push(newUser);
+
+            saveUsers(users);
+
+
+            // Automatically login after registration
+            localStorage.setItem(
+                "snKisanCurrentUser",
+                JSON.stringify(newUser)
+            );
+
+
+            updateAuthUI();
+
+
+            showToast("Account created successfully 🎉");
+
+
+            setTimeout(function() {
+                closeLoginModal();
+                window.location.href = "account.html";
+            }, 800);
+
+        });
+    }
+
+
+    // ================= LOGIN =================
+
+    if (loginForm) {
+
+        loginForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+            const password = document.getElementById("loginPassword").value;
+
+
+            const users = getUsers();
+
+
+            const user = users.find(function(item) {
+                return item.email === email && item.password === password;
+            });
+
+
+            if (!user) {
+                showToast("Invalid email or password");
+                return;
+            }
+
+
+            localStorage.setItem(
+                "snKisanCurrentUser",
+                JSON.stringify(user)
+            );
+
+
+            updateAuthUI();
+
+
+            showToast("Login successful 🎉");
+
+
+            setTimeout(function() {
+                closeLoginModal();
+                window.location.href = "account.html";
+            }, 800);
+
+        });
+    }
+}
+
+
+// ================= AUTH UI =================
 
 function updateAuthUI() {
 
-    const loginButtons =
-        document.querySelectorAll(".login-btn");
+    const loginButtons = document.querySelectorAll(".login-btn");
 
-    const currentUser =
-        JSON.parse(
-            localStorage.getItem(
-                "snKisanCurrentUser"
-            )
-        );
+    const currentUser = JSON.parse(
+        localStorage.getItem("snKisanCurrentUser")
+    );
 
 
-    loginButtons.forEach(button => {
+    loginButtons.forEach(function(button) {
 
         if (currentUser) {
 
-            button.textContent =
-                "👤 " + currentUser.name;
+            button.textContent = "👤 " + currentUser.name;
 
-            button.title =
-                "My Account";
-
-            button.classList.add(
-                "logged-in"
-            );
-
-
-            /*
-             * Logged-in user par click
-             * → Account page
-             */
-
-            button.onclick = function(event) {
-
-                event.preventDefault();
-
-                window.location.href =
-                    "account.html";
-
-            };
+            button.href = "account.html";
 
         } else {
 
-            button.textContent =
-                "👤 Login";
+            button.textContent = "👤 Login";
 
-            button.title =
-                "Login";
-
-            button.classList.remove(
-                "logged-in"
-            );
-
-
-            /*
-             * Login button par click
-             * → Login modal
-             */
-
-            button.onclick = function(event) {
-
-                event.preventDefault();
-
-                openLoginModal();
-
-            };
+            button.href = "#login";
 
         }
 
     });
-
 }
 
-/* =========================================
-   LOGOUT
-========================================= */
+
+// ================= LOGOUT =================
 
 function logoutUser() {
 
-    localStorage.removeItem(
-        "snKisanCurrentUser"
-    );
+    localStorage.removeItem("snKisanCurrentUser");
 
     updateAuthUI();
 
-    showToast(
-        "You have been logged out"
-    );
+    showToast("You have been logged out");
 
 }
-
-
-
-
-
-/* =========================================
-   TOAST
-========================================= */
-
-function showToast(message) {
-
-    const toast =
-        document.getElementById("toast");
-
-    if (!toast) return;
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-
-    clearTimeout(
-        window.toastTimer
-    );
-
-
-    window.toastTimer =
-        setTimeout(() => {
-
-            toast.classList.remove("show");
-
-        }, 2500);
-}
-
 
 /* =========================================
    HOMEPAGE PRODUCT CART BUTTONS
