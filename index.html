@@ -910,19 +910,29 @@
 
 
     <!-- ================= LOGIN MODAL ================= -->
-    <div class="modal" id="loginModal">
+    <            
+<!-- ================= LOGIN / REGISTER MODAL ================= -->
+<div class="modal" id="loginModal">
 
-        <div class="modal-box">
+    <div class="modal-box">
 
-            <button class="modal-close" id="closeLogin">
-                ✕
-            </button>
+        <button
+            class="modal-close"
+            id="closeLogin"
+            type="button"
+        >
+            ✕
+        </button>
 
-            <div class="modal-logo">
-                🌾
-            </div>
+        <div class="modal-logo">
+            🌾
+        </div>
 
-            <h2>Welcome to SN Kisan Mart</h2>
+
+        <!-- ================= LOGIN ================= -->
+        <div id="loginSection">
+
+            <h2>Welcome Back 👋</h2>
 
             <p>
                 Login to continue shopping.
@@ -938,36 +948,168 @@
                     type="email"
                     id="loginEmail"
                     placeholder="Enter your email"
+                    autocomplete="email"
                     required
                 >
+
 
                 <label for="loginPassword">
                     Password
                 </label>
 
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="Enter your password"
-                    required
-                >
+                <div class="password-field">
 
-                <button type="submit" class="primary-btn full-btn">
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword('loginPassword', this)"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn full-btn"
+                >
                     Login
                 </button>
 
             </form>
 
+
             <p class="register-text">
                 New customer?
-                <a href="#">Create an account</a>
+                <a href="#" id="showRegister">
+                    Create an account
+                </a>
+            </p>
+
+        </div>
+
+
+        <!-- ================= REGISTER ================= -->
+        <div id="registerSection" style="display:none;">
+
+            <h2>Create Account 🧑‍🌾</h2>
+
+            <p>
+                Join SN Kisan Mart today.
+            </p>
+
+
+            <form id="registerForm">
+
+                <label for="registerName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+
+
+                <label for="registerEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="registerEmail"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required
+                >
+
+
+                <label for="registerPassword">
+                    Password
+                </label>
+
+                <div class="password-field">
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword('registerPassword', this)"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+
+                <label for="registerConfirmPassword">
+                    Confirm Password
+                </label>
+
+                <div class="password-field">
+
+                    <input
+                        type="password"
+                        id="registerConfirmPassword"
+                        placeholder="Confirm your password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword('registerConfirmPassword', this)"
+                    >
+                        👁️
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn full-btn"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <p class="register-text">
+                Already have an account?
+                <a href="#" id="showLogin">
+                    Login
+                </a>
             </p>
 
         </div>
 
     </div>
 
-
+</div>
     <!-- ================= TOAST ================= -->
     <div class="toast" id="toast">
         Product added to cart!
