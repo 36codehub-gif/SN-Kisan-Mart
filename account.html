@@ -10,125 +10,534 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+
+        /* =========================================
+           ACCOUNT PAGE
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f7f8;
+            color: #222;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
         .account-page {
-            min-height: 70vh;
-            padding: 50px 20px;
-            background: #f6faf6;
+            min-height: 75vh;
+            padding: 35px 20px 70px;
         }
 
         .account-container {
-            max-width: 1000px;
+            max-width: 1150px;
             margin: auto;
         }
 
-        .account-header {
-            background: #ffffff;
-            padding: 30px;
+        /* =========================================
+           TOP PROFILE
+        ========================================= */
+
+        .account-profile {
+            background: #fff;
+            border: 1px solid #e5e8ea;
             border-radius: 16px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,.06);
-        }
-
-        .account-header h1 {
-            margin-bottom: 8px;
-            color: #173d25;
-        }
-
-        .account-header p {
-            color: #777;
-        }
-
-        .account-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .account-card {
-            background: #ffffff;
             padding: 25px;
-            border-radius: 14px;
-            text-decoration: none;
-            color: #222;
-            box-shadow: 0 5px 20px rgba(0,0,0,.06);
-            transition: .3s;
+            margin-bottom: 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,.05);
         }
 
-        .account-card:hover {
-            transform: translateY(-4px);
+        .profile-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
-        .account-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
+        .profile-avatar {
+            width: 68px;
+            height: 68px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+            background: #e9f7ef;
+
+            color: #198754;
+            font-size: 30px;
+            font-weight: 800;
+
+            flex-shrink: 0;
         }
 
-        .account-card h3 {
+        .profile-info h1 {
+            margin: 0 0 6px;
+            font-size: 25px;
             color: #173d25;
-            margin-bottom: 6px;
         }
 
-        .account-card p {
+        .profile-info p {
+            margin: 0;
             color: #777;
             font-size: 14px;
         }
 
         .logout-btn {
-            margin-top: 25px;
-            border: none;
-            background: #dc3545;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
+            border: 1px solid #dc3545;
+            background: #fff;
+            color: #dc3545;
+
+            padding: 11px 18px;
+            border-radius: 9px;
+
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
+
+            transition: .2s;
         }
 
         .logout-btn:hover {
-            background: #bb2d3b;
+            background: #dc3545;
+            color: #fff;
         }
 
-        @media (max-width: 700px) {
+        /* =========================================
+           ACCOUNT CONTENT
+        ========================================= */
+
+        .account-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 22px;
+            align-items: start;
+        }
+
+        /* =========================================
+           SIDE MENU
+        ========================================= */
+
+        .account-menu {
+            background: #fff;
+            border: 1px solid #e5e8ea;
+            border-radius: 14px;
+            overflow: hidden;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,.04);
+        }
+
+        .account-menu-title {
+            padding: 17px 18px;
+
+            font-size: 14px;
+            font-weight: 800;
+            color: #333;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        .account-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 14px 18px;
+
+            text-decoration: none;
+            color: #555;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            border-bottom: 1px solid #f2f2f2;
+
+            transition: .2s;
+        }
+
+        .account-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .account-menu a:hover {
+            background: #f3faf6;
+            color: #198754;
+        }
+
+        .menu-icon {
+            width: 28px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* =========================================
+           DASHBOARD
+        ========================================= */
+
+        .account-main {
+            min-width: 0;
+        }
+
+        .section-heading {
+            margin: 0 0 15px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 5px;
+            color: #222;
+            font-size: 20px;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* =========================================
+           QUICK ACTION CARDS
+        ========================================= */
+
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .account-card {
+            display: block;
+
+            background: #fff;
+            border: 1px solid #e5e8ea;
+            border-radius: 14px;
+
+            padding: 20px;
+
+            text-decoration: none;
+            color: #222;
+
+            box-shadow: 0 5px 18px rgba(0,0,0,.04);
+
+            transition: .2s;
+        }
+
+        .account-card:hover {
+            transform: translateY(-3px);
+            border-color: #b9dcc8;
+            box-shadow: 0 8px 25px rgba(0,0,0,.07);
+        }
+
+        .account-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #edf8f1;
+            border-radius: 12px;
+
+            font-size: 23px;
+            margin-bottom: 14px;
+        }
+
+        .account-card h3 {
+            margin: 0 0 6px;
+            color: #173d25;
+            font-size: 16px;
+        }
+
+        .account-card p {
+            margin: 0;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .card-arrow {
+            float: right;
+            color: #198754;
+            font-size: 18px;
+            margin-top: -5px;
+        }
+
+        /* =========================================
+           ADDRESS CARD
+        ========================================= */
+
+        .address-card {
+            background: #fff;
+            border: 1px solid #e5e8ea;
+            border-radius: 14px;
+
+            padding: 20px;
+
+            box-shadow: 0 5px 18px rgba(0,0,0,.04);
+        }
+
+        .address-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 18px;
+        }
+
+        .address-card-icon {
+            width: 44px;
+            height: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #edf8f1;
+            border-radius: 11px;
+
+            font-size: 21px;
+        }
+
+        .address-card-header h3 {
+            margin: 0 0 4px;
+            color: #173d25;
+            font-size: 17px;
+        }
+
+        .address-card-header p {
+            margin: 0;
+            color: #888;
+            font-size: 12px;
+        }
+
+        #addressForm {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 13px;
+        }
+
+        #addressForm input {
+            width: 100%;
+            padding: 12px 13px;
+
+            border: 1px solid #dfe3e6;
+            border-radius: 9px;
+
+            font-size: 14px;
+            background: #fff;
+
+            outline: none;
+        }
+
+        #addressForm input:focus {
+            border-color: #198754;
+            box-shadow: 0 0 0 3px rgba(25,135,84,.08);
+        }
+
+        #addressForm input:first-child {
+            grid-column: 1 / -1;
+        }
+
+        .primary-btn {
+            grid-column: 1 / -1;
+
+            width: 100%;
+            border: none;
+
+            padding: 13px;
+
+            border-radius: 9px;
+
+            background: #198754;
+            color: #fff;
+
+            font-weight: 800;
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .primary-btn:hover {
+            background: #157347;
+        }
+
+        /* =========================================
+           CART SIDEBAR
+        ========================================= */
+
+        .cart-sidebar {
+            z-index: 2000;
+        }
+
+        .cart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 17px 20px;
+
+            border-bottom: 1px solid #eee;
+            background: #fff;
+        }
+
+        .cart-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .cart-header button {
+            width: 35px;
+            height: 35px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: #f2f3f4;
+            cursor: pointer;
+        }
+
+        .cart-footer {
+            padding: 18px;
+
+            border-top: 1px solid #eee;
+            background: #fff;
+        }
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            .account-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .account-menu {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .account-menu-title {
+                display: none;
+            }
+
+            .account-menu a {
+                justify-content: center;
+                padding: 12px 6px;
+                border-right: 1px solid #eee;
+                border-bottom: none;
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+                font-size: 11px;
+            }
+
+            .account-menu a:last-child {
+                border-right: none;
+            }
+
+            .menu-icon {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .account-page {
+                padding: 22px 12px 50px;
+            }
+
+            .account-profile {
+                padding: 18px;
+                align-items: flex-start;
+            }
+
+            .profile-left {
+                gap: 11px;
+            }
+
+            .profile-avatar {
+                width: 55px;
+                height: 55px;
+                font-size: 24px;
+            }
+
+            .profile-info h1 {
+                font-size: 19px;
+            }
+
+            .profile-info p {
+                font-size: 12px;
+                word-break: break-word;
+            }
+
+            .logout-btn {
+                padding: 9px 11px;
+                font-size: 12px;
+            }
+
             .account-grid {
                 grid-template-columns: 1fr;
             }
 
-            .account-page {
-                padding: 30px 15px;
+            #addressForm {
+                grid-template-columns: 1fr;
+            }
+
+            #addressForm input:first-child {
+                grid-column: auto;
+            }
+
+            .primary-btn {
+                grid-column: auto;
+            }
+
+            .account-menu {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
-#addressForm {
-    margin-top: 15px;
-}
+        @media (max-width: 380px) {
 
-#addressForm input {
-    width: 100%;
-    padding: 11px 12px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
-    box-sizing: border-box;
-}
+            .profile-avatar {
+                width: 48px;
+                height: 48px;
+                font-size: 21px;
+            }
 
-#addressForm input:focus {
-    outline: none;
-    border-color: #198754;
-}
+            .profile-info h1 {
+                font-size: 17px;
+            }
 
-#addressForm .primary-btn {
-    width: 100%;
-    border: none;
-    cursor: pointer;
-}
-        
+            .logout-btn {
+                font-size: 0;
+            }
+
+            .logout-btn::before {
+                content: "🚪";
+                font-size: 16px;
+            }
+        }
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- HEADER -->
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
     <header class="header">
 
         <div class="container">
@@ -138,21 +547,45 @@
             </a>
 
             <nav>
-                <a href="index.html">Home</a>
-                <a href="products.html">Products</a>
-                <a href="index.html#categories">Categories</a>
-                <a href="index.html#about">About</a>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="products.html">
+                    Products
+                </a>
+
+                <a href="index.html#categories">
+                    Categories
+                </a>
+
+                <a href="index.html#about">
+                    About
+                </a>
+
             </nav>
+
 
             <div class="header-actions">
 
                 <button
                     class="icon-btn"
+                    id="cartBtn"
                     onclick="openCart()"
                     title="Cart"
+                    type="button"
                 >
+
                     🛒
-                    <span class="badge" id="cartCount">0</span>
+
+                    <span
+                        class="badge"
+                        id="cartCount"
+                    >
+                        0
+                    </span>
+
                 </button>
 
             </div>
@@ -162,20 +595,43 @@
     </header>
 
 
-    <!-- ACCOUNT -->
+    <!-- =========================================
+         ACCOUNT PAGE
+    ========================================= -->
+
     <main class="account-page">
 
         <div class="account-container">
 
-            <div class="account-header">
 
-                <h1>
-                    Welcome, <span id="accountName">Customer</span> 👋
-                </h1>
+            <!-- PROFILE HEADER -->
 
-                <p id="accountEmail">
-                    Loading account...
-                </p>
+            <section class="account-profile">
+
+                <div class="profile-left">
+
+                    <div class="profile-avatar">
+                        👤
+                    </div>
+
+                    <div class="profile-info">
+
+                        <h1>
+                            Welcome,
+                            <span id="accountName">
+                                Customer
+                            </span>
+                            👋
+                        </h1>
+
+                        <p id="accountEmail">
+                            Loading account...
+                        </p>
+
+                    </div>
+
+                </div>
+
 
                 <button
                     class="logout-btn"
@@ -185,97 +641,270 @@
                     🚪 Logout
                 </button>
 
-            </div>
+            </section>
 
 
-            <div class="account-grid">
+            <div class="account-layout">
 
-                <a href="#" class="account-card">
 
-                    <div class="account-icon">
-                        📦
+                <!-- =================================
+                     ACCOUNT MENU
+                ================================= -->
+
+                <aside class="account-menu">
+
+                    <div class="account-menu-title">
+                        My Account
                     </div>
 
-                    <h3>My Orders</h3>
 
-                    <p>
-                        View your orders and order status.
-                    </p>
+                    <a href="account.html">
 
-                </a>
+                        <span class="menu-icon">
+                            👤
+                        </span>
 
-<div class="account-card">
+                        Profile
 
-    <div class="account-icon">
-        📍
-    </div>
-
-    <h3>My Address</h3>
-
-    <p>
-        Manage your delivery address.
-    </p>
-
-    <form id="addressForm">
-
-        <input
-            type="text"
-            id="address"
-            placeholder="Full Address"
-            required
-        >
-
-        <input
-            type="text"
-            id="city"
-            placeholder="City"
-            required
-        >
-
-        <input
-            type="text"
-            id="state"
-            placeholder="State"
-            required
-        >
-
-        <input
-            type="text"
-            id="pincode"
-            placeholder="Pincode"
-            maxlength="6"
-            pattern="[0-9]{6}"
-            required
-        >
-
-        <button
-            type="submit"
-            class="primary-btn"
-        >
-            Save Address
-        </button>
-
-    </form>
-
-</div>
-        
-
-                    
+                    </a>
 
 
-                <a href="#" class="account-card">
+                    <a href="orders.html">
 
-                    <div class="account-icon">
-                        ❤️
+                        <span class="menu-icon">
+                            📦
+                        </span>
+
+                        My Orders
+
+                    </a>
+
+
+                    <a href="#addressSection">
+
+                        <span class="menu-icon">
+                            📍
+                        </span>
+
+                        Address
+
+                    </a>
+
+
+                    <a href="#wishlist">
+
+                        <span class="menu-icon">
+                            ❤️
+                        </span>
+
+                        Wishlist
+
+                    </a>
+
+                </aside>
+
+
+                <!-- =================================
+                     MAIN DASHBOARD
+                ================================= -->
+
+                <section class="account-main">
+
+
+                    <div class="section-heading">
+
+                        <h2>
+                            Account Dashboard
+                        </h2>
+
+                        <p>
+                            Manage your orders, address and shopping preferences.
+                        </p>
+
                     </div>
 
-                    <h3>Wishlist</h3>
 
-                    <p>
-                        View products saved for later.
-                    </p>
+                    <!-- QUICK ACTIONS -->
 
-                </a>
+                    <div class="account-grid">
+
+
+                        <a
+                            href="orders.html"
+                            class="account-card"
+                        >
+
+                            <span class="card-arrow">
+                                →
+                            </span>
+
+                            <div class="account-icon">
+                                📦
+                            </div>
+
+                            <h3>
+                                My Orders
+                            </h3>
+
+                            <p>
+                                View your orders, products and order status.
+                            </p>
+
+                        </a>
+
+
+                        <a
+                            href="index.html#cart"
+                            class="account-card"
+                            onclick="openCart(); return false;"
+                        >
+
+                            <span class="card-arrow">
+                                →
+                            </span>
+
+                            <div class="account-icon">
+                                🛒
+                            </div>
+
+                            <h3>
+                                Shopping Cart
+                            </h3>
+
+                            <p>
+                                View your selected products and proceed to checkout.
+                            </p>
+
+                        </a>
+
+
+                        <div
+                            class="account-card"
+                            id="wishlist"
+                        >
+
+                            <div class="account-icon">
+                                ❤️
+                            </div>
+
+                            <h3>
+                                Wishlist
+                            </h3>
+
+                            <p>
+                                Save your favourite farming products for later.
+                            </p>
+
+                        </div>
+
+
+                        <a
+                            href="products.html"
+                            class="account-card"
+                        >
+
+                            <span class="card-arrow">
+                                →
+                            </span>
+
+                            <div class="account-icon">
+                                🌱
+                            </div>
+
+                            <h3>
+                                Continue Shopping
+                            </h3>
+
+                            <p>
+                                Explore seeds, fertilizers and farming tools.
+                            </p>
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- ADDRESS -->
+
+                    <section
+                        class="address-card"
+                        id="addressSection"
+                    >
+
+                        <div class="address-card-header">
+
+                            <div class="address-card-icon">
+                                📍
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    My Delivery Address
+                                </h3>
+
+                                <p>
+                                    Save your address for faster checkout.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <form id="addressForm">
+
+                            <input
+                                type="text"
+                                id="address"
+                                placeholder="Full Address"
+                                autocomplete="street-address"
+                                required
+                            >
+
+
+                            <input
+                                type="text"
+                                id="city"
+                                placeholder="City"
+                                autocomplete="address-level2"
+                                required
+                            >
+
+
+                            <input
+                                type="text"
+                                id="state"
+                                placeholder="State"
+                                autocomplete="address-level1"
+                                required
+                            >
+
+
+                            <input
+                                type="text"
+                                id="pincode"
+                                placeholder="Pincode"
+                                maxlength="6"
+                                pattern="[0-9]{6}"
+                                inputmode="numeric"
+                                autocomplete="postal-code"
+                                required
+                            >
+
+
+                            <button
+                                type="submit"
+                                class="primary-btn"
+                            >
+                                💾 Save Address
+                            </button>
+
+                        </form>
+
+                    </section>
+
+                </section>
 
             </div>
 
@@ -284,34 +913,49 @@
     </main>
 
 
-    <!-- CART SIDEBAR -->
+    <!-- =========================================
+         CART SIDEBAR
+    ========================================= -->
 
-    <aside class="cart-sidebar" id="cartSidebar">
+    <aside
+        class="cart-sidebar"
+        id="cartSidebar"
+    >
 
         <div class="cart-header">
 
-            <h3>Your Cart</h3>
+            <h3>
+                Your Cart
+            </h3>
 
             <button
                 id="closeCart"
                 type="button"
+                onclick="closeCart()"
             >
                 ✕
             </button>
 
         </div>
 
+
         <div
             class="cart-items"
             id="cartItems"
         ></div>
 
+
         <div class="cart-footer">
 
             <div>
+
                 Total:
-                <strong id="cartTotal">₹0</strong>
+                <strong id="cartTotal">
+                    ₹0
+                </strong>
+
             </div>
+
 
             <button
                 class="checkout-btn"
@@ -325,6 +969,8 @@
 
     </aside>
 
+
+    <!-- OVERLAY -->
 
     <div
         class="overlay"
@@ -342,126 +988,224 @@
     </div>
 
 
+    <!-- SCRIPT -->
+
     <script src="js/script.js"></script>
 
 
-<script>
+    <script>
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    const currentUser =
-        JSON.parse(
-            localStorage.getItem("snKisanCurrentUser")
-        );
-
-    const accountName =
-        document.getElementById("accountName");
-
-    const accountEmail =
-        document.getElementById("accountEmail");
-
-    if (currentUser) {
-
-        accountName.textContent =
-            currentUser.name || "Customer";
-
-        accountEmail.textContent =
-            currentUser.email || "";
-
-    } else {
-
-        accountName.textContent =
-            "Guest";
-
-        accountEmail.textContent =
-            "Please login to view your account";
-
-    }
-
-
-    const logoutBtn =
-        document.getElementById("logoutBtn");
-
-    if (logoutBtn) {
-
-        logoutBtn.addEventListener(
-            "click",
+        document.addEventListener(
+            "DOMContentLoaded",
             function () {
 
-                logoutUser();
+                /* =================================
+                   CURRENT USER
+                ================================= */
 
-                setTimeout(function () {
+                const currentUser =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "snKisanCurrentUser"
+                        )
+                    );
 
-                    window.location.href =
-                        "index.html";
 
-                }, 500);
+                const accountName =
+                    document.getElementById(
+                        "accountName"
+                    );
+
+
+                const accountEmail =
+                    document.getElementById(
+                        "accountEmail"
+                    );
+
+
+                if (currentUser) {
+
+                    accountName.textContent =
+                        currentUser.name ||
+                        "Customer";
+
+
+                    accountEmail.textContent =
+                        currentUser.email ||
+                        "";
+
+                } else {
+
+                    accountName.textContent =
+                        "Guest";
+
+
+                    accountEmail.textContent =
+                        "Please login to view your account";
+
+                }
+
+
+                /* =================================
+                   LOGOUT
+                ================================= */
+
+                const logoutBtn =
+                    document.getElementById(
+                        "logoutBtn"
+                    );
+
+
+                if (logoutBtn) {
+
+                    logoutBtn.addEventListener(
+                        "click",
+                        function () {
+
+                            logoutUser();
+
+
+                            setTimeout(
+                                function () {
+
+                                    window.location.href =
+                                        "index.html";
+
+                                },
+                                500
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                /* =================================
+                   ADDRESS MANAGEMENT
+                ================================= */
+
+                const addressForm =
+                    document.getElementById(
+                        "addressForm"
+                    );
+
+
+                if (
+                    addressForm &&
+                    currentUser
+                ) {
+
+                    const addressKey =
+                        "snKisanAddress_" +
+                        currentUser.id;
+
+
+                    const savedAddress =
+                        JSON.parse(
+                            localStorage.getItem(
+                                addressKey
+                            )
+                        );
+
+
+                    if (savedAddress) {
+
+                        document.getElementById(
+                            "address"
+                        ).value =
+                            savedAddress.address ||
+                            "";
+
+
+                        document.getElementById(
+                            "city"
+                        ).value =
+                            savedAddress.city ||
+                            "";
+
+
+                        document.getElementById(
+                            "state"
+                        ).value =
+                            savedAddress.state ||
+                            "";
+
+
+                        document.getElementById(
+                            "pincode"
+                        ).value =
+                            savedAddress.pincode ||
+                            "";
+
+                    }
+
+
+                    addressForm.addEventListener(
+                        "submit",
+                        function (event) {
+
+                            event.preventDefault();
+
+
+                            const addressData = {
+
+                                address:
+                                    document
+                                        .getElementById(
+                                            "address"
+                                        )
+                                        .value
+                                        .trim(),
+
+                                city:
+                                    document
+                                        .getElementById(
+                                            "city"
+                                        )
+                                        .value
+                                        .trim(),
+
+                                state:
+                                    document
+                                        .getElementById(
+                                            "state"
+                                        )
+                                        .value
+                                        .trim(),
+
+                                pincode:
+                                    document
+                                        .getElementById(
+                                            "pincode"
+                                        )
+                                        .value
+                                        .trim()
+
+                            };
+
+
+                            localStorage.setItem(
+                                addressKey,
+                                JSON.stringify(
+                                    addressData
+                                )
+                            );
+
+
+                            showToast(
+                                "Address saved successfully! 📍"
+                            );
+
+                        }
+                    );
+
+                }
 
             }
         );
 
-    }
-
-});
-    
-    // ================= ADDRESS MANAGEMENT =================
-
-    const addressForm = document.getElementById("addressForm");
-
-    if (addressForm && currentUser) {
-
-        const addressKey = "snKisanAddress_" + currentUser.id;
-
-        const savedAddress =
-            JSON.parse(localStorage.getItem(addressKey));
-
-        if (savedAddress) {
-
-            document.getElementById("address").value =
-                savedAddress.address || "";
-
-            document.getElementById("city").value =
-                savedAddress.city || "";
-
-            document.getElementById("state").value =
-                savedAddress.state || "";
-
-            document.getElementById("pincode").value =
-                savedAddress.pincode || "";
-        }
-
-
-        addressForm.addEventListener("submit", function (event) {
-
-            event.preventDefault();
-
-            const addressData = {
-
-                address:
-                    document.getElementById("address").value.trim(),
-
-                city:
-                    document.getElementById("city").value.trim(),
-
-                state:
-                    document.getElementById("state").value.trim(),
-
-                pincode:
-                    document.getElementById("pincode").value.trim()
-            };
-
-
-            localStorage.setItem(
-                addressKey,
-                JSON.stringify(addressData)
-            );
-
-            showToast("Address saved successfully! 📍");
-
-        });
-
-    }
-</script>
+    </script>
 
 </body>
 
