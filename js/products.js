@@ -69,6 +69,10 @@ const products = [
 let currentCategory = "all";
 
 
+/* =========================================
+   DISPLAY PRODUCTS
+========================================= */
+
 function displayProducts(list = products) {
 
     const grid = document.getElementById("productsGrid");
@@ -84,9 +88,18 @@ function displayProducts(list = products) {
     if (list.length === 0) {
 
         grid.innerHTML = `
-            <div style="grid-column:1/-1;text-align:center;padding:40px;">
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:50px 20px;
+            ">
+                <div style="font-size:50px;">🔍</div>
+
                 <h3>No products found</h3>
-                <p>Try another product or category.</p>
+
+                <p>
+                    Try another product name or category.
+                </p>
             </div>
         `;
 
@@ -137,10 +150,13 @@ function displayProducts(list = products) {
                 <div class="product-bottom">
 
                     <span class="product-price">
-                        ₹${product.price}
+                        ₹${product.price.toLocaleString("en-IN")}
                     </span>
 
-                    <button class="add-cart-btn">
+                    <button
+                        type="button"
+                        class="add-cart-btn"
+                    >
                         Add to Cart
                     </button>
 
@@ -150,7 +166,7 @@ function displayProducts(list = products) {
         `;
 
 
-        /* Product Details */
+        /* PRODUCT DETAILS */
 
         card.addEventListener("click", function () {
 
@@ -159,7 +175,7 @@ function displayProducts(list = products) {
         });
 
 
-        /* Add To Cart */
+        /* ADD TO CART */
 
         const cartButton =
             card.querySelector(".add-cart-btn");
@@ -168,6 +184,7 @@ function displayProducts(list = products) {
             "click",
             function (event) {
 
+                event.preventDefault();
                 event.stopPropagation();
 
                 addToCart(
@@ -223,7 +240,7 @@ function filterProducts(category, button) {
     }
 
 
-    searchProducts();
+    applyProductFilters();
 
 }
 
@@ -234,39 +251,7 @@ function filterProducts(category, button) {
 
 function searchProducts() {
 
-    const searchInput =
-        document.getElementById("productSearch");
-
-    const search =
-        searchInput
-            ? searchInput.value.toLowerCase().trim()
-            : "";
-
-
-    const filtered =
-        products.filter(product => {
-
-            const categoryMatch =
-                currentCategory === "all" ||
-                product.category === currentCategory;
-
-
-            const searchMatch =
-                product.name
-                    .toLowerCase()
-                    .includes(search) ||
-
-                product.category
-                    .toLowerCase()
-                    .includes(search);
-
-
-            return categoryMatch && searchMatch;
-
-        });
-
-
-    displayProducts(filtered);
+    applyProductFilters();
 
 }
 
@@ -277,20 +262,34 @@ function searchProducts() {
 
 function sortProducts() {
 
-    const select =
-        document.getElementById("sortProducts");
+    applyProductFilters();
 
-    const sort =
-        select ? select.value : "default";
+}
 
+
+/* =========================================
+   SEARCH + CATEGORY + SORT
+========================================= */
+
+function applyProductFilters() {
 
     const searchInput =
         document.getElementById("productSearch");
+
+    const sortSelect =
+        document.getElementById("sortProducts");
+
 
     const search =
         searchInput
             ? searchInput.value.toLowerCase().trim()
             : "";
+
+
+    const sort =
+        sortSelect
+            ? sortSelect.value
+            : "default";
 
 
     let filtered =
@@ -308,6 +307,10 @@ function sortProducts() {
 
                 product.category
                     .toLowerCase()
+                    .includes(search) ||
+
+                product.description
+                    .toLowerCase()
                     .includes(search);
 
 
@@ -315,6 +318,8 @@ function sortProducts() {
 
         });
 
+
+    /* LOW TO HIGH */
 
     if (sort === "low") {
 
@@ -325,6 +330,8 @@ function sortProducts() {
     }
 
 
+    /* HIGH TO LOW */
+
     if (sort === "high") {
 
         filtered.sort(
@@ -333,6 +340,8 @@ function sortProducts() {
 
     }
 
+
+    /* NAME A-Z */
 
     if (sort === "name") {
 
@@ -350,7 +359,7 @@ function sortProducts() {
 
 
 /* =========================================
-   START
+   LIVE SEARCH
 ========================================= */
 
 document.addEventListener(
@@ -358,6 +367,24 @@ document.addEventListener(
     function () {
 
         displayProducts(products);
+
+
+        const searchInput =
+            document.getElementById("productSearch");
+
+
+        if (searchInput) {
+
+            searchInput.addEventListener(
+                "input",
+                function () {
+
+                    applyProductFilters();
+
+                }
+            );
+
+        }
 
     }
 );
