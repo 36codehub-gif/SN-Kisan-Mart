@@ -1390,7 +1390,6 @@ function setCurrentYear() {
 /* =========================================
    INITIALIZE
 ========================================= */
-
 document.addEventListener(
     "DOMContentLoaded",
     function () {
@@ -1411,5 +1410,8 @@ document.addEventListener(
 
         setCurrentYear();
 
+        updateAuthUI();
+
     }
 );
+
