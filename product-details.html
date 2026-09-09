@@ -1,183 +1,422 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Product Details | SN Kisan Mart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="css/style.css">
+    <title>Product Details | SN Kisan Mart</title>
 
-<style>
-    .product-details-page {
-        padding: 60px 5%;
-        background: #f7faf7;
-        min-height: 70vh;
-    }
+    <link rel="stylesheet" href="css/style.css">
 
-    .product-details-container {
-        max-width: 1100px;
-        margin: auto;
-        background: white;
-        border-radius: 18px;
-        padding: 35px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 45px;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.07);
-    }
+    <style>
 
-    .details-image {
-        min-height: 400px;
-        background: #eef7ef;
-        border-radius: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 130px;
-    }
-
-    .details-category {
-        color: #198754;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
-
-    .details-info h1 {
-        font-size: 38px;
-        color: #173d25;
-        margin-bottom: 15px;
-    }
-
-    .details-description {
-        color: #666;
-        line-height: 1.7;
-        margin-bottom: 25px;
-    }
-
-    .details-price {
-        font-size: 32px;
-        font-weight: 800;
-        color: #198754;
-        margin-bottom: 25px;
-    }
-
-    .quantity-box {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 25px;
-    }
-
-    .quantity-box button {
-        width: 38px;
-        height: 38px;
-        border: 1px solid #ddd;
-        background: white;
-        border-radius: 6px;
-        font-size: 20px;
-        cursor: pointer;
-    }
-
-    .quantity-box button:hover {
-        background: #eef7ef;
-    }
-
-    .quantity-box span {
-        font-size: 20px;
-        font-weight: 700;
-        min-width: 25px;
-        text-align: center;
-    }
-
-    .details-add-btn {
-        width: 100%;
-        padding: 15px;
-        border: none;
-        border-radius: 8px;
-        background: #198754;
-        color: white;
-        font-size: 17px;
-        font-weight: 700;
-        cursor: pointer;
-    }
-
-    .details-add-btn:hover {
-        background: #146c43;
-    }
-
-    .back-products {
-        display: inline-block;
-        margin-bottom: 20px;
-        color: #198754;
-        font-weight: 600;
-        text-decoration: none;
-    }
-
-    .details-not-found {
-        text-align: center;
-        grid-column: 1 / -1;
-        padding: 40px;
-    }
-
-    .details-not-found-icon {
-        font-size: 60px;
-        margin-bottom: 10px;
-    }
-
-    .details-not-found h2 {
-        margin-bottom: 10px;
-        color: #173d25;
-    }
-
-    .details-not-found p {
-        color: #666;
-    }
-
-    .btn.btn-primary {
-        width: 100%;
-        border: none;
-        padding: 13px 18px;
-        border-radius: 8px;
-        background: #198754;
-        color: white;
-        font-weight: 700;
-        cursor: pointer;
-    }
-
-    .btn.btn-primary:hover {
-        background: #146c43;
-    }
-
-    @media (max-width: 700px) {
+        /* =========================
+           PAGE
+        ========================== */
 
         .product-details-page {
-            padding: 30px 4%;
+            background: #f1f3f6;
+            min-height: 75vh;
+            padding: 20px 4%;
         }
 
+        .details-wrapper {
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .back-products {
+            display: inline-block;
+            margin: 5px 0 15px;
+            color: #198754;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-products:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           PRODUCT CARD
+        ========================== */
+
         .product-details-container {
-            grid-template-columns: 1fr;
-            padding: 20px;
-            gap: 25px;
+            background: #fff;
+            display: grid;
+            grid-template-columns: 48% 52%;
+            gap: 0;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+
+
+        /* =========================
+           LEFT IMAGE SECTION
+        ========================== */
+
+        .details-left {
+            padding: 25px;
+            border-right: 1px solid #eee;
         }
 
         .details-image {
-            min-height: 280px;
-            font-size: 90px;
+            min-height: 470px;
+            background: #f7faf7;
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-size: 150px;
+            position: relative;
+        }
+
+        .image-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #198754;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           RIGHT PRODUCT INFO
+        ========================== */
+
+        .details-info {
+            padding: 30px 35px;
+        }
+
+        .details-category {
+            color: #198754;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
         }
 
         .details-info h1 {
-            font-size: 28px;
+            color: #212121;
+            font-size: 27px;
+            line-height: 1.35;
+            margin: 0 0 12px;
+            font-weight: 600;
+        }
+
+        .product-rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 18px;
+        }
+
+        .rating-box {
+            background: #198754;
+            color: white;
+            padding: 5px 9px;
+            border-radius: 3px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .rating-text {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .details-description {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.7;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+
+        /* =========================
+           PRICE
+        ========================== */
+
+        .price-section {
+            padding: 20px 0;
         }
 
         .details-price {
-            font-size: 27px;
+            font-size: 32px;
+            font-weight: 700;
+            color: #212121;
+            margin-bottom: 5px;
+        }
+
+        .price-note {
+            color: #198754;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           DELIVERY
+        ========================== */
+
+        .delivery-box {
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 18px 0;
+            margin-bottom: 20px;
+        }
+
+        .delivery-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .delivery-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .delivery-icon {
+            width: 28px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           QUANTITY
+        ========================== */
+
+        .quantity-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .quantity-label {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
         }
 
         .quantity-box {
-            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            overflow: hidden;
         }
-    }
-</style>
 
-</head><body><!-- =========================
+        .quantity-box button {
+            width: 38px;
+            height: 36px;
+            border: none;
+            background: #f5f5f5;
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .quantity-box button:hover {
+            background: #e8f5e9;
+        }
+
+        .quantity-box span {
+            width: 42px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           ACTION BUTTONS
+        ========================== */
+
+        .product-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .details-add-btn,
+        .buy-now-btn {
+            border: none;
+            padding: 15px;
+            border-radius: 3px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .details-add-btn {
+            background: #ff9f00;
+            color: white;
+        }
+
+        .details-add-btn:hover {
+            background: #fb8c00;
+        }
+
+        .buy-now-btn {
+            background: #198754;
+            color: white;
+        }
+
+        .buy-now-btn:hover {
+            background: #146c43;
+        }
+
+
+        /* =========================
+           TRUST
+        ========================== */
+
+        .trust-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .trust-item {
+            text-align: center;
+            padding: 12px 5px;
+            background: #f8f9f8;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .trust-item strong {
+            display: block;
+            color: #198754;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+
+        /* =========================
+           NOT FOUND
+        ========================== */
+
+        .details-not-found {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .details-not-found-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .details-not-found h2 {
+            color: #173d25;
+            margin-bottom: 10px;
+        }
+
+        .details-not-found p {
+            color: #666;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 800px) {
+
+            .product-details-page {
+                padding: 12px 3%;
+            }
+
+            .product-details-container {
+                grid-template-columns: 1fr;
+            }
+
+            .details-left {
+                padding: 12px;
+                border-right: none;
+            }
+
+            .details-image {
+                min-height: 300px;
+                font-size: 100px;
+            }
+
+            .details-info {
+                padding: 20px 16px 25px;
+            }
+
+            .details-info h1 {
+                font-size: 22px;
+            }
+
+            .details-price {
+                font-size: 28px;
+            }
+
+            .product-actions {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .trust-row {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .details-image {
+                min-height: 260px;
+                font-size: 85px;
+            }
+
+            .product-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .details-add-btn,
+            .buy-now-btn {
+                padding: 14px;
+            }
+
+            .trust-item {
+                font-size: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
      HEADER
 ========================== -->
 
@@ -186,16 +425,21 @@
     <div class="container header-inner">
 
         <a href="index.html" class="logo">
-            <span>🌱</span>
-            SN Kisan Mart
+            <span>🌾</span>
+            <span>
+                <strong>SN Kisan</strong>
+                <small>Mart</small>
+            </span>
         </a>
+
 
         <div class="search-box">
 
             <input
                 type="text"
                 id="productSearch"
-                placeholder="Search products..."
+                placeholder="Search seeds, fertilizers, tools..."
+                autocomplete="off"
             >
 
             <button
@@ -206,6 +450,7 @@
             </button>
 
         </div>
+
 
         <nav class="nav">
 
@@ -227,20 +472,28 @@
 
         </nav>
 
+
         <div class="header-actions">
 
             <button
                 type="button"
                 onclick="openCart()"
+                title="Shopping Cart"
             >
-                🛒 <span id="cartCount">0</span>
+                🛒
+                <span id="cartCount">0</span>
             </button>
+
 
             <button
                 type="button"
                 onclick="openLoginModal()"
+                title="My Account"
             >
                 👤
+                <span class="account-text">
+                    Account
+                </span>
             </button>
 
         </div>
@@ -250,13 +503,14 @@
 </header>
 
 
+
 <!-- =========================
      PRODUCT DETAILS
 ========================== -->
 
 <main class="product-details-page">
 
-    <div class="container">
+    <div class="details-wrapper">
 
         <a
             href="products.html"
@@ -265,12 +519,13 @@
             ← Back to Products
         </a>
 
+
         <div
             class="product-details-container"
             id="productDetails"
         >
 
-            <!-- Product loads here -->
+            <!-- Product loaded by JavaScript -->
 
         </div>
 
@@ -279,14 +534,16 @@
 </main>
 
 
+
 <!-- =========================
-     CART
+     CART SIDEBAR
 ========================== -->
 
 <div
     id="cartOverlay"
     class="cart-overlay"
 ></div>
+
 
 <aside
     id="cartSidebar"
@@ -308,7 +565,9 @@
 
     </div>
 
+
     <div id="cartItems"></div>
+
 
     <div class="cart-footer">
 
@@ -324,17 +583,19 @@
 
         </div>
 
+
         <button
             type="button"
             onclick="checkout()"
             class="btn btn-primary"
         >
-            Checkout
+            Proceed to Checkout
         </button>
 
     </div>
 
 </aside>
+
 
 
 <!-- =========================
@@ -356,9 +617,11 @@
             ✕
         </button>
 
+
         <h2>
             Login
         </h2>
+
 
         <form id="loginForm">
 
@@ -369,12 +632,14 @@
                 required
             >
 
+
             <input
                 type="password"
                 id="loginPassword"
                 placeholder="Password"
                 required
             >
+
 
             <button
                 type="submit"
@@ -390,6 +655,7 @@
 </div>
 
 
+
 <!-- =========================
      TOAST
 ========================== -->
@@ -400,12 +666,14 @@
 ></div>
 
 
+
 <!-- =========================
      JAVASCRIPT
 ========================== -->
 
 <script src="js/script.js"></script>
 <script src="js/products.js"></script>
+
 
 <script>
 
@@ -419,14 +687,18 @@
     function getProductId() {
 
         const params =
-            new URLSearchParams(window.location.search);
+            new URLSearchParams(
+                window.location.search
+            );
 
-        return Number(params.get("id"));
+        return Number(
+            params.get("id")
+        );
     }
 
 
     /* =========================
-       LOAD PRODUCT DETAILS
+       LOAD PRODUCT
     ========================== */
 
     function loadProductDetails() {
@@ -434,10 +706,13 @@
         const productId =
             getProductId();
 
+
         const product =
             products.find(
-                item => item.id === productId
+                item =>
+                    item.id === productId
             );
+
 
         const container =
             document.getElementById(
@@ -485,19 +760,29 @@
         }
 
 
-        /* Reset quantity */
-
         selectedQuantity = 1;
 
 
-        /* Product Details HTML */
-
         container.innerHTML = `
 
-            <div class="details-image">
-                ${product.icon}
+            <!-- LEFT -->
+
+            <div class="details-left">
+
+                <div class="details-image">
+
+                    <span class="image-badge">
+                        ✓ Genuine Product
+                    </span>
+
+                    ${product.icon}
+
+                </div>
+
             </div>
 
+
+            <!-- RIGHT -->
 
             <div class="details-info">
 
@@ -511,58 +796,184 @@
                 </h1>
 
 
+                <div class="product-rating">
+
+                    <span class="rating-box">
+                        ★ 4.5
+                    </span>
+
+                    <span class="rating-text">
+                        120+ Ratings & Reviews
+                    </span>
+
+                </div>
+
+
                 <p class="details-description">
                     ${product.description}
                 </p>
 
 
-                <div class="details-price">
-                    ₹${product.price}
+                <div class="price-section">
+
+                    <div class="details-price">
+                        ₹${product.price}
+                    </div>
+
+                    <div class="price-note">
+                        ✓ Best price available
+                    </div>
+
                 </div>
 
 
-                <div class="quantity-box">
+                <!-- DELIVERY -->
 
-                    <span
-                        style="
-                            font-weight:600;
-                            margin-right:5px;
-                        "
-                    >
+                <div class="delivery-box">
+
+                    <div class="delivery-title">
+                        🚚 Delivery & Offers
+                    </div>
+
+
+                    <div class="delivery-item">
+
+                        <span class="delivery-icon">
+                            🚚
+                        </span>
+
+                        <span>
+                            Fast delivery available
+                        </span>
+
+                    </div>
+
+
+                    <div class="delivery-item">
+
+                        <span class="delivery-icon">
+                            💵
+                        </span>
+
+                        <span>
+                            Cash on Delivery available
+                        </span>
+
+                    </div>
+
+
+                    <div class="delivery-item">
+
+                        <span class="delivery-icon">
+                            🔒
+                        </span>
+
+                        <span>
+                            Secure & trusted shopping
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUANTITY -->
+
+                <div class="quantity-section">
+
+                    <span class="quantity-label">
                         Quantity:
                     </span>
 
 
+                    <div class="quantity-box">
+
+                        <button
+                            type="button"
+                            onclick="decreaseQuantity()"
+                        >
+                            −
+                        </button>
+
+
+                        <span id="quantity">
+                            1
+                        </span>
+
+
+                        <button
+                            type="button"
+                            onclick="increaseQuantity()"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="product-actions">
+
                     <button
                         type="button"
-                        onclick="decreaseQuantity()"
+                        class="details-add-btn"
+                        onclick="addProductToCart()"
                     >
-                        −
+                        🛒 ADD TO CART
                     </button>
 
 
-                    <span id="quantity">
-                        1
-                    </span>
-
-
                     <button
                         type="button"
-                        onclick="increaseQuantity()"
+                        class="buy-now-btn"
+                        onclick="buyNow()"
                     >
-                        +
+                        ⚡ BUY NOW
                     </button>
 
                 </div>
 
 
-                <button
-                    type="button"
-                    class="details-add-btn"
-                    onclick="addProductToCart()"
-                >
-                    🛒 Add to Cart
-                </button>
+                <!-- TRUST -->
+
+                <div class="trust-row">
+
+                    <div class="trust-item">
+
+                        <strong>
+                            🚚
+                        </strong>
+
+                        Fast Delivery
+
+                    </div>
+
+
+                    <div class="trust-item">
+
+                        <strong>
+                            🔒
+                        </strong>
+
+                        Secure Payment
+
+                    </div>
+
+
+                    <div class="trust-item">
+
+                        <strong>
+                            ✓
+                        </strong>
+
+                        Quality Product
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -570,8 +981,9 @@
     }
 
 
+
     /* =========================
-       INCREASE QUANTITY
+       QUANTITY +
     ========================== */
 
     function increaseQuantity() {
@@ -579,11 +991,13 @@
         selectedQuantity++;
 
         updateQuantityDisplay();
+
     }
 
 
+
     /* =========================
-       DECREASE QUANTITY
+       QUANTITY -
     ========================== */
 
     function decreaseQuantity() {
@@ -595,11 +1009,13 @@
         selectedQuantity--;
 
         updateQuantityDisplay();
+
     }
 
 
+
     /* =========================
-       UPDATE QUANTITY DISPLAY
+       UPDATE QUANTITY
     ========================== */
 
     function updateQuantityDisplay() {
@@ -609,17 +1025,20 @@
                 "quantity"
             );
 
+
         if (quantity) {
 
             quantity.textContent =
                 selectedQuantity;
 
         }
+
     }
 
 
+
     /* =========================
-       ADD PRODUCT TO CART
+       ADD TO CART
     ========================== */
 
     function addProductToCart() {
@@ -627,9 +1046,11 @@
         const productId =
             getProductId();
 
+
         const product =
             products.find(
-                item => item.id === productId
+                item =>
+                    item.id === productId
             );
 
 
@@ -643,10 +1064,47 @@
         }
 
 
-        /*
-            Add complete quantity
-            in one cart operation.
-        */
+        addToCart(
+            product.name,
+            product.price,
+            selectedQuantity
+        );
+
+
+        selectedQuantity = 1;
+
+        updateQuantityDisplay();
+
+    }
+
+
+
+    /* =========================
+       BUY NOW
+    ========================== */
+
+    function buyNow() {
+
+        const productId =
+            getProductId();
+
+
+        const product =
+            products.find(
+                item =>
+                    item.id === productId
+            );
+
+
+        if (!product) {
+
+            showToast(
+                "Product not found"
+            );
+
+            return;
+        }
+
 
         addToCart(
             product.name,
@@ -655,20 +1113,15 @@
         );
 
 
-        /*
-            addToCart() already shows
-            success toast.
-        */
+        window.location.href =
+            "checkout.html";
 
-
-        selectedQuantity = 1;
-
-        updateQuantityDisplay();
     }
 
 
+
     /* =========================
-       SEARCH → PRODUCTS PAGE
+       SEARCH
     ========================== */
 
     function goToProductsSearch() {
@@ -678,7 +1131,9 @@
                 "productSearch"
             );
 
+
         if (!input) {
+
             window.location.href =
                 "products.html";
 
@@ -690,7 +1145,7 @@
             input.value.trim();
 
 
-        if (searchValue === "") {
+        if (!searchValue) {
 
             window.location.href =
                 "products.html";
@@ -701,12 +1156,16 @@
 
         window.location.href =
             "products.html?search=" +
-            encodeURIComponent(searchValue);
+            encodeURIComponent(
+                searchValue
+            );
+
     }
 
 
+
     /* =========================
-       SEARCH ENTER KEY
+       PAGE LOAD
     ========================== */
 
     document.addEventListener(
@@ -732,6 +1191,8 @@
                             event.key === "Enter"
                         ) {
 
+                            event.preventDefault();
+
                             goToProductsSearch();
 
                         }
@@ -745,6 +1206,7 @@
     );
 
 </script>
+
 
 </body>
 </html>
