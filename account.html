@@ -178,20 +178,63 @@
 
                 </a>
 
+<div class="account-card">
 
-                <a href="#" class="account-card">
+    <div class="account-icon">
+        📍
+    </div>
 
-                    <div class="account-icon">
-                        📍
-                    </div>
+    <h3>My Address</h3>
 
-                    <h3>My Address</h3>
+    <p>
+        Manage your delivery address.
+    </p>
 
-                    <p>
-                        Manage your delivery addresses.
-                    </p>
+    <form id="addressForm">
 
-                </a>
+        <input
+            type="text"
+            id="address"
+            placeholder="Full Address"
+            required
+        >
+
+        <input
+            type="text"
+            id="city"
+            placeholder="City"
+            required
+        >
+
+        <input
+            type="text"
+            id="state"
+            placeholder="State"
+            required
+        >
+
+        <input
+            type="text"
+            id="pincode"
+            placeholder="Pincode"
+            maxlength="6"
+            pattern="[0-9]{6}"
+            required
+        >
+
+        <button
+            type="submit"
+            class="primary-btn"
+        >
+            Save Address
+        </button>
+
+    </form>
+
+</div>
+        
+
+                    
 
 
                 <a href="#" class="account-card">
