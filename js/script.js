@@ -832,15 +832,14 @@ function setupLogin() {
 
 /* =========================================
    UPDATE AUTH UI
-========================================= */
+================================
+
+/* UPDATE AUTH UI */
 
 function updateAuthUI() {
 
     const loginButtons =
-        document.querySelectorAll(
-            ".login-btn"
-        );
-
+        document.querySelectorAll(".login-btn");
 
     const currentUser =
         JSON.parse(
@@ -855,15 +854,29 @@ function updateAuthUI() {
         if (currentUser) {
 
             button.textContent =
-                "👤 " +
-                currentUser.name;
+                "👤 " + currentUser.name;
 
             button.title =
-                "Logout";
+                "My Account";
 
             button.classList.add(
                 "logged-in"
             );
+
+
+            /*
+             * Logged-in user par click
+             * → Account page
+             */
+
+            button.onclick = function(event) {
+
+                event.preventDefault();
+
+                window.location.href =
+                    "account.html";
+
+            };
 
         } else {
 
@@ -877,12 +890,25 @@ function updateAuthUI() {
                 "logged-in"
             );
 
+
+            /*
+             * Login button par click
+             * → Login modal
+             */
+
+            button.onclick = function(event) {
+
+                event.preventDefault();
+
+                openLoginModal();
+
+            };
+
         }
 
     });
 
 }
-
 
 /* =========================================
    LOGOUT
