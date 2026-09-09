@@ -1,180 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SN Kisan Mart | Agriculture Products Online</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <meta name="description"
-        content="SN Kisan Mart - Buy quality agriculture products, seeds, fertilizers, pesticides and farming tools online.">
+    <title>
+        SN Kisan Mart | Agriculture Products Online
+    </title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <meta
+        name="description"
+        content="SN Kisan Mart - Buy quality agriculture products, seeds, fertilizers, crop protection products and farming tools online."
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <!-- ================= HEADER ================= -->
-    <header class="header">
 
-        <div class="container nav-wrapper">
+<!-- ==================================================
+     HEADER
+================================================== -->
 
-            <!-- Logo -->
-            <a href="index.html" class="logo">
-                <span class="logo-icon">🌾</span>
-                <span>
-                    <strong>SN Kisan</strong>
-                    <small>Mart</small>
-                </span>
-            </a>
+<header class="header">
 
-            <!-- Search -->
-            <div class="search-box">
-                <input
-                    type="search"
-                    id="searchInput"
-                    placeholder="Search seeds, fertilizers, tools..."
-                    autocomplete="off"
-                >
+    <div class="container nav-wrapper">
 
-                <button
-                    type="button"
-                    id="searchBtn"
-                >
-                    🔍
-                </button>
-            </div>
 
-            <!-- Navigation -->
-            <nav class="nav">
+        <!-- LOGO -->
 
-                <a
-                    href="index.html"
-                    class="active"
-                >
-                    Home
-                </a>
+        <a
+            href="index.html"
+            class="logo"
+        >
 
-                <a href="#categories">
-                    Categories
-                </a>
+            <span class="logo-icon">
+                🌾
+            </span>
 
-                <a href="products.html">
-                    Products
-                </a>
+            <span>
+                SN Kisan Mart
+            </span>
 
-                <a href="#about">
-                    About
-                </a>
+        </a>
 
-            </nav>
 
-            <!-- User Actions -->
-            <div class="nav-actions">
+        <!-- SEARCH -->
 
-                <button
-                    class="icon-btn"
-                    id="wishlistBtn"
-                    title="Wishlist"
-                    type="button"
-                >
-                    ❤️
-                    <span class="badge">0</span>
-                </button>
+        <div class="search-box">
 
-                <button
-                    class="icon-btn"
-                    id="cartBtn"
-                    title="Cart"
-                    type="button"
-                >
-                    🛒
-                    <span
-                        class="badge"
-                        id="cartCount"
-                    >
-                        0
-                    </span>
-                </button>
-
-                <a
-                    href="#login"
-                    class="login-btn"
-                >
-                    👤 Login
-                </a>
-
-            </div>
-
-            <!-- Mobile Menu -->
-            <button
-                class="menu-btn"
-                id="menuBtn"
-                type="button"
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search seeds, fertilizers, tools..."
+                autocomplete="off"
             >
-                ☰
+
+            <button
+                type="button"
+                id="searchBtn"
+                aria-label="Search"
+            >
+                🔍
             </button>
 
         </div>
 
-    </header>
+
+        <!-- DESKTOP NAV -->
+
+        <nav class="nav">
+
+            <a
+                href="index.html"
+                class="active"
+            >
+                Home
+            </a>
+
+            <a href="#categories">
+                Categories
+            </a>
+
+            <a href="products.html">
+                Products
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+        </nav>
 
 
-    <!-- ================= MOBILE NAV ================= -->
-    <div
-        class="mobile-menu"
-        id="mobileMenu"
-    >
+        <!-- ACTIONS -->
 
-        <a href="index.html">
-            Home
-        </a>
+        <div class="nav-actions">
 
-        <a href="#categories">
-            Categories
-        </a>
 
-        <a href="products.html">
-            Products
-        </a>
+            <button
+                class="icon-btn"
+                id="wishlistBtn"
+                title="Wishlist"
+                type="button"
+            >
 
-        <a href="#about">
-            About Us
-        </a>
+                ❤️
 
-        <a href="#login">
-            Login / Register
-        </a>
+                <span class="badge">
+                    0
+                </span>
+
+            </button>
+
+
+            <button
+                class="icon-btn"
+                id="cartBtn"
+                title="Cart"
+                type="button"
+            >
+
+                🛒
+
+                <span
+                    class="badge"
+                    id="cartCount"
+                >
+                    0
+                </span>
+
+            </button>
+
+
+            <a
+                href="#login"
+                class="login-btn"
+            >
+                👤 Login
+            </a>
+
+        </div>
+
+
+        <!-- MOBILE MENU BUTTON -->
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            type="button"
+            aria-label="Open menu"
+        >
+            ☰
+        </button>
 
     </div>
 
+</header>
 
-    <!-- ================= HERO SECTION ================= -->
-    <main>
 
-        <section class="hero">
+<!-- ==================================================
+     MOBILE MENU
+================================================== -->
 
-            <div class="container hero-content">
+<div
+    class="mobile-menu"
+    id="mobileMenu"
+>
 
-                <div class="hero-text">
+    <a href="index.html">
+        Home
+    </a>
 
-                    <span class="hero-tag">
-                        🌱 Trusted Agriculture Store
+    <a href="#categories">
+        Categories
+    </a>
+
+    <a href="products.html">
+        Products
+    </a>
+
+    <a href="#about">
+        About Us
+    </a>
+
+    <a href="#login">
+        Login / Register
+    </a>
+
+</div>
+
+
+<!-- ==================================================
+     MAIN CONTENT
+================================================== -->
+
+<main>
+
+
+<!-- ==================================================
+     HERO / OFFER CAROUSEL
+================================================== -->
+
+<section class="home-banner">
+
+    <div class="container">
+
+        <div
+            class="banner-slider"
+            id="bannerSlider"
+        >
+
+
+            <!-- SLIDE 1 -->
+
+            <div class="banner-slide active">
+
+                <div class="banner-content">
+
+                    <span class="banner-tag">
+                        🌱 SPECIAL FARMER OFFER
                     </span>
 
                     <h1>
-                        Grow Better,
-                        <span>
-                            Harvest Better.
-                        </span>
+                        Grow Better.<br>
+                        <span>Harvest Better.</span>
                     </h1>
 
                     <p>
-                        Quality seeds, fertilizers, crop protection products
-                        and farming tools — all in one place.
+                        Quality seeds, fertilizers, crop protection
+                        products and farming tools at great prices.
                     </p>
 
-                    <div class="hero-buttons">
+                    <div class="banner-actions">
 
                         <a
                             href="products.html"
@@ -192,734 +262,869 @@
 
                     </div>
 
-                    <div class="hero-features">
-
-                        <div>
-                            <strong>100%</strong>
-                            <span>Quality Products</span>
-                        </div>
-
-                        <div>
-                            <strong>Fast</strong>
-                            <span>Delivery</span>
-                        </div>
-
-                        <div>
-                            <strong>24/7</strong>
-                            <span>Support</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="hero-image">
-
-                    <div class="hero-circle"></div>
-
-                    <div class="farmer-card">
-
-                        <div class="farmer-emoji">
-                            👨‍🌾
-                        </div>
-
-                        <div>
-                            <strong>
-                                Smart Farming
-                            </strong>
-
-                            <span>
-                                Better Future
-                            </span>
-                        </div>
-
-                    </div>
-
-                    <div class="crop-card">
-
-                        🌾
-
-                        <div>
-                            <strong>
-                                Fresh Crops
-                            </strong>
-
-                            <span>
-                                Healthy Growth
-                            </span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= FEATURES ================= -->
-        <section class="features">
-
-            <div class="container features-grid">
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-                        🚚
-                    </div>
-
-                    <div>
-                        <h3>
-                            Fast Delivery
-                        </h3>
-
-                        <p>
-                            Reliable delivery to your doorstep.
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-                        🌱
-                    </div>
-
-                    <div>
-                        <h3>
-                            Quality Products
-                        </h3>
-
-                        <p>
-                            Products selected for farmers.
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-                        💰
-                    </div>
-
-                    <div>
-                        <h3>
-                            Best Prices
-                        </h3>
-
-                        <p>
-                            Competitive prices for every farmer.
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="feature-card">
-
-                    <div class="feature-icon">
-                        📞
-                    </div>
-
-                    <div>
-                        <h3>
-                            Farmer Support
-                        </h3>
-
-                        <p>
-                            Help whenever you need it.
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= CATEGORIES ================= -->
-        <section
-            class="categories section"
-            id="categories"
-        >
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <div>
-
-                        <span class="section-tag">
-                            SHOP BY CATEGORY
-                        </span>
-
-                        <h2>
-                            Everything Farmers Need
-                        </h2>
-
-                    </div>
-
-                    <a
-                        href="#products"
-                        class="view-all"
-                    >
-                        View All →
-                    </a>
-
-                </div>
-
-
-                <div class="category-grid">
-
-                    <a
-                        href="#products"
-                        class="category-card"
-                    >
-
-                        <div class="category-icon seeds">
-                            🌱
-                        </div>
-
-                        <h3>
-                            Seeds
-                        </h3>
-
-                        <p>
-                            High quality seeds
-                        </p>
-
-                    </a>
-
-
-                    <a
-                        href="#products"
-                        class="category-card"
-                    >
-
-                        <div class="category-icon fertilizer">
-                            🧪
-                        </div>
-
-                        <h3>
-                            Fertilizers
-                        </h3>
-
-                        <p>
-                            Better crop nutrition
-                        </p>
-
-                    </a>
-
-
-                    <a
-                        href="#products"
-                        class="category-card"
-                    >
-
-                        <div class="category-icon pesticide">
-                            🛡️
-                        </div>
-
-                        <h3>
-                            Crop Protection
-                        </h3>
-
-                        <p>
-                            Protect your crops
-                        </p>
-
-                    </a>
-
-
-                    <a
-                        href="#products"
-                        class="category-card"
-                    >
-
-                        <div class="category-icon tools">
-                            🛠️
-                        </div>
-
-                        <h3>
-                            Farm Tools
-                        </h3>
-
-                        <p>
-                            Essential farming tools
-                        </p>
-
-                    </a>
-
-
-                    <a
-                        href="#products"
-                        class="category-card"
-                    >
-
-                        <div class="category-icon irrigation">
-                            💧
-                        </div>
-
-                        <h3>
-                            Irrigation
-                        </h3>
-
-                        <p>
-                            Smart water solutions
-                        </p>
-
-                    </a>
-
-
-                    <a
-                        href="#products"
-                        class="category-card"
-                    >
-
-                        <div class="category-icon equipment">
-                            🚜
-                        </div>
-
-                        <h3>
-                            Farm Equipment
-                        </h3>
-
-                        <p>
-                            Modern farm equipment
-                        </p>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= PRODUCTS ================= -->
-        <section
-            class="products section"
-            id="products"
-        >
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <div>
-
-                        <span class="section-tag">
-                            FEATURED PRODUCTS
-                        </span>
-
-                        <h2>
-                            Popular Products
-                        </h2>
-
-                    </div>
-
-                    <a
-                        href="products.html"
-                        class="view-all"
-                    >
-                        View All Products →
-                    </a>
-
-                </div>
-
-
-                <div class="product-grid">
-
-
-                    <!-- ================= PRODUCT 1 ================= -->
-                    <article
-                        class="product-card"
-                        onclick="openProductDetails(1)"
-                        style="cursor: pointer;"
-                    >
-
-                        <div class="product-image">
-
-                            <span class="product-label">
-                                Popular
-                            </span>
-
-                            <button
-                                class="wishlist"
-                                type="button"
-                                onclick="event.stopPropagation();"
-                            >
-                                ♡
-                            </button>
-
-                            <div class="product-placeholder">
-                                🌱
-                            </div>
-
-                        </div>
-
-                        <div class="product-info">
-
-                            <span class="product-category">
-                                Seeds
-                            </span>
-
-                            <h3>
-                                Premium Vegetable Seeds
-                            </h3>
-
-                            <div class="rating">
-
-                                ⭐⭐⭐⭐⭐
-
-                                <span>
-                                    (124)
-                                </span>
-
-                            </div>
-
-                            <div class="price-row">
-
-                                <div>
-
-                                    <strong>
-                                        ₹299
-                                    </strong>
-
-                                    <del>
-                                        ₹399
-                                    </del>
-
-                                </div>
-
-                                <button
-                                    class="add-cart"
-                                    type="button"
-                                    data-product="Premium Vegetable Seeds"
-                                    onclick="event.stopPropagation();"
-                                >
-                                    + Cart
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- ================= PRODUCT 2 ================= -->
-                    <article
-                        class="product-card"
-                        onclick="openProductDetails(2)"
-                        style="cursor: pointer;"
-                    >
-
-                        <div class="product-image">
-
-                            <span class="product-label">
-                                Bestseller
-                            </span>
-
-                            <button
-                                class="wishlist"
-                                type="button"
-                                onclick="event.stopPropagation();"
-                            >
-                                ♡
-                            </button>
-
-                            <div class="product-placeholder">
-                                🧪
-                            </div>
-
-                        </div>
-
-                        <div class="product-info">
-
-                            <span class="product-category">
-                                Fertilizers
-                            </span>
-
-                            <h3>
-                                Organic Growth Fertilizer
-                            </h3>
-
-                            <div class="rating">
-
-                                ⭐⭐⭐⭐⭐
-
-                                <span>
-                                    (98)
-                                </span>
-
-                            </div>
-
-                            <div class="price-row">
-
-                                <div>
-
-                                    <strong>
-                                        ₹549
-                                    </strong>
-
-                                    <del>
-                                        ₹699
-                                    </del>
-
-                                </div>
-
-                                <button
-                                    class="add-cart"
-                                    type="button"
-                                    data-product="Organic Growth Fertilizer"
-                                    onclick="event.stopPropagation();"
-                                >
-                                    + Cart
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- ================= PRODUCT 3 ================= -->
-                    <article
-                        class="product-card"
-                        onclick="openProductDetails(3)"
-                        style="cursor: pointer;"
-                    >
-
-                        <div class="product-image">
-
-                            <span class="product-label">
-                                New
-                            </span>
-
-                            <button
-                                class="wishlist"
-                                type="button"
-                                onclick="event.stopPropagation();"
-                            >
-                                ♡
-                            </button>
-
-                            <div class="product-placeholder">
-                                🛡️
-                            </div>
-
-                        </div>
-
-                        <div class="product-info">
-
-                            <span class="product-category">
-                                Crop Protection
-                            </span>
-
-                            <h3>
-                                Advanced Crop Protection
-                            </h3>
-
-                            <div class="rating">
-
-                                ⭐⭐⭐⭐☆
-
-                                <span>
-                                    (76)
-                                </span>
-
-                            </div>
-
-                            <div class="price-row">
-
-                                <div>
-
-                                    <strong>
-                                        ₹799
-                                    </strong>
-
-                                    <del>
-                                        ₹949
-                                    </del>
-
-                                </div>
-
-                                <button
-                                    class="add-cart"
-                                    type="button"
-                                    data-product="Advanced Crop Protection"
-                                    onclick="event.stopPropagation();"
-                                >
-                                    + Cart
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-
-                    <!-- ================= PRODUCT 4 ================= -->
-                    <article
-                        class="product-card"
-                        onclick="openProductDetails(4)"
-                        style="cursor: pointer;"
-                    >
-
-                        <div class="product-image">
-
-                            <span class="product-label">
-                                Offer
-                            </span>
-
-                            <button
-                                class="wishlist"
-                                type="button"
-                                onclick="event.stopPropagation();"
-                            >
-                                ♡
-                            </button>
-
-                            <div class="product-placeholder">
-                                🛠️
-                            </div>
-
-                        </div>
-
-                        <div class="product-info">
-
-                            <span class="product-category">
-                                Farm Tools
-                            </span>
-
-                            <h3>
-                                Professional Farming Tool Kit
-                            </h3>
-
-                            <div class="rating">
-
-                                ⭐⭐⭐⭐⭐
-
-                                <span>
-                                    (151)
-                                </span>
-
-                            </div>
-
-                            <div class="price-row">
-
-                                <div>
-
-                                    <strong>
-                                        ₹1,299
-                                    </strong>
-
-                                    <del>
-                                        ₹1,599
-                                    </del>
-
-                                </div>
-
-                                <button
-                                    class="add-cart"
-                                    type="button"
-                                    data-product="Professional Farming Tool Kit"
-                                    onclick="event.stopPropagation();"
-                                >
-                                    + Cart
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= OFFER BANNER ================= -->
-        <section class="offer-section">
-
-            <div class="container">
-
-                <div class="offer-banner">
-
-                    <div class="offer-content">
+                    <div class="banner-points">
 
                         <span>
-                            🌾 SPECIAL FARMER OFFER
+                            ✓ Quality Products
                         </span>
 
-                        <h2>
-                            Save More on Your
-                            <br>
-                            Next Farm Purchase
-                        </h2>
+                        <span>
+                            ✓ Best Prices
+                        </span>
 
-                        <p>
-                            Get exciting discounts on selected
-                            agriculture products.
-                        </p>
+                        <span>
+                            ✓ Fast Delivery
+                        </span>
 
-                        <a
-                            href="#products"
-                            class="offer-btn"
-                        >
-                            Shop Offers →
-                        </a>
-
-                    </div>
-
-                    <div class="offer-art">
-                        🌾
-                        🚜
-                        🌱
                     </div>
 
                 </div>
 
-            </div>
 
-        </section>
+                <div class="banner-visual">
 
+                    <div class="banner-circle"></div>
 
-        <!-- ================= ABOUT ================= -->
-        <section
-            class="about section"
-            id="about"
-        >
-
-            <div class="container about-grid">
-
-                <div class="about-image">
-
-                    <div class="about-main">
+                    <div class="banner-farmer">
                         👨‍🌾
                     </div>
 
-                    <div class="about-stat">
+                    <div class="banner-crop">
+                        🌾🌱
+                    </div>
 
-                        <strong>
-                            1000+
+                </div>
+
+            </div>
+
+
+            <!-- SLIDE 2 -->
+
+            <div class="banner-slide">
+
+                <div class="banner-content">
+
+                    <span class="banner-tag">
+                        ⚡ DEALS OF THE DAY
+                    </span>
+
+                    <h1>
+                        Save More on<br>
+                        <span>Farm Essentials</span>
+                    </h1>
+
+                    <p>
+                        Get exciting deals on selected seeds,
+                        fertilizers and farming tools.
+                    </p>
+
+                    <a
+                        href="products.html"
+                        class="primary-btn"
+                    >
+                        View Deals →
+                    </a>
+
+                </div>
+
+
+                <div class="banner-visual">
+                    💰🌱🚜
+                </div>
+
+            </div>
+
+
+            <!-- SLIDE 3 -->
+
+            <div class="banner-slide">
+
+                <div class="banner-content">
+
+                    <span class="banner-tag">
+                        🌾 SMART FARMING
+                    </span>
+
+                    <h1>
+                        Everything You Need<br>
+                        <span>For Your Farm</span>
+                    </h1>
+
+                    <p>
+                        Discover products designed to help
+                        farmers grow healthier and stronger crops.
+                    </p>
+
+                    <a
+                        href="products.html"
+                        class="primary-btn"
+                    >
+                        Start Shopping →
+                    </a>
+
+                </div>
+
+
+                <div class="banner-visual">
+                    🚜🌱🌾
+                </div>
+
+            </div>
+
+
+            <!-- SLIDER BUTTONS -->
+
+            <button
+                type="button"
+                class="banner-prev"
+                id="bannerPrev"
+                aria-label="Previous banner"
+            >
+                ‹
+            </button>
+
+
+            <button
+                type="button"
+                class="banner-next"
+                id="bannerNext"
+                aria-label="Next banner"
+            >
+                ›
+            </button>
+
+
+            <!-- DOTS -->
+
+            <div
+                class="banner-dots"
+                id="bannerDots"
+            >
+
+                <button
+                    type="button"
+                    class="active"
+                    data-slide="0"
+                    aria-label="Slide 1"
+                ></button>
+
+                <button
+                    type="button"
+                    data-slide="1"
+                    aria-label="Slide 2"
+                ></button>
+
+                <button
+                    type="button"
+                    data-slide="2"
+                    aria-label="Slide 3"
+                ></button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     CUSTOMER BENEFITS
+================================================== -->
+
+<section class="benefits-strip">
+
+    <div class="container benefits-grid">
+
+
+        <div class="benefit-item">
+
+            <div class="benefit-icon">
+                🚚
+            </div>
+
+            <div>
+
+                <strong>
+                    Fast Delivery
+                </strong>
+
+                <span>
+                    Reliable doorstep delivery
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="benefit-item">
+
+            <div class="benefit-icon">
+                🌱
+            </div>
+
+            <div>
+
+                <strong>
+                    Quality Products
+                </strong>
+
+                <span>
+                    Products for better farming
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="benefit-item">
+
+            <div class="benefit-icon">
+                💰
+            </div>
+
+            <div>
+
+                <strong>
+                    Best Prices
+                </strong>
+
+                <span>
+                    Great value for farmers
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="benefit-item">
+
+            <div class="benefit-icon">
+                🛡️
+            </div>
+
+            <div>
+
+                <strong>
+                    Secure Shopping
+                </strong>
+
+                <span>
+                    Safe & trusted experience
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     POPULAR CATEGORIES
+================================================== -->
+
+<section
+    class="categories section"
+    id="categories"
+>
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-tag">
+                    SHOP BY CATEGORY
+                </span>
+
+                <h2>
+                    Popular Categories
+                </h2>
+
+                <p>
+                    Everything you need for modern farming.
+                </p>
+
+            </div>
+
+            <a
+                href="products.html"
+                class="view-all"
+            >
+                View All →
+            </a>
+
+        </div>
+
+
+        <div class="category-grid home-category-grid">
+
+
+            <a
+                href="products.html?category=Seeds"
+                class="category-card"
+            >
+
+                <div class="category-icon seeds">
+                    🌱
+                </div>
+
+                <h3>
+                    Seeds
+                </h3>
+
+                <p>
+                    Quality crop seeds
+                </p>
+
+                <span class="category-link">
+                    Shop Now →
+                </span>
+
+            </a>
+
+
+            <a
+                href="products.html?category=Fertilizers"
+                class="category-card"
+            >
+
+                <div class="category-icon fertilizer">
+                    🧪
+                </div>
+
+                <h3>
+                    Fertilizers
+                </h3>
+
+                <p>
+                    Better crop nutrition
+                </p>
+
+                <span class="category-link">
+                    Shop Now →
+                </span>
+
+            </a>
+
+
+            <a
+                href="products.html?category=Crop%20Protection"
+                class="category-card"
+            >
+
+                <div class="category-icon pesticide">
+                    🛡️
+                </div>
+
+                <h3>
+                    Crop Protection
+                </h3>
+
+                <p>
+                    Protect your crops
+                </p>
+
+                <span class="category-link">
+                    Shop Now →
+                </span>
+
+            </a>
+
+
+            <a
+                href="products.html?category=Farm%20Tools"
+                class="category-card"
+            >
+
+                <div class="category-icon tools">
+                    🛠️
+                </div>
+
+                <h3>
+                    Farm Tools
+                </h3>
+
+                <p>
+                    Essential farming tools
+                </p>
+
+                <span class="category-link">
+                    Shop Now →
+                </span>
+
+            </a>
+
+
+            <a
+                href="products.html"
+                class="category-card"
+            >
+
+                <div class="category-icon irrigation">
+                    💧
+                </div>
+
+                <h3>
+                    Irrigation
+                </h3>
+
+                <p>
+                    Smart water solutions
+                </p>
+
+                <span class="category-link">
+                    Explore →
+                </span>
+
+            </a>
+
+
+            <a
+                href="products.html"
+                class="category-card"
+            >
+
+                <div class="category-icon equipment">
+                    🚜
+                </div>
+
+                <h3>
+                    Farm Equipment
+                </h3>
+
+                <p>
+                    Modern farm equipment
+                </p>
+
+                <span class="category-link">
+                    Explore →
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     TRENDING PRODUCTS
+================================================== -->
+
+<section class="products section trending-section">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-tag">
+                    TRENDING NOW
+                </span>
+
+                <h2>
+                    Trending Products 🔥
+                </h2>
+
+                <p>
+                    Popular products farmers are checking out.
+                </p>
+
+            </div>
+
+            <a
+                href="products.html"
+                class="view-all"
+            >
+                View All →
+            </a>
+
+        </div>
+
+
+        <div class="product-grid">
+
+
+            <!-- PRODUCT 1 -->
+
+            <article
+                class="product-card"
+                onclick="openProductDetails(1)"
+                style="cursor:pointer;"
+            >
+
+                <div class="product-image">
+
+                    <span class="product-label">
+                        Trending
+                    </span>
+
+                    <button
+                        class="wishlist"
+                        type="button"
+                        onclick="event.stopPropagation();"
+                    >
+                        ♡
+                    </button>
+
+                    <div class="product-placeholder">
+                        🌱
+                    </div>
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <span class="product-category">
+                        Seeds
+                    </span>
+
+                    <h3>
+                        Premium Vegetable Seeds
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                        <span>(124)</span>
+                    </div>
+
+                    <div class="price-row">
+
+                        <div>
+
+                            <strong>
+                                ₹299
+                            </strong>
+
+                            <del>
+                                ₹399
+                            </del>
+
+                        </div>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                            data-product="Premium Vegetable Seeds"
+                            onclick="event.stopPropagation();"
+                        >
+                            + Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCT 2 -->
+
+            <article
+                class="product-card"
+                onclick="openProductDetails(2)"
+                style="cursor:pointer;"
+            >
+
+                <div class="product-image">
+
+                    <span class="product-label">
+                        Bestseller
+                    </span>
+
+                    <button
+                        class="wishlist"
+                        type="button"
+                        onclick="event.stopPropagation();"
+                    >
+                        ♡
+                    </button>
+
+                    <div class="product-placeholder">
+                        🧪
+                    </div>
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <span class="product-category">
+                        Fertilizers
+                    </span>
+
+                    <h3>
+                        Organic Growth Fertilizer
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                        <span>(98)</span>
+                    </div>
+
+                    <div class="price-row">
+
+                        <div>
+
+                            <strong>
+                                ₹499
+                            </strong>
+
+                            <del>
+                                ₹699
+                            </del>
+
+                        </div>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                            data-product="Organic Growth Fertilizer"
+                            onclick="event.stopPropagation();"
+                        >
+                            + Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCT 3 -->
+
+            <article
+                class="product-card"
+                onclick="openProductDetails(3)"
+                style="cursor:pointer;"
+            >
+
+                <div class="product-image">
+
+                    <span class="product-label">
+                        Popular
+                    </span>
+
+                    <button
+                        class="wishlist"
+                        type="button"
+                        onclick="event.stopPropagation();"
+                    >
+                        ♡
+                    </button>
+
+                    <div class="product-placeholder">
+                        🛡️
+                    </div>
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <span class="product-category">
+                        Crop Protection
+                    </span>
+
+                    <h3>
+                        Advanced Crop Protection
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐☆
+                        <span>(76)</span>
+                    </div>
+
+                    <div class="price-row">
+
+                        <div>
+
+                            <strong>
+                                ₹699
+                            </strong>
+
+                            <del>
+                                ₹949
+                            </del>
+
+                        </div>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                            data-product="Advanced Crop Protection"
+                            onclick="event.stopPropagation();"
+                        >
+                            + Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCT 4 -->
+
+            <article
+                class="product-card"
+                onclick="openProductDetails(4)"
+                style="cursor:pointer;"
+            >
+
+                <div class="product-image">
+
+                    <span class="product-label">
+                        Hot Deal
+                    </span>
+
+                    <button
+                        class="wishlist"
+                        type="button"
+                        onclick="event.stopPropagation();"
+                    >
+                        ♡
+                    </button>
+
+                    <div class="product-placeholder">
+                        🛠️
+                    </div>
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <span class="product-category">
+                        Farm Tools
+                    </span>
+
+                    <h3>
+                        Professional Farming Tool Kit
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                        <span>(151)</span>
+                    </div>
+
+                    <div class="price-row">
+
+                        <div>
+
+                            <strong>
+                                ₹899
+                            </strong>
+
+                            <del>
+                                ₹1,199
+                            </del>
+
+                        </div>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                            data-product="Professional Farming Tool Kit"
+                            onclick="event.stopPropagation();"
+                        >
+                            + Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     DEAL OF THE DAY
+================================================== -->
+
+<section class="deal-section">
+
+    <div class="container">
+
+        <div class="deal-banner">
+
+
+            <div class="deal-content">
+
+                <span class="deal-tag">
+                    ⚡ DEAL OF THE DAY
+                </span>
+
+                <h2>
+                    Big Savings on<br>
+                    Farming Essentials
+                </h2>
+
+                <p>
+                    Grab today's selected agriculture products
+                    before the offer ends.
+                </p>
+
+
+                <div class="deal-timer">
+
+                    <div>
+
+                        <strong id="dealHours">
+                            08
                         </strong>
 
                         <span>
-                            Happy Farmers
+                            Hours
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong id="dealMinutes">
+                            42
+                        </strong>
+
+                        <span>
+                            Minutes
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong id="dealSeconds">
+                            19
+                        </strong>
+
+                        <span>
+                            Seconds
                         </span>
 
                     </div>
@@ -927,185 +1132,990 @@
                 </div>
 
 
-                <div class="about-content">
+                <a
+                    href="products.html"
+                    class="primary-btn"
+                >
+                    Shop Today's Deals →
+                </a>
 
-                    <span class="section-tag">
-                        ABOUT SN KISAN MART
+            </div>
+
+
+            <div class="deal-visual">
+
+                🌾
+
+                <span>
+                    50% OFF
+                </span>
+
+                🌱
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     BEST SELLERS
+================================================== -->
+
+<section class="products section">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-tag">
+                    FARMERS' CHOICE
+                </span>
+
+                <h2>
+                    Best Sellers 🏆
+                </h2>
+
+                <p>
+                    Products loved by our farming community.
+                </p>
+
+            </div>
+
+            <a
+                href="products.html"
+                class="view-all"
+            >
+                View All →
+            </a>
+
+        </div>
+
+
+        <div class="product-grid">
+
+
+            <!-- BEST SELLER 1 -->
+
+            <article
+                class="product-card"
+                onclick="openProductDetails(2)"
+                style="cursor:pointer;"
+            >
+
+                <div class="product-image">
+
+                    <span class="product-label">
+                        #1 Bestseller
                     </span>
 
-                    <h2>
-                        Your Trusted Partner
-                        in Modern Farming
-                    </h2>
+                    <button
+                        class="wishlist"
+                        type="button"
+                        onclick="event.stopPropagation();"
+                    >
+                        ♡
+                    </button>
 
-                    <p>
-                        SN Kisan Mart is built to make quality
-                        agriculture products easily accessible to
-                        farmers.
-                    </p>
+                    <div class="product-placeholder">
+                        🧪
+                    </div>
 
-                    <p>
-                        From seeds and fertilizers to crop protection
-                        products and farming tools, we aim to bring
-                        everything farmers need under one roof.
-                    </p>
+                </div>
 
-                    <div class="about-points">
+
+                <div class="product-info">
+
+                    <span class="product-category">
+                        Fertilizers
+                    </span>
+
+                    <h3>
+                        Organic Growth Fertilizer
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                        <span>(98)</span>
+                    </div>
+
+                    <div class="price-row">
 
                         <div>
-                            <span>✓</span>
+
                             <strong>
-                                Quality Assured Products
+                                ₹499
                             </strong>
+
+                            <del>
+                                ₹699
+                            </del>
+
                         </div>
 
-                        <div>
-                            <span>✓</span>
-                            <strong>
-                                Farmer-Friendly Prices
-                            </strong>
-                        </div>
-
-                        <div>
-                            <span>✓</span>
-                            <strong>
-                                Reliable Delivery
-                            </strong>
-                        </div>
+                        <button
+                            class="add-cart"
+                            type="button"
+                            data-product="Organic Growth Fertilizer"
+                            onclick="event.stopPropagation();"
+                        >
+                            + Cart
+                        </button>
 
                     </div>
 
-                    <a
-                        href="#products"
-                        class="primary-btn"
+                </div>
+
+            </article>
+
+
+            <!-- BEST SELLER 2 -->
+
+            <article
+                class="product-card"
+                onclick="openProductDetails(4)"
+                style="cursor:pointer;"
+            >
+
+                <div class="product-image">
+
+                    <span class="product-label">
+                        Top Rated
+                    </span>
+
+                    <button
+                        class="wishlist"
+                        type="button"
+                        onclick="event.stopPropagation();"
                     >
-                        Explore Products →
-                    </a>
+                        ♡
+                    </button>
+
+                    <div class="product-placeholder">
+                        🛠️
+                    </div>
 
                 </div>
 
+
+                <div class="product-info">
+
+                    <span class="product-category">
+                        Farm Tools
+                    </span>
+
+                    <h3>
+                        Professional Farming Tool Kit
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                        <span>(151)</span>
+                    </div>
+
+                    <div class="price-row">
+
+                        <div>
+
+                            <strong>
+                                ₹899
+                            </strong>
+
+                            <del>
+                                ₹1,199
+                            </del>
+
+                        </div>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                            data-product="Professional Farming Tool Kit"
+                            onclick="event.stopPropagation();"
+                        >
+                            + Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- BEST SELLER 3 -->
+
+            <article
+                class="product-card"
+                onclick="openProductDetails(1)"
+                style="cursor:pointer;"
+            >
+
+                <div class="product-image">
+
+                    <span class="product-label">
+                        Popular
+                    </span>
+
+                    <button
+                        class="wishlist"
+                        type="button"
+                        onclick="event.stopPropagation();"
+                    >
+                        ♡
+                    </button>
+
+                    <div class="product-placeholder">
+                        🌱
+                    </div>
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <span class="product-category">
+                        Seeds
+                    </span>
+
+                    <h3>
+                        Premium Vegetable Seeds
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                        <span>(124)</span>
+                    </div>
+
+                    <div class="price-row">
+
+                        <div>
+
+                            <strong>
+                                ₹299
+                            </strong>
+
+                            <del>
+                                ₹399
+                            </del>
+
+                        </div>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                            data-product="Premium Vegetable Seeds"
+                            onclick="event.stopPropagation();"
+                        >
+                            + Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- BEST SELLER 4 -->
+
+            <article
+                class="product-card"
+                onclick="openProductDetails(3)"
+                style="cursor:pointer;"
+            >
+
+                <div class="product-image">
+
+                    <span class="product-label">
+                        Popular
+                    </span>
+
+                    <button
+                        class="wishlist"
+                        type="button"
+                        onclick="event.stopPropagation();"
+                    >
+                        ♡
+                    </button>
+
+                    <div class="product-placeholder">
+                        🛡️
+                    </div>
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <span class="product-category">
+                        Crop Protection
+                    </span>
+
+                    <h3>
+                        Advanced Crop Protection
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐☆
+                        <span>(76)</span>
+                    </div>
+
+                    <div class="price-row">
+
+                        <div>
+
+                            <strong>
+                                ₹699
+                            </strong>
+
+                            <del>
+                                ₹949
+                            </del>
+
+                        </div>
+
+                        <button
+                            class="add-cart"
+                            type="button"
+                            data-product="Advanced Crop Protection"
+                            onclick="event.stopPropagation();"
+                        >
+                            + Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     RECENTLY VIEWED
+================================================== -->
+
+<section class="recent-section section">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-tag">
+                    YOUR ACTIVITY
+                </span>
+
+                <h2>
+                    Recently Viewed 👀
+                </h2>
+
             </div>
 
-        </section>
+            <a
+                href="products.html"
+                class="view-all"
+            >
+                View More →
+            </a>
+
+        </div>
 
 
-        <!-- ================= NEWSLETTER ================= -->
-        <section class="newsletter">
+        <div class="recent-products">
 
-            <div class="container newsletter-content">
+
+            <a
+                href="product-details.html?id=1"
+                class="recent-card"
+            >
+
+                <div class="recent-image">
+                    🌱
+                </div>
 
                 <div>
 
-                    <span class="section-tag">
-                        STAY UPDATED
+                    <span>
+                        Seeds
                     </span>
 
-                    <h2>
-                        Get Farming Tips & Offers
-                    </h2>
+                    <h3>
+                        Premium Vegetable Seeds
+                    </h3>
 
-                    <p>
-                        Subscribe for useful farming information,
-                        new products and special offers.
-                    </p>
+                    <strong>
+                        ₹299
+                    </strong>
 
                 </div>
 
-                <form
-                    class="newsletter-form"
-                    id="newsletterForm"
-                >
+            </a>
 
-                    <input
-                        type="email"
-                        id="emailInput"
-                        placeholder="Enter your email address"
-                        required
-                    >
 
-                    <button type="submit">
-                        Subscribe
-                    </button>
+            <a
+                href="product-details.html?id=2"
+                class="recent-card"
+            >
 
-                </form>
+                <div class="recent-image">
+                    🧪
+                </div>
+
+                <div>
+
+                    <span>
+                        Fertilizers
+                    </span>
+
+                    <h3>
+                        Organic Growth Fertilizer
+                    </h3>
+
+                    <strong>
+                        ₹499
+                    </strong>
+
+                </div>
+
+            </a>
+
+
+            <a
+                href="product-details.html?id=4"
+                class="recent-card"
+            >
+
+                <div class="recent-image">
+                    🛠️
+                </div>
+
+                <div>
+
+                    <span>
+                        Farm Tools
+                    </span>
+
+                    <h3>
+                        Professional Farming Tool Kit
+                    </h3>
+
+                    <strong>
+                        ₹899
+                    </strong>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     RECOMMENDED PRODUCTS
+================================================== -->
+
+<section class="products section recommended-section">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-tag">
+                    JUST FOR YOU
+                </span>
+
+                <h2>
+                    Recommended Products 🤖
+                </h2>
+
+                <p>
+                    More products you may find useful.
+                </p>
 
             </div>
 
-        </section>
+            <a
+                href="products.html"
+                class="view-all"
+            >
+                Explore All →
+            </a>
 
-    </main>
+        </div>
 
 
-    <!-- ================= FOOTER ================= -->
-    <footer class="footer">
+        <div class="recommendation-grid">
 
-        <div class="container footer-grid">
 
-            <!-- Brand -->
-            <div class="footer-brand">
+            <a
+                href="product-details.html?id=5"
+                class="recommend-card"
+            >
+
+                <div class="recommend-image">
+                    🍅
+                </div>
+
+                <div class="recommend-info">
+
+                    <span>
+                        Seeds
+                    </span>
+
+                    <h3>
+                        Hybrid Tomato Seeds
+                    </h3>
+
+                    <div>
+                        ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <strong>
+                        ₹349
+                    </strong>
+
+                </div>
+
+            </a>
+
+
+            <a
+                href="product-details.html?id=6"
+                class="recommend-card"
+            >
+
+                <div class="recommend-image">
+                    🌾
+                </div>
+
+                <div class="recommend-info">
+
+                    <span>
+                        Fertilizers
+                    </span>
+
+                    <h3>
+                        NPK Plant Fertilizer
+                    </h3>
+
+                    <div>
+                        ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <strong>
+                        ₹599
+                    </strong>
+
+                </div>
+
+            </a>
+
+
+            <a
+                href="product-details.html?id=7"
+                class="recommend-card"
+            >
+
+                <div class="recommend-image">
+                    🪴
+                </div>
+
+                <div class="recommend-info">
+
+                    <span>
+                        Crop Protection
+                    </span>
+
+                    <h3>
+                        Plant Protection Spray
+                    </h3>
+
+                    <div>
+                        ⭐⭐⭐⭐☆
+                    </div>
+
+                    <strong>
+                        ₹449
+                    </strong>
+
+                </div>
+
+            </a>
+
+
+            <a
+                href="product-details.html?id=8"
+                class="recommend-card"
+            >
+
+                <div class="recommend-image">
+                    🔧
+                </div>
+
+                <div class="recommend-info">
+
+                    <span>
+                        Farm Tools
+                    </span>
+
+                    <h3>
+                        Hand Garden Tool Set
+                    </h3>
+
+                    <div>
+                        ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <strong>
+                        ₹249
+                    </strong>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     TOP BRANDS
+================================================== -->
+
+<section class="brands-section section">
+
+    <div class="container">
+
+
+        <div class="section-heading centered">
+
+            <div>
+
+                <span class="section-tag">
+                    FEATURED BRANDS
+                </span>
+
+                <h2>
+                    Top Brands
+                </h2>
+
+                <p>
+                    Quality-focused brands for modern agriculture.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="brands-grid">
+
+
+            <div class="brand-card">
+
+                <span>
+                    🌱
+                </span>
+
+                <strong>
+                    AgriGrow
+                </strong>
+
+            </div>
+
+
+            <div class="brand-card">
+
+                <span>
+                    🌾
+                </span>
+
+                <strong>
+                    KisanPro
+                </strong>
+
+            </div>
+
+
+            <div class="brand-card">
+
+                <span>
+                    🚜
+                </span>
+
+                <strong>
+                    FarmTech
+                </strong>
+
+            </div>
+
+
+            <div class="brand-card">
+
+                <span>
+                    🍃
+                </span>
+
+                <strong>
+                    GreenField
+                </strong>
+
+            </div>
+
+
+            <div class="brand-card">
+
+                <span>
+                    🌿
+                </span>
+
+                <strong>
+                    AgroPlus
+                </strong>
+
+            </div>
+
+
+            <div class="brand-card">
+
+                <span>
+                    🪴
+                </span>
+
+                <strong>
+                    CropCare
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     ABOUT
+================================================== -->
+
+<section
+    class="about section"
+    id="about"
+>
+
+    <div class="container about-grid">
+
+
+        <div class="about-image">
+
+            <div class="about-main">
+                👨‍🌾
+            </div>
+
+            <div class="about-stat">
+
+                <strong>
+                    1000+
+                </strong>
+
+                <span>
+                    Happy Farmers
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-content">
+
+            <span class="section-tag">
+                ABOUT SN KISAN MART
+            </span>
+
+            <h2>
+                Your Trusted Partner
+                in Modern Farming
+            </h2>
+
+            <p>
+                SN Kisan Mart is built to make quality
+                agriculture products easily accessible
+                to farmers.
+            </p>
+
+            <p>
+                From seeds and fertilizers to crop protection
+                products and farming tools, we aim to bring
+                everything farmers need under one roof.
+            </p>
+
+
+            <div class="about-points">
+
+                <div>
+
+                    <span>
+                        ✓
+                    </span>
+
+                    <strong>
+                        Quality Assured Products
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        ✓
+                    </span>
+
+                    <strong>
+                        Farmer-Friendly Prices
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        ✓
+                    </span>
+
+                    <strong>
+                        Reliable Delivery
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="products.html"
+                class="primary-btn"
+            >
+                Explore Products →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     NEWSLETTER
+================================================== -->
+
+<section class="newsletter">
+
+    <div class="container newsletter-content">
+
+
+        <div>
+
+            <span class="section-tag">
+                STAY UPDATED
+            </span>
+
+            <h2>
+                Get Farming Tips & Offers
+            </h2>
+
+            <p>
+                Subscribe for useful farming information,
+                new products and special offers.
+            </p>
+
+        </div>
+
+
+        <form
+            class="newsletter-form"
+            id="newsletterForm"
+        >
+
+            <input
+                type="email"
+                id="emailInput"
+                placeholder="Enter your email address"
+                required
+            >
+
+            <button type="submit">
+                Subscribe
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer class="footer">
+
+    <div class="container">
+
+
+        <div class="footer-grid">
+
+
+            <div class="footer-column">
 
                 <a
                     href="index.html"
-                    class="logo footer-logo"
+                    class="logo"
                 >
-
-                    <span class="logo-icon">
-                        🌾
-                    </span>
-
-                    <span>
-                        <strong>
-                            SN Kisan
-                        </strong>
-
-                        <small>
-                            Mart
-                        </small>
-                    </span>
-
+                    🌾 SN Kisan Mart
                 </a>
 
                 <p>
-                    Your trusted online agriculture store for
-                    quality farming products.
+                    Your trusted online destination for
+                    agriculture products and farming essentials.
                 </p>
-
-                <div class="social-links">
-
-                    <a
-                        href="#"
-                        aria-label="Facebook"
-                    >
-                        f
-                    </a>
-
-                    <a
-                        href="#"
-                        aria-label="Instagram"
-                    >
-                        ◎
-                    </a>
-
-                    <a
-                        href="#"
-                        aria-label="YouTube"
-                    >
-                        ▶
-                    </a>
-
-                    <a
-                        href="#"
-                        aria-label="WhatsApp"
-                    >
-                        ☏
-                    </a>
-
-                </div>
 
             </div>
 
 
-            <!-- Quick Links -->
             <div class="footer-column">
 
                 <h3>
@@ -1131,54 +2141,52 @@
             </div>
 
 
-            <!-- Customer -->
             <div class="footer-column">
 
                 <h3>
-                    Customer Care
+                    Customer
                 </h3>
 
-                <a href="#login">
+                <a href="account.html">
                     My Account
                 </a>
 
-                <a href="#orders">
+                <a href="orders.html">
                     My Orders
                 </a>
 
-                <a href="#cart">
-                    Shopping Cart
+                <a href="checkout.html">
+                    Checkout
                 </a>
 
-                <a href="#contact">
-                    Contact Us
+                <a href="account.html#address">
+                    Delivery Address
                 </a>
 
             </div>
 
 
-            <!-- Contact -->
             <div class="footer-column">
 
                 <h3>
-                    Contact Us
+                    Support
                 </h3>
 
-                <p>
-                    📍 India
-                </p>
+                <a href="#">
+                    Contact Us
+                </a>
 
-                <p>
-                    📞 +91 XXXXX XXXXX
-                </p>
+                <a href="#">
+                    Help Center
+                </a>
 
-                <p>
-                    ✉️ support@snkisanmart.com
-                </p>
+                <a href="#">
+                    Shipping Information
+                </a>
 
-                <p>
-                    🕐 Mon - Sat: 9 AM - 7 PM
-                </p>
+                <a href="#">
+                    Privacy Policy
+                </a>
 
             </div>
 
@@ -1187,157 +2195,146 @@
 
         <div class="footer-bottom">
 
-            <div class="container">
+            <p>
+                © <span id="currentYear"></span>
+                SN Kisan Mart. All rights reserved.
+            </p>
 
-                <p>
-                    ©
-                    <span id="currentYear"></span>
-                    SN Kisan Mart. All Rights Reserved.
-                </p>
-
-                <div>
-
-                    <a href="#">
-                        Privacy Policy
-                    </a>
-
-                    <a href="#">
-                        Terms & Conditions
-                    </a>
-
-                </div>
-
-            </div>
+            <p>
+                Built with ❤️ for modern farming.
+            </p>
 
         </div>
 
-    </footer>
+    </div>
+
+</footer>
 
 
-    <!-- ================= CART SIDEBAR ================= -->
-    <aside
-        class="cart-sidebar"
-        id="cartSidebar"
+<!-- ==================================================
+     CART SIDEBAR
+================================================== -->
+
+<aside
+    class="cart-sidebar"
+    id="cartSidebar"
+>
+
+    <div class="cart-header">
+
+        <h2>
+            Your Cart
+        </h2>
+
+        <button
+            type="button"
+            id="closeCart"
+            aria-label="Close cart"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div
+        class="cart-items"
+        id="cartItems"
     >
 
-        <div class="cart-header">
+    </div>
 
-            <h2>
-                Shopping Cart
-            </h2>
 
-            <button
-                id="closeCart"
-                type="button"
-            >
-                ✕
-            </button>
+    <div class="cart-footer">
+
+        <div class="cart-total">
+
+            <span>
+                Total
+            </span>
+
+            <strong id="cartTotal">
+                ₹0
+            </strong>
 
         </div>
+
+        <button
+            type="button"
+            class="checkout-btn"
+            onclick="checkout()"
+        >
+            Proceed to Checkout
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- OVERLAY -->
+
+<div
+    class="overlay"
+    id="overlay"
+></div>
+
+
+<!-- ==================================================
+     LOGIN / REGISTER MODAL
+================================================== -->
+
+<div
+    class="modal"
+    id="loginModal"
+>
+
+    <div class="modal-content">
+
+
+        <button
+            type="button"
+            class="modal-close"
+            onclick="closeLoginModal()"
+        >
+            ×
+        </button>
+
+
+        <!-- LOGIN -->
 
         <div
-            class="cart-items"
-            id="cartItems"
+            id="loginSection"
+            class="auth-section"
         >
 
-            <div class="empty-cart">
+            <h2>
+                Welcome Back
+            </h2>
 
-                <div>
-                    🛒
-                </div>
-
-                <h3>
-                    Your cart is empty
-                </h3>
-
-                <p>
-                    Add products to your cart.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="cart-footer">
-
-            <div class="cart-total">
-
-                <span>
-                    Total
-                </span>
-
-                <strong id="cartTotal">
-                    ₹0
-                </strong>
-
-            </div>
-
-            <button
-                type="button"
-                class="checkout-btn"
-                onclick="checkout()"
-            >
-                Proceed to Checkout
-            </button>
-
-        </div>
-
-    </aside>
+            <p>
+                Login to your SN Kisan Mart account.
+            </p>
 
 
-    <!-- Cart Overlay -->
-    <div
-        class="overlay"
-        id="overlay"
-    ></div>
+            <form id="loginForm">
 
-
-    <!-- ================= LOGIN / REGISTER MODAL ================= -->
-    <div
-        class="modal"
-        id="loginModal"
-    >
-
-        <div class="modal-box">
-
-            <button
-                class="modal-close"
-                id="closeLogin"
-                type="button"
-            >
-                ✕
-            </button>
-
-            <div class="modal-logo">
-                🌾
-            </div>
-
-
-            <!-- ================= LOGIN ================= -->
-            <div id="loginSection">
-
-                <h2>
-                    Welcome Back 👋
-                </h2>
-
-                <p>
-                    Login to continue shopping.
-                </p>
-
-                <form id="loginForm">
+                <div class="form-group">
 
                     <label for="loginEmail">
-                        Email Address
+                        Email
                     </label>
 
                     <input
                         type="email"
                         id="loginEmail"
-                        placeholder="Enter your email"
-                        autocomplete="email"
                         required
                     >
 
+                </div>
+
+
+                <div class="form-group">
 
                     <label for="loginPassword">
                         Password
@@ -1348,64 +2345,67 @@
                         <input
                             type="password"
                             id="loginPassword"
-                            placeholder="Enter your password"
-                            autocomplete="current-password"
                             required
                         >
 
                         <button
                             type="button"
-                            class="password-toggle"
-                            onclick="togglePassword('loginPassword', this)"
+                            onclick="togglePassword('loginPassword')"
                         >
                             👁️
                         </button>
 
                     </div>
 
-
-                    <button
-                        type="submit"
-                        class="primary-btn full-btn"
-                    >
-                        Login
-                    </button>
-
-                </form>
+                </div>
 
 
-                <p class="register-text">
+                <button
+                    type="submit"
+                    class="primary-btn auth-btn"
+                >
+                    Login
+                </button>
 
-                    New customer?
-
-                    <a
-                        href="#"
-                        id="showRegister"
-                    >
-                        Create an account
-                    </a>
-
-                </p>
-
-            </div>
+            </form>
 
 
-            <!-- ================= REGISTER ================= -->
-            <div
-                id="registerSection"
-                style="display:none;"
-            >
+            <p class="auth-switch">
 
-                <h2>
-                    Create Account 🧑‍🌾
-                </h2>
+                Don't have an account?
 
-                <p>
-                    Join SN Kisan Mart today.
-                </p>
+                <button
+                    type="button"
+                    onclick="showRegisterSection()"
+                >
+                    Register
+                </button>
+
+            </p>
+
+        </div>
 
 
-                <form id="registerForm">
+        <!-- REGISTER -->
+
+        <div
+            id="registerSection"
+            class="auth-section"
+            style="display:none;"
+        >
+
+            <h2>
+                Create Account
+            </h2>
+
+            <p>
+                Join SN Kisan Mart today.
+            </p>
+
+
+            <form id="registerForm">
+
+                <div class="form-group">
 
                     <label for="registerName">
                         Full Name
@@ -1414,24 +2414,28 @@
                     <input
                         type="text"
                         id="registerName"
-                        placeholder="Enter your full name"
-                        autocomplete="name"
                         required
                     >
 
+                </div>
+
+
+                <div class="form-group">
 
                     <label for="registerEmail">
-                        Email Address
+                        Email
                     </label>
 
                     <input
                         type="email"
                         id="registerEmail"
-                        placeholder="Enter your email"
-                        autocomplete="email"
                         required
                     >
 
+                </div>
+
+
+                <div class="form-group">
 
                     <label for="registerPassword">
                         Password
@@ -1442,99 +2446,83 @@
                         <input
                             type="password"
                             id="registerPassword"
-                            placeholder="Create a password"
-                            autocomplete="new-password"
-                            minlength="6"
                             required
                         >
 
                         <button
                             type="button"
-                            class="password-toggle"
-                            onclick="togglePassword('registerPassword', this)"
+                            onclick="togglePassword('registerPassword')"
                         >
                             👁️
                         </button>
 
                     </div>
 
-
-                    <label for="registerConfirmPassword">
-                        Confirm Password
-                    </label>
-
-                    <div class="password-field">
-
-                        <input
-                            type="password"
-                            id="registerConfirmPassword"
-                            placeholder="Confirm your password"
-                            autocomplete="new-password"
-                            minlength="6"
-                            required
-                        >
-
-                        <button
-                            type="button"
-                            class="password-toggle"
-                            onclick="togglePassword('registerConfirmPassword', this)"
-                        >
-                            👁️
-                        </button>
-
-                    </div>
+                </div>
 
 
-                    <button
-                        type="submit"
-                        class="primary-btn full-btn"
-                    >
-                        Create Account
-                    </button>
+                <button
+                    type="submit"
+                    class="primary-btn auth-btn"
+                >
+                    Create Account
+                </button>
 
-                </form>
+            </form>
 
 
-                <p class="register-text">
+            <p class="auth-switch">
 
-                    Already have an account?
+                Already have an account?
 
-                    <a
-                        href="#"
-                        id="showLogin"
-                    >
-                        Login
-                    </a>
+                <button
+                    type="button"
+                    onclick="showLoginSection()"
+                >
+                    Login
+                </button>
 
-                </p>
-
-            </div>
+            </p>
 
         </div>
 
     </div>
 
-
-    <!-- ================= TOAST ================= -->
-    <div
-        class="toast"
-        id="toast"
-    >
-        Product added to cart!
-    </div>
+</div>
 
 
-    <!-- ================= JAVASCRIPT ================= -->
-    <script src="js/script.js"></script>
+<!-- ==================================================
+     TOAST
+================================================== -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    Product added to cart!
+</div>
 
 
-    <!-- ================= PRODUCT DETAILS ================= -->
-    <script>
-        function openProductDetails(productId) {
-            window.location.href =
-                "product-details.html?id=" + productId;
-        }
-    </script>
+<!-- ==================================================
+     JAVASCRIPT
+================================================== -->
+
+<script src="js/script.js"></script>
+
+
+<script>
+
+function openProductDetails(productId) {
+
+    window.location.href =
+        "product-details.html?id=" +
+        productId;
+
+}
+
+</script>
+
 
 </body>
+
 </html>
