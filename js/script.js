@@ -332,35 +332,6 @@ function closeCart() {
 }
 
 
-/* =========================================
-   LOGIN MODAL
-========================================= */
-
-
-
-
-
-/* =========================================
-   AUTHENTICATION
-========================================= */
-
-function getUsers() {
-
-    return JSON.parse(
-        localStorage.getItem("snKisanUsers")
-    ) || [];
-
-}
-
-
-function saveUsers(users) {
-
-    localStorage.setItem(
-        "snKisanUsers",
-        JSON.stringify(users)
-    );
-
-}
 
 
 /* =========================================
