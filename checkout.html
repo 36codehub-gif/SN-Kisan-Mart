@@ -895,115 +895,235 @@
 
     /* =========================================
        PLACE ORDER
-    ========================================= */
+    =========================================
 
-    function handleCheckout(event) {
+    /* =========================================
+   PLACE ORDER
+========================================= */
 
-        event.preventDefault();
+function handleCheckout(event) {
 
-
-        if (
-            !cart ||
-            cart.length === 0
-        ) {
-
-            showToast(
-                "Your cart is empty"
-            );
-
-            return;
-        }
+    event.preventDefault();
 
 
-        const payment =
-            document.querySelector(
-                'input[name="payment"]:checked'
-            ).value;
+    /* CART CHECK */
 
-
-        if (payment === "online") {
-
-            showToast(
-                "Online payment coming soon"
-            );
-
-            return;
-        }
-
-
-        const customer = {
-
-            name:
-                document.getElementById(
-                    "fullName"
-                ).value.trim(),
-
-            mobile:
-                document.getElementById(
-                    "mobile"
-                ).value.trim(),
-
-            email:
-                document.getElementById(
-                    "email"
-                ).value.trim(),
-
-            address:
-                document.getElementById(
-                    "address"
-                ).value.trim(),
-
-            city:
-                document.getElementById(
-                    "city"
-                ).value.trim(),
-
-            state:
-                document.getElementById(
-                    "state"
-                ).value.trim(),
-
-            pincode:
-                document.getElementById(
-                    "pincode"
-                ).value.trim(),
-
-            payment: payment,
-
-            items: cart,
-
-            createdAt:
-                new Date().toISOString()
-
-        };
-
-
-        localStorage.setItem(
-            "snKisanLastOrder",
-            JSON.stringify(customer)
-        );
-
+    if (!cart || cart.length === 0) {
 
         showToast(
-            "Order placed successfully!"
+            "Your cart is empty"
         );
 
-
-        /*
-           Backend connect hone ke baad
-           yahin API call lagegi.
-        */
-
-        setTimeout(function() {
-
-            window.location.href =
-                "index.html";
-
-        }, 1200);
-
+        return;
     }
 
 
+    /* PAYMENT */
+
+    const paymentElement =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        );
+
+    if (!paymentElement) {
+
+        showToast(
+            "Please select a payment method"
+        );
+
+        return;
+    }
+
+
+    const payment =
+        paymentElement.value;
+
+
+    /* ONLINE PAYMENT */
+
+    if (payment === "online") {
+
+        showToast(
+            "Online payment coming soon"
+        );
+
+        return;
+    }
+
+
+    /* CURRENT USER */
+
+    const currentUser =
+        JSON.parse(
+            localStorage.getItem(
+                "snKisanCurrentUser"
+            )
+        );
+
+
+    /* CUSTOMER DETAILS */
+
+    const customer = {
+
+        name:
+            document.getElementById(
+                "fullName"
+            ).value.trim(),
+
+        mobile:
+            document.getElementById(
+                "mobile"
+            ).value.trim(),
+
+        email:
+            document.getElementById(
+                "email"
+            ).value.trim(),
+
+        address:
+            document.getElementById(
+                "address"
+            ).value.trim(),
+
+        city:
+            document.getElementById(
+                "city"
+            ).value.trim(),
+
+        state:
+            document.getElementById(
+                "state"
+            ).value.trim(),
+
+        pincode:
+            document.getElementById(
+                "pincode"
+            ).value.trim()
+
+    };
+
+
+    /* CALCULATE TOTAL */
+
+    const total =
+        cart.reduce(
+            function(sum, item) {
+
+                return sum +
+                    (
+                        Number(item.price) *
+                        Number(item.quantity)
+                    );
+
+            },
+            0
+        );
+
+
+    /* CREATE ORDER */
+
+    const order = {
+
+        id:
+            "SN" +
+            Date.now(),
+
+        userId:
+            currentUser
+                ? currentUser.id
+                : "guest",
+
+        customer:
+            customer,
+
+        items:
+            cart.map(function(item) {
+
+                return {
+                    name: item.name,
+                    price: Number(item.price),
+                    quantity: Number(item.quantity)
+                };
+
+            }),
+
+        total:
+            total,
+
+        paymentMethod:
+            payment === "cod"
+                ? "Cash on Delivery"
+                : "Online Payment",
+
+        status:
+            "Confirmed",
+
+        date:
+            new Date().toLocaleString(
+                "en-IN"
+            ),
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    /* GET EXISTING ORDERS */
+
+    const orders =
+        JSON.parse(
+            localStorage.getItem(
+                "snKisanOrders"
+            )
+        ) || [];
+
+
+    /* SAVE NEW ORDER */
+
+    orders.push(order);
+
+
+    localStorage.setItem(
+        "snKisanOrders",
+        JSON.stringify(orders)
+    );
+
+
+    /* LAST ORDER */
+
+    localStorage.setItem(
+        "snKisanLastOrder",
+        JSON.stringify(order)
+    );
+
+
+    /* CLEAR CART */
+
+    cart = [];
+
+    saveCart();
+
+    updateCart();
+
+
+    /* SUCCESS */
+
+    showToast(
+        "Order placed successfully! 🎉"
+    );
+
+
+    /* GO TO ORDERS */
+
+    setTimeout(function() {
+
+        window.location.href =
+            "orders.html";
+
+    }, 1200);
+
+}
     /* =========================================
        PAGE LOAD
     ========================================= */
