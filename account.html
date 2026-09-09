@@ -276,95 +276,66 @@
     <script src="js/script.js"></script>
 
 
-    <script>
+<script>
 
-        document.addEventListener(
-            "DOMContentLoaded",
+document.addEventListener("DOMContentLoaded", function () {
+
+    const currentUser =
+        JSON.parse(
+            localStorage.getItem("snKisanCurrentUser")
+        );
+
+    const accountName =
+        document.getElementById("accountName");
+
+    const accountEmail =
+        document.getElementById("accountEmail");
+
+    if (currentUser) {
+
+        accountName.textContent =
+            currentUser.name || "Customer";
+
+        accountEmail.textContent =
+            currentUser.email || "";
+
+    } else {
+
+        accountName.textContent =
+            "Guest";
+
+        accountEmail.textContent =
+            "Please login to view your account";
+
+    }
+
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+    if (logoutBtn) {
+
+        logoutBtn.addEventListener(
+            "click",
             function () {
 
-                const currentUser =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "snKisanCurrentUser"
-                        )
-                    );
+                logoutUser();
 
-                /*
-                 * Login nahi hai
-                 */
-                if (!currentUser) {
+                setTimeout(function () {
 
                     window.location.href =
                         "index.html";
 
-                    return;
-                }
-
-
-                /*
-                 * User information
-                 */
-
-                const accountName =
-                    document.getElementById(
-                        "accountName"
-                    );
-
-                const accountEmail =
-                    document.getElementById(
-                        "accountEmail"
-                    );
-
-
-                if (accountName) {
-                    accountName.textContent =
-                        currentUser.name;
-                }
-
-
-                if (accountEmail) {
-                    accountEmail.textContent =
-                        currentUser.email;
-                }
-
-
-                /*
-                 * Logout
-                 */
-
-                const logoutBtn =
-                    document.getElementById(
-                        "logoutBtn"
-                    );
-
-
-                if (logoutBtn) {
-
-                    logoutBtn.addEventListener(
-                        "click",
-                        function () {
-
-                            logoutUser();
-
-                            setTimeout(
-                                function () {
-
-                                    window.location.href =
-                                        "index.html";
-
-                                },
-                                700
-                            );
-
-                        }
-                    );
-
-                }
+                }, 500);
 
             }
         );
 
-    </script>
+    }
+
+});
+
+</script>
 
 </body>
 
