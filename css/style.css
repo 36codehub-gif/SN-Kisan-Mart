@@ -1826,3 +1826,887 @@ MOBILE PRODUCTS
 }
 
 }
+
+
+/* =========================================
+   SN KISAN MART - NEW HOME PAGE
+========================================= */
+
+/* ---------- HOME BANNER ---------- */
+
+.home-banner {
+    position: relative;
+    min-height: 430px;
+    overflow: hidden;
+    background: #edf7ea;
+}
+
+.banner-slide {
+    display: none;
+    min-height: 430px;
+    padding: 65px 0;
+}
+
+.banner-slide.active {
+    display: flex;
+}
+
+.banner-slide .container {
+    width: 92%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.banner-content {
+    max-width: 620px;
+}
+
+.banner-badge {
+    display: inline-block;
+    background: #d9edd5;
+    color: #176b35;
+    padding: 7px 13px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.banner-content h1 {
+    color: #183b25;
+    font-size: clamp(34px, 5vw, 58px);
+    line-height: 1.08;
+    margin-bottom: 18px;
+}
+
+.banner-content h1 span {
+    color: #2c8a45;
+}
+
+.banner-content p {
+    color: #647268;
+    max-width: 540px;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.banner-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.banner-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 21px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    background: #176b35;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.banner-btn:hover {
+    background: #12562a;
+    transform: translateY(-2px);
+}
+
+.banner-btn.secondary {
+    background: #fff;
+    color: #176b35;
+    border: 1px solid #bfd4bd;
+}
+
+.banner-visual {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.banner-circle {
+    width: 290px;
+    height: 290px;
+    background: #cde5c8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 130px;
+    box-shadow: 0 20px 45px rgba(23, 107, 53, 0.12);
+}
+
+.banner-card {
+    position: absolute;
+    background: #fff;
+    padding: 12px 16px;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    font-weight: 700;
+    color: #24382a;
+}
+
+.banner-card.top {
+    top: 25px;
+    right: 10px;
+}
+
+.banner-card.bottom {
+    bottom: 20px;
+    left: 10px;
+}
+
+.banner-controls {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    z-index: 5;
+}
+
+.banner-controls button {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #b9cdb7;
+}
+
+.banner-controls button.active {
+    width: 24px;
+    border-radius: 10px;
+    background: #176b35;
+}
+
+.banner-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    color: #176b35;
+    font-size: 20px;
+    z-index: 5;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+#bannerPrev {
+    left: 20px;
+}
+
+#bannerNext {
+    right: 20px;
+}
+
+
+/* ---------- BENEFITS ---------- */
+
+.benefits-strip {
+    background: #fff;
+    border-bottom: 1px solid #e6eee4;
+}
+
+.benefits-strip .container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 22px 10px;
+}
+
+.benefit-icon {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    border-radius: 12px;
+    background: #edf6ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.benefit-item strong {
+    display: block;
+    color: #253b2b;
+    font-size: 13px;
+}
+
+.benefit-item span {
+    display: block;
+    color: #7a857d;
+    font-size: 10px;
+}
+
+
+/* ---------- HOME SECTIONS ---------- */
+
+.home-section {
+    padding: 65px 0;
+    background: #fff;
+}
+
+.home-section.gray {
+    background: #f7faf6;
+}
+
+.home-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 28px;
+}
+
+.home-section-header div:first-child {
+    flex: 1;
+}
+
+.home-section-tag {
+    color: #2d8144;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.home-section-header h2 {
+    color: #1d3925;
+    font-size: 30px;
+    line-height: 1.2;
+    margin-top: 6px;
+}
+
+.home-section-header p {
+    color: #78847b;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.home-view-all {
+    color: #176b35;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* ---------- CATEGORIES ---------- */
+
+.category-grid-home {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+}
+
+.category-home-card {
+    display: block;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #e4ebe2;
+    border-radius: 14px;
+    padding: 20px 10px;
+    transition: 0.3s;
+}
+
+.category-home-card:hover {
+    transform: translateY(-5px);
+    border-color: #b7d4b4;
+    box-shadow: 0 12px 25px rgba(25,77,37,0.08);
+}
+
+.category-home-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: #edf6ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.category-home-card h3 {
+    color: #26392b;
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.category-home-card span {
+    color: #8a938c;
+    font-size: 10px;
+}
+
+
+/* ---------- HOME PRODUCT GRID ---------- */
+
+.home-product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.home-product-card {
+    background: #fff;
+    border: 1px solid #e4ebe2;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.home-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(24,72,34,0.09);
+}
+
+.home-product-image {
+    height: 215px;
+    background: #f0f7ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.home-product-icon {
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    background: #dcefd8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+}
+
+.home-product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #176b35;
+    color: #fff;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.home-product-info {
+    padding: 16px;
+}
+
+.home-product-category {
+    color: #55835f;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.home-product-info h3 {
+    color: #24382a;
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 6px 0 12px;
+}
+
+.home-rating {
+    color: #e49b26;
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+
+.home-rating span {
+    color: #89928c;
+}
+
+.home-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.home-price {
+    color: #176b35;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.home-add-btn {
+    border: none;
+    background: #e8f4e6;
+    color: #176b35;
+    padding: 9px 12px;
+    border-radius: 7px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.home-add-btn:hover {
+    background: #176b35;
+    color: #fff;
+}
+
+
+/* ---------- DEAL SECTION ---------- */
+
+.deal-section {
+    padding: 55px 0;
+    background: #176b35;
+}
+
+.deal-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.deal-content {
+    color: #fff;
+}
+
+.deal-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    opacity: 0.85;
+}
+
+.deal-content h2 {
+    font-size: 34px;
+    line-height: 1.2;
+    margin: 8px 0;
+}
+
+.deal-content p {
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+.deal-timer {
+    display: flex;
+    gap: 10px;
+}
+
+.deal-time {
+    min-width: 65px;
+    padding: 12px 8px;
+    background: #fff;
+    border-radius: 9px;
+    text-align: center;
+}
+
+.deal-time strong {
+    display: block;
+    color: #176b35;
+    font-size: 22px;
+}
+
+.deal-time span {
+    color: #78847b;
+    font-size: 9px;
+}
+
+
+/* ---------- RECENTLY VIEWED ---------- */
+
+.recently-viewed {
+    background: #f7faf6;
+}
+
+.recent-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.recent-card {
+    background: #fff;
+    border: 1px solid #e4ebe2;
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.recent-icon {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    border-radius: 10px;
+    background: #edf6ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+}
+
+.recent-card strong {
+    display: block;
+    color: #26392b;
+    font-size: 12px;
+}
+
+.recent-card span {
+    color: #176b35;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* ---------- BRANDS ---------- */
+
+.brands-section {
+    padding: 55px 0;
+    background: #fff;
+}
+
+.brands-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+}
+
+.brand-card {
+    min-height: 80px;
+    border: 1px solid #e5ebe3;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    color: #536158;
+    font-weight: 800;
+    font-size: 13px;
+    background: #fafcf9;
+    transition: 0.3s;
+}
+
+.brand-card:hover {
+    color: #176b35;
+    border-color: #b8d3b5;
+    transform: translateY(-3px);
+}
+
+
+/* ---------- HOME ABOUT ---------- */
+
+.home-about {
+    background: #f5f9f3;
+    padding: 70px 0;
+}
+
+.home-about-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: center;
+    gap: 65px;
+}
+
+.home-about-visual {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-about-circle {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: #d5e9d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120px;
+}
+
+.home-about-content .home-section-tag {
+    display: block;
+}
+
+.home-about-content h2 {
+    color: #1d3925;
+    font-size: 36px;
+    line-height: 1.2;
+    margin: 8px 0 18px;
+}
+
+.home-about-content p {
+    color: #69756c;
+    font-size: 14px;
+    max-width: 600px;
+    margin-bottom: 12px;
+}
+
+.home-about-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.home-about-point {
+    color: #26392b;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.home-about-point span {
+    color: #176b35;
+    margin-right: 5px;
+}
+
+
+/* ---------- MOBILE HOME ---------- */
+
+@media (max-width: 1000px) {
+
+    .benefits-strip .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-grid-home {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .home-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .recent-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .brands-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .home-about-grid {
+        gap: 35px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .home-banner {
+        min-height: auto;
+    }
+
+    .banner-slide {
+        min-height: 590px;
+        padding: 45px 0 70px;
+    }
+
+    .banner-slide .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .banner-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .banner-buttons {
+        justify-content: center;
+    }
+
+    .banner-visual {
+        min-height: 230px;
+    }
+
+    .banner-circle {
+        width: 210px;
+        height: 210px;
+        font-size: 90px;
+    }
+
+    .banner-card.top {
+        top: 5px;
+        right: 5px;
+    }
+
+    .banner-card.bottom {
+        bottom: 5px;
+        left: 5px;
+    }
+
+    .banner-arrow {
+        width: 34px;
+        height: 34px;
+    }
+
+    #bannerPrev {
+        left: 8px;
+    }
+
+    #bannerNext {
+        right: 8px;
+    }
+
+    .benefits-strip .container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .benefit-item {
+        padding: 15px 5px;
+    }
+
+    .home-section {
+        padding: 50px 0;
+    }
+
+    .home-section-header h2 {
+        font-size: 24px;
+    }
+
+    .category-grid-home {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .home-product-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .home-product-image {
+        height: 160px;
+    }
+
+    .home-product-icon {
+        width: 85px;
+        height: 85px;
+        font-size: 42px;
+    }
+
+    .home-product-info {
+        padding: 12px;
+    }
+
+    .home-product-info h3 {
+        font-size: 13px;
+    }
+
+    .home-price-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .home-add-btn {
+        width: 100%;
+    }
+
+    .deal-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .deal-content h2 {
+        font-size: 27px;
+    }
+
+    .deal-timer {
+        justify-content: center;
+    }
+
+    .recent-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .brands-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .home-about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .home-about-visual {
+        min-height: 230px;
+    }
+
+    .home-about-circle {
+        width: 220px;
+        height: 220px;
+        font-size: 90px;
+    }
+
+    .home-about-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .home-about-points {
+        text-align: left;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .banner-content h1 {
+        font-size: 32px;
+    }
+
+    .category-grid-home {
+        gap: 8px;
+    }
+
+    .category-home-card {
+        padding: 16px 7px;
+    }
+
+    .category-home-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 25px;
+    }
+
+    .home-product-grid {
+        gap: 8px;
+    }
+
+    .home-product-image {
+        height: 140px;
+    }
+
+    .deal-timer {
+        gap: 6px;
+    }
+
+    .deal-time {
+        min-width: 58px;
+    }
+
+    .home-about-points {
+        grid-template-columns: 1fr;
+    }
+}
