@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Account - SN Kisan Mart</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .account-page {
+            min-height: 70vh;
+            padding: 50px 20px;
+            background: #f6faf6;
+        }
+
+        .account-container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .account-header {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.06);
+        }
+
+        .account-header h1 {
+            margin-bottom: 8px;
+            color: #173d25;
+        }
+
+        .account-header p {
+            color: #777;
+        }
+
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .account-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #222;
+            box-shadow: 0 5px 20px rgba(0,0,0,.06);
+            transition: .3s;
+        }
+
+        .account-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .account-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .account-card h3 {
+            color: #173d25;
+            margin-bottom: 6px;
+        }
+
+        .account-card p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            margin-top: 25px;
+            border: none;
+            background: #dc3545;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .logout-btn:hover {
+            background: #bb2d3b;
+        }
+
+        @media (max-width: 700px) {
+            .account-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .account-page {
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="container">
+
+            <a href="index.html" class="logo">
+                🌾 SN Kisan Mart
+            </a>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="index.html#categories">Categories</a>
+                <a href="index.html#about">About</a>
+            </nav>
+
+            <div class="header-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="openCart()"
+                    title="Cart"
+                >
+                    🛒
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ACCOUNT -->
+    <main class="account-page">
+
+        <div class="account-container">
+
+            <div class="account-header">
+
+                <h1>
+                    Welcome, <span id="accountName">Customer</span> 👋
+                </h1>
+
+                <p id="accountEmail">
+                    Loading account...
+                </p>
+
+                <button
+                    class="logout-btn"
+                    id="logoutBtn"
+                    type="button"
+                >
+                    🚪 Logout
+                </button>
+
+            </div>
+
+
+            <div class="account-grid">
+
+                <a href="#" class="account-card">
+
+                    <div class="account-icon">
+                        📦
+                    </div>
+
+                    <h3>My Orders</h3>
+
+                    <p>
+                        View your orders and order status.
+                    </p>
+
+                </a>
+
+
+                <a href="#" class="account-card">
+
+                    <div class="account-icon">
+                        📍
+                    </div>
+
+                    <h3>My Address</h3>
+
+                    <p>
+                        Manage your delivery addresses.
+                    </p>
+
+                </a>
+
+
+                <a href="#" class="account-card">
+
+                    <div class="account-icon">
+                        ❤️
+                    </div>
+
+                    <h3>Wishlist</h3>
+
+                    <p>
+                        View products saved for later.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- CART SIDEBAR -->
+
+    <aside class="cart-sidebar" id="cartSidebar">
+
+        <div class="cart-header">
+
+            <h3>Your Cart</h3>
+
+            <button
+                id="closeCart"
+                type="button"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <div
+            class="cart-items"
+            id="cartItems"
+        ></div>
+
+        <div class="cart-footer">
+
+            <div>
+                Total:
+                <strong id="cartTotal">₹0</strong>
+            </div>
+
+            <button
+                class="checkout-btn"
+                onclick="checkout()"
+                type="button"
+            >
+                Proceed to Checkout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <div
+        class="overlay"
+        id="overlay"
+    ></div>
+
+
+    <!-- TOAST -->
+
+    <div
+        class="toast"
+        id="toast"
+    >
+        Done!
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const currentUser =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "snKisanCurrentUser"
+                        )
+                    );
+
+                /*
+                 * Login nahi hai
+                 */
+                if (!currentUser) {
+
+                    window.location.href =
+                        "index.html";
+
+                    return;
+                }
+
+
+                /*
+                 * User information
+                 */
+
+                const accountName =
+                    document.getElementById(
+                        "accountName"
+                    );
+
+                const accountEmail =
+                    document.getElementById(
+                        "accountEmail"
+                    );
+
+
+                if (accountName) {
+                    accountName.textContent =
+                        currentUser.name;
+                }
+
+
+                if (accountEmail) {
+                    accountEmail.textContent =
+                        currentUser.email;
+                }
+
+
+                /*
+                 * Logout
+                 */
+
+                const logoutBtn =
+                    document.getElementById(
+                        "logoutBtn"
+                    );
+
+
+                if (logoutBtn) {
+
+                    logoutBtn.addEventListener(
+                        "click",
+                        function () {
+
+                            logoutUser();
+
+                            setTimeout(
+                                function () {
+
+                                    window.location.href =
+                                        "index.html";
+
+                                },
+                                700
+                            );
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
