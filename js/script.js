@@ -571,8 +571,6 @@ function setupLogin() {
                         ?.value;
 
 
-                /* Validation */
-
                 if (
                     !name ||
                     !email ||
@@ -610,12 +608,8 @@ function setupLogin() {
                 }
 
 
-                /* Get Users */
-
                 const users = getUsers();
 
-
-                /* Check Existing Email */
 
                 const existingUser =
                     users.find(
@@ -634,8 +628,6 @@ function setupLogin() {
                 }
 
 
-                /* Create User */
-
                 const newUser = {
 
                     id:
@@ -651,14 +643,10 @@ function setupLogin() {
                 };
 
 
-                /* Save User */
-
                 users.push(newUser);
 
                 saveUsers(users);
 
-
-                /* Auto Login */
 
                 localStorage.setItem(
                     "snKisanCurrentUser",
@@ -673,8 +661,6 @@ function setupLogin() {
                     "Account created successfully 🎉"
                 );
 
-
-                /* Go Account */
 
                 setTimeout(
                     function() {
@@ -751,8 +737,6 @@ function setupLogin() {
                     return;
                 }
 
-
-                /* Save Current User */
 
                 localStorage.setItem(
                     "snKisanCurrentUser",
@@ -1050,6 +1034,7 @@ function setupMobileMenu() {
 
 /* =========================================
    SEARCH
+   HOME PAGE → PRODUCTS PAGE
 ========================================= */
 
 
@@ -1067,89 +1052,38 @@ function setupSearch() {
         );
 
 
+    if (!searchInput) {
+        return;
+    }
+
+
     function performSearch() {
-
-        if (!searchInput) return;
-
 
         const query =
             searchInput.value
-                .toLowerCase()
                 .trim();
 
 
         if (!query) {
 
-            document
-                .getElementById("products")
-                ?.scrollIntoView({
-                    behavior: "smooth"
-                });
+            showToast(
+                "Please enter a product name"
+            );
+
+            searchInput.focus();
 
             return;
         }
 
 
-        const productCards =
-            document.querySelectorAll(
-                ".product-card"
-            );
-
-
-        let found = false;
-
-
-        productCards.forEach(
-            card => {
-
-                const name =
-                    card.querySelector("h3")
-                        ?.textContent
-                        .toLowerCase() || "";
-
-
-                const category =
-                    card.querySelector(
-                        ".product-category"
-                    )
-                    ?.textContent
-                    .toLowerCase() || "";
-
-
-                const match =
-                    name.includes(query) ||
-                    category.includes(query);
-
-
-                card.style.display =
-                    match ? "" : "none";
-
-
-                if (match) {
-                    found = true;
-                }
-
-            }
-        );
-
-
-        document
-            .getElementById("products")
-            ?.scrollIntoView({
-                behavior: "smooth"
-            });
-
-
-        if (!found) {
-
-            showToast(
-                "No matching product found"
-            );
-
-        }
+        window.location.href =
+            "products.html?search=" +
+            encodeURIComponent(query);
 
     }
 
+
+    /* SEARCH BUTTON */
 
     if (searchButton) {
 
@@ -1161,22 +1095,22 @@ function setupSearch() {
     }
 
 
-    if (searchInput) {
+    /* ENTER KEY */
 
-        searchInput.addEventListener(
-            "keydown",
-            function(event) {
+    searchInput.addEventListener(
+        "keydown",
+        function(event) {
 
-                if (event.key === "Enter") {
+            if (event.key === "Enter") {
 
-                    performSearch();
+                event.preventDefault();
 
-                }
+                performSearch();
 
             }
-        );
 
-    }
+        }
+    );
 
 }
 
