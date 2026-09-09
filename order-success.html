@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Confirmed - SN Kisan Mart</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .success-page {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+            background: #f7faf7;
+        }
+
+        .success-container {
+            width: 100%;
+            max-width: 850px;
+        }
+
+        .success-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+        }
+
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #e8f7ed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+        }
+
+        .success-card h1 {
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .success-message {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .order-id-box {
+            display: inline-block;
+            background: #f3f6f3;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .order-id-box span {
+            color: #777;
+            margin-right: 8px;
+        }
+
+        .order-id-box strong {
+            color: #198754;
+        }
+
+        .order-details {
+            text-align: left;
+            border-top: 1px solid #eee;
+            padding-top: 25px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        .detail-row span {
+            color: #777;
+        }
+
+        .detail-row strong {
+            text-align: right;
+        }
+
+        .items-title {
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item-name {
+            font-weight: 600;
+        }
+
+        .item-qty {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .item-price {
+            font-weight: 700;
+        }
+
+        .success-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .secondary-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 22px;
+            border: 1px solid #198754;
+            border-radius: 8px;
+            color: #198754;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .secondary-action:hover {
+            background: #eaf7ef;
+        }
+
+        .secure-note {
+            margin-top: 25px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+
+            .success-page {
+                padding: 25px 12px;
+            }
+
+            .success-card {
+                padding: 25px 18px;
+            }
+
+            .success-card h1 {
+                font-size: 25px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+                gap: 3px;
+            }
+
+            .detail-row strong {
+                text-align: left;
+            }
+
+            .order-item {
+                align-items: flex-start;
+            }
+
+            .item-price {
+                white-space: nowrap;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="container nav-wrapper">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon">🌾</span>
+
+            <span>
+                <strong>SN Kisan</strong>
+                <small>Mart</small>
+            </span>
+
+        </a>
+
+
+        <div class="nav-actions">
+
+            <a href="account.html" class="login-btn">
+                👤 My Account
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= SUCCESS ================= -->
+
+<main class="success-page">
+
+    <div class="success-container">
+
+        <div class="success-card">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+
+            <h1>
+                Order Confirmed! 🎉
+            </h1>
+
+
+            <p class="success-message">
+                Thank you for shopping with SN Kisan Mart.
+                Your order has been successfully placed.
+            </p>
+
+
+            <div class="order-id-box">
+
+                <span>
+                    Order ID:
+                </span>
+
+                <strong id="orderId">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+            <!-- ORDER DETAILS -->
+
+            <div class="order-details">
+
+                <div class="detail-row">
+
+                    <span>
+                        Customer
+                    </span>
+
+                    <strong id="customerName">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Delivery Address
+                    </span>
+
+                    <strong id="customerAddress">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Payment Method
+                    </span>
+
+                    <strong id="paymentMethod">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Order Status
+                    </span>
+
+                    <strong id="orderStatus">
+                        Confirmed
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Order Total
+                    </span>
+
+                    <strong id="orderTotal">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <h3 class="items-title">
+                    Order Items
+                </h3>
+
+
+                <div id="orderItems">
+
+                    <!-- Items will load here -->
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="success-actions">
+
+                <a
+                    href="orders.html"
+                    class="primary-btn"
+                >
+                    View My Orders
+                </a>
+
+
+                <a
+                    href="products.html"
+                    class="secondary-action"
+                >
+                    Continue Shopping
+                </a>
+
+            </div>
+
+
+            <p class="secure-note">
+                🔒 Your order information is securely saved.
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-bottom">
+
+        <div class="container">
+
+            <p>
+                © <span id="currentYear"></span>
+                SN Kisan Mart. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="js/script.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const order =
+            JSON.parse(
+                localStorage.getItem(
+                    "snKisanLastOrder"
+                )
+            );
+
+
+        if (!order) {
+
+            document.getElementById(
+                "orderId"
+            ).textContent = "No Order Found";
+
+            return;
+        }
+
+
+        /* Order ID */
+
+        document.getElementById(
+            "orderId"
+        ).textContent = order.id || "-";
+
+
+        /* Customer */
+
+        document.getElementById(
+            "customerName"
+        ).textContent =
+            order.customer?.name || "-";
+
+
+        /* Address */
+
+        const customer =
+            order.customer || {};
+
+
+        const addressParts = [
+
+            customer.address,
+
+            customer.city,
+
+            customer.state,
+
+            customer.pincode
+
+        ].filter(Boolean);
+
+
+        document.getElementById(
+            "customerAddress"
+        ).textContent =
+            addressParts.length
+                ? addressParts.join(", ")
+                : "Address not available";
+
+
+        /* Payment */
+
+        document.getElementById(
+            "paymentMethod"
+        ).textContent =
+            order.paymentMethod || "-";
+
+
+        /* Status */
+
+        document.getElementById(
+            "orderStatus"
+        ).textContent =
+            order.status || "Confirmed";
+
+
+        /* Total */
+
+        document.getElementById(
+            "orderTotal"
+        ).textContent =
+            "₹" +
+            Number(order.total || 0)
+                .toLocaleString("en-IN");
+
+
+        /* Items */
+
+        const itemsContainer =
+            document.getElementById(
+                "orderItems"
+            );
+
+
+        if (
+            !order.items ||
+            order.items.length === 0
+        ) {
+
+            itemsContainer.innerHTML =
+                "<p>No items found.</p>";
+
+            return;
+        }
+
+
+        itemsContainer.innerHTML =
+            order.items.map(
+                item => {
+
+                    const itemTotal =
+                        Number(item.price || 0) *
+                        Number(item.quantity || 0);
+
+
+                    return `
+
+                        <div class="order-item">
+
+                            <div>
+
+                                <div class="item-name">
+                                    ${item.name}
+                                </div>
+
+                                <div class="item-qty">
+                                    Quantity: ${item.quantity}
+                                </div>
+
+                            </div>
+
+                            <div class="item-price">
+                                ₹${itemTotal.toLocaleString("en-IN")}
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+
+        /* Year */
+
+        const year =
+            document.getElementById(
+                "currentYear"
+            );
+
+
+        if (year) {
+
+            year.textContent =
+                new Date().getFullYear();
+
+        }
+
+    }
+
+);
+
+</script>
+
+
+</body>
+</html>
