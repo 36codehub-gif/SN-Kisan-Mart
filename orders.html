@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Orders - SN Kisan Mart</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .orders-page {
+            min-height: 70vh;
+            padding: 50px 20px;
+            background: #f6faf6;
+        }
+
+        .orders-container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .orders-title {
+            margin-bottom: 25px;
+        }
+
+        .orders-title h1 {
+            color: #173d25;
+            margin-bottom: 8px;
+        }
+
+        .orders-title p {
+            color: #777;
+        }
+
+        .order-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.06);
+        }
+
+        .order-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 18px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e8eee8;
+        }
+
+        .order-id {
+            font-weight: 700;
+            color: #173d25;
+        }
+
+        .order-date {
+            color: #777;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .order-status {
+            color: #198754;
+            font-weight: 700;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .item-name {
+            font-weight: 600;
+        }
+
+        .item-qty {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .order-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e8eee8;
+        }
+
+        .order-total {
+            font-size: 18px;
+            font-weight: 700;
+            color: #176b35;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 25px;
+            text-decoration: none;
+            color: #198754;
+            font-weight: 600;
+        }
+
+        .empty-orders {
+            background: #fff;
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.06);
+        }
+
+        .empty-orders-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .empty-orders h2 {
+            color: #173d25;
+            margin-bottom: 8px;
+        }
+
+        .empty-orders p {
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            background: #198754;
+            color: white;
+            padding: 11px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+
+            .orders-page {
+                padding: 30px 15px;
+            }
+
+            .order-top,
+            .order-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .order-item {
+                flex-direction: column;
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="container">
+
+            <a href="index.html" class="logo">
+                🌾 SN Kisan Mart
+            </a>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="account.html">My Account</a>
+            </nav>
+
+            <div class="header-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="openCart()"
+                    type="button"
+                    title="Cart"
+                >
+                    🛒
+                    <span
+                        class="badge"
+                        id="cartCount"
+                    >
+                        0
+                    </span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ORDERS -->
+
+    <main class="orders-page">
+
+        <div class="orders-container">
+
+            <a
+                href="account.html"
+                class="back-btn"
+            >
+                ← Back to My Account
+            </a>
+
+
+            <div class="orders-title">
+
+                <h1>
+                    My Orders 📦
+                </h1>
+
+                <p>
+                    View your recent orders and order status.
+                </p>
+
+            </div>
+
+
+            <div id="ordersContainer"></div>
+
+        </div>
+
+    </main>
+
+
+    <!-- CART SIDEBAR -->
+
+    <aside
+        class="cart-sidebar"
+        id="cartSidebar"
+    >
+
+        <div class="cart-header">
+
+            <h3>Your Cart</h3>
+
+            <button
+                id="closeCart"
+                type="button"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <div
+            class="cart-items"
+            id="cartItems"
+        ></div>
+
+        <div class="cart-footer">
+
+            <div>
+                Total:
+                <strong id="cartTotal">
+                    ₹0
+                </strong>
+            </div>
+
+            <button
+                class="checkout-btn"
+                onclick="checkout()"
+                type="button"
+            >
+                Proceed to Checkout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <div
+        class="overlay"
+        id="overlay"
+    ></div>
+
+
+    <!-- TOAST -->
+
+    <div
+        class="toast"
+        id="toast"
+    >
+        Done!
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const ordersContainer =
+                    document.getElementById(
+                        "ordersContainer"
+                    );
+
+
+                /*
+                 * Current user
+                 */
+
+                const currentUser =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "snKisanCurrentUser"
+                        )
+                    );
+
+
+                /*
+                 * Login check
+                 */
+
+                if (!currentUser) {
+
+                    ordersContainer.innerHTML = `
+                        <div class="empty-orders">
+
+                            <div class="empty-orders-icon">
+                                🔐
+                            </div>
+
+                            <h2>
+                                Please Login
+                            </h2>
+
+                            <p>
+                                Login to view your orders.
+                            </p>
+
+                            <a
+                                href="index.html"
+                                class="shop-btn"
+                            >
+                                Go to Login
+                            </a>
+
+                        </div>
+                    `;
+
+                    return;
+                }
+
+
+                /*
+                 * Get orders
+                 */
+
+                const allOrders =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "snKisanOrders"
+                        )
+                    ) || [];
+
+
+                /*
+                 * Only current user's orders
+                 */
+
+                const userOrders =
+                    allOrders.filter(
+                        order =>
+                            order.userId ===
+                            currentUser.id
+                    );
+
+
+                /*
+                 * No orders
+                 */
+
+                if (userOrders.length === 0) {
+
+                    ordersContainer.innerHTML = `
+                        <div class="empty-orders">
+
+                            <div class="empty-orders-icon">
+                                📦
+                            </div>
+
+                            <h2>
+                                No Orders Yet
+                            </h2>
+
+                            <p>
+                                You haven't placed any orders yet.
+                            </p>
+
+                            <a
+                                href="products.html"
+                                class="shop-btn"
+                            >
+                                Start Shopping
+                            </a>
+
+                        </div>
+                    `;
+
+                    return;
+                }
+
+
+                /*
+                 * Display orders
+                 */
+
+                ordersContainer.innerHTML =
+                    userOrders
+                        .slice()
+                        .reverse()
+                        .map(order => {
+
+                            const itemsHTML =
+                                order.items
+                                    .map(item => {
+
+                                        const itemTotal =
+                                            Number(item.price) *
+                                            Number(item.quantity);
+
+                                        return `
+                                            <div class="order-item">
+
+                                                <div>
+
+                                                    <div class="item-name">
+                                                        ${item.name}
+                                                    </div>
+
+                                                    <div class="item-qty">
+                                                        ₹${item.price}
+                                                        ×
+                                                        ${item.quantity}
+                                                    </div>
+
+                                                </div>
+
+                                                <strong>
+                                                    ₹${itemTotal}
+                                                </strong>
+
+                                            </div>
+                                        `;
+
+                                    })
+                                    .join("");
+
+
+                            return `
+                                <div class="order-card">
+
+                                    <div class="order-top">
+
+                                        <div>
+
+                                            <div class="order-id">
+                                                Order #${order.id}
+                                            </div>
+
+                                            <div class="order-date">
+                                                ${order.date}
+                                            </div>
+
+                                        </div>
+
+                                        <div class="order-status">
+                                            ${order.status || "Confirmed"}
+                                        </div>
+
+                                    </div>
+
+
+                                    ${itemsHTML}
+
+
+                                    <div class="order-bottom">
+
+                                        <span>
+                                            Payment:
+                                            ${order.paymentMethod || "COD"}
+                                        </span>
+
+                                        <span class="order-total">
+                                            Total:
+                                            ₹${order.total}
+                                        </span>
+
+                                    </div>
+
+                                </div>
+                            `;
+
+                        })
+                        .join("");
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
