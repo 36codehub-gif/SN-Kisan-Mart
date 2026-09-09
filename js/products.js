@@ -84,7 +84,6 @@ function displayProducts(list = products) {
 
     grid.innerHTML = "";
 
-
     if (list.length === 0) {
 
         grid.innerHTML = `
@@ -100,6 +99,20 @@ function displayProducts(list = products) {
                 <p>
                     Try another product name or category.
                 </p>
+
+                <button
+                    type="button"
+                    onclick="clearProductSearch()"
+                    style="
+                        margin-top:15px;
+                        padding:10px 18px;
+                        border:none;
+                        border-radius:8px;
+                        cursor:pointer;
+                    "
+                >
+                    View All Products
+                </button>
             </div>
         `;
 
@@ -168,11 +181,14 @@ function displayProducts(list = products) {
 
         /* PRODUCT DETAILS */
 
-        card.addEventListener("click", function () {
+        card.addEventListener(
+            "click",
+            function () {
 
-            openProductDetails(product.id);
+                openProductDetails(product.id);
 
-        });
+            }
+        );
 
 
         /* ADD TO CART */
@@ -180,20 +196,24 @@ function displayProducts(list = products) {
         const cartButton =
             card.querySelector(".add-cart-btn");
 
-        cartButton.addEventListener(
-            "click",
-            function (event) {
+        if (cartButton) {
 
-                event.preventDefault();
-                event.stopPropagation();
+            cartButton.addEventListener(
+                "click",
+                function (event) {
 
-                addToCart(
-                    product.name,
-                    product.price
-                );
+                    event.preventDefault();
+                    event.stopPropagation();
 
-            }
-        );
+                    addToCart(
+                        product.name,
+                        product.price
+                    );
+
+                }
+            );
+
+        }
 
 
         grid.appendChild(card);
@@ -282,7 +302,9 @@ function applyProductFilters() {
 
     const search =
         searchInput
-            ? searchInput.value.toLowerCase().trim()
+            ? searchInput.value
+                .toLowerCase()
+                .trim()
             : "";
 
 
@@ -300,18 +322,17 @@ function applyProductFilters() {
                 product.category === currentCategory;
 
 
-            const searchMatch =
-                product.name
-                    .toLowerCase()
-                    .includes(search) ||
-
-                product.category
-                    .toLowerCase()
-                    .includes(search) ||
-
+            const searchableText = (
+                product.name +
+                " " +
+                product.category +
+                " " +
                 product.description
-                    .toLowerCase()
-                    .includes(search);
+            ).toLowerCase();
+
+
+            const searchMatch =
+                searchableText.includes(search);
 
 
             return categoryMatch && searchMatch;
@@ -359,6 +380,79 @@ function applyProductFilters() {
 
 
 /* =========================================
+   CLEAR SEARCH
+========================================= */
+
+function clearProductSearch() {
+
+    const searchInput =
+        document.getElementById("productSearch");
+
+    if (searchInput) {
+        searchInput.value = "";
+    }
+
+    currentCategory = "all";
+
+    document
+        .querySelectorAll(".category-filter button")
+        .forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+    const allButton =
+        document.querySelector(
+            '.category-filter button[data-category="all"]'
+        );
+
+    if (allButton) {
+        allButton.classList.add("active");
+    }
+
+    applyProductFilters();
+
+}
+
+
+/* =========================================
+   HOME PAGE SEARCH → PRODUCTS PAGE
+========================================= */
+
+function loadSearchFromURL() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const searchQuery =
+        params.get("search");
+
+    if (!searchQuery) {
+        return;
+    }
+
+
+    const searchInput =
+        document.getElementById("productSearch");
+
+
+    if (searchInput) {
+
+        searchInput.value =
+            searchQuery;
+
+    }
+
+
+    applyProductFilters();
+
+}
+
+
+/* =========================================
    LIVE SEARCH
 ========================================= */
 
@@ -370,7 +464,9 @@ document.addEventListener(
 
 
         const searchInput =
-            document.getElementById("productSearch");
+            document.getElementById(
+                "productSearch"
+            );
 
 
         if (searchInput) {
@@ -384,7 +480,28 @@ document.addEventListener(
                 }
             );
 
+
+            searchInput.addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (event.key === "Enter") {
+
+                        event.preventDefault();
+
+                        applyProductFilters();
+
+                    }
+
+                }
+            );
+
         }
+
+
+        /* LOAD SEARCH FROM HOMEPAGE */
+
+        loadSearchFromURL();
 
     }
 );
