@@ -403,7 +403,64 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+    
+    // ================= ADDRESS MANAGEMENT =================
 
+    const addressForm = document.getElementById("addressForm");
+
+    if (addressForm && currentUser) {
+
+        const addressKey = "snKisanAddress_" + currentUser.id;
+
+        const savedAddress =
+            JSON.parse(localStorage.getItem(addressKey));
+
+        if (savedAddress) {
+
+            document.getElementById("address").value =
+                savedAddress.address || "";
+
+            document.getElementById("city").value =
+                savedAddress.city || "";
+
+            document.getElementById("state").value =
+                savedAddress.state || "";
+
+            document.getElementById("pincode").value =
+                savedAddress.pincode || "";
+        }
+
+
+        addressForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            const addressData = {
+
+                address:
+                    document.getElementById("address").value.trim(),
+
+                city:
+                    document.getElementById("city").value.trim(),
+
+                state:
+                    document.getElementById("state").value.trim(),
+
+                pincode:
+                    document.getElementById("pincode").value.trim()
+            };
+
+
+            localStorage.setItem(
+                addressKey,
+                JSON.stringify(addressData)
+            );
+
+            showToast("Address saved successfully! 📍");
+
+        });
+
+    }
 </script>
 
 </body>
